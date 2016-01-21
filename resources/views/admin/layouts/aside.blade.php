@@ -59,58 +59,14 @@
             </li>
         </ul>
     </li>
-    <li>
-        <a href="#"><i class="fa fa-lg fa-fw fa-folder-open"></i> <span class="menu-item-parent">6 Level Navigation</span></a>
-        <ul>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-folder-open"></i> 2nd Level</a>
-                <ul>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3ed Level </a>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-folder-open"></i> 4th Level</a>
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-fw fa-folder-open"></i> 5th Level</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+    <li id="aside_album">
+        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-folder-open"></i> <span class="menu-item-parent">相册</span></a>
+        <ul id="aside_album_">
+            <li id="aside_album_list">
+                <a href="javascript:void(0);"><i class="fa fa-fw fa-folder-open"></i> 列表 </a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-folder-open"></i> Folder</a>
-
-                <ul>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3ed Level </a>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
+            <li id="aside_album_upload">
+                <a href="/admin/album/upload"><i class="fa fa-fw fa-folder-open"></i> 上传 </a>
             </li>
         </ul>
     </li>

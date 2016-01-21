@@ -29,6 +29,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/categorys/', 'CategoryController@index');
         Route::post('/admin/category/store', 'CategoryController@store');
 
+        Route::get('/admin/album/', 'AlbumController@index');
+        Route::get('/admin/album/upload', 'AlbumController@upload');
+
         Route::get('/admin/users/', 'UserController@index');
 
     });
