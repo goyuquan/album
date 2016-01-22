@@ -3,12 +3,12 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class CreateAlbumsTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
             $table->string('title');
@@ -20,8 +20,13 @@ class CreateArticlesTable extends Migration
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        Schema::drop('articles');
+        Schema::drop('albums');
     }
 }

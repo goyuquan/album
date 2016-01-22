@@ -2,6 +2,15 @@
 
 @section('style')
 
+<style>
+    #type_select a{
+        padding: 0.5em 1em;
+    }
+     .dropdown-menu i{
+        margin: 0.2em 0.6em 0.2em 0.6em;
+    }
+</style>
+
 @endsection
 
 @section('content')
@@ -20,7 +29,7 @@
                 控制台
             </li>
             <li>
-                分类管理
+                显示管理
             </li>
         </ol>
         <!-- end breadcrumb -->
@@ -47,20 +56,7 @@
             <article class="col-sm-12 col-md-12 col-lg-6">
 
                 <!-- Widget ID (each widget will need unique ID)-->
-                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
-                    <!-- widget options:
-                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-                    data-widget-colorbutton="false"
-                    data-widget-editbutton="false"
-                    data-widget-togglebutton="false"
-                    data-widget-deletebutton="false"
-                    data-widget-fullscreenbutton="false"
-                    data-widget-custombutton="false"
-                    data-widget-collapsed="true"
-                    data-widget-sortable="false"
-
-                -->
+                <div class="jarviswidget" id="wid-id-6" data-widget-editbutton="false" data-widget-custombutton="false">
                 <header>
                     <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
                     <h2>添加分类 </h2>
@@ -81,38 +77,37 @@
 
                     <div class="widget-body no-padding">
 
-                        <form id="category-form" method="POST" action="/admin/category/store" class="smart-form" novalidate="novalidate">
+                        <form id="display-form" method="POST" action="/admin/articles/display/store" class="smart-form" novalidate="novalidate">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="parent_id">
 
                             <fieldset>
-                            @if (count($categorys) > 0)
+                            @if (count($displays) > 0)
                             <div class="row">
                                 <section class="col col-3">
                                     <div id="parent_select" class="dropdown">
-                                        <a id="dLabel" role="button" name="{{App\Category::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
-                                            <i class="fa fa-code-fork"></i>      {{App\Category::find(1)->name}}
+                                        <a id="dLabel" role="button" name="{{App\display::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
+                                            <i class="fa fa-code-fork"></i>      {{App\display::find(1)->name}}
                                             <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu multi-level" role="menu">
-                                            @foreach ( $categorys as $category )
-                                                @if ( $category->parent_id === 1 )
+                                            @foreach ( $displays as $display )
+                                                @if ( $display->parent_id === 1 )
                                                     <li>
-                                                        <a href="javascript:void(0);" class="item" name="{{$category->id}}">{{ $category->name }}</a>
-                                                        @if ( !App\Category::where('parent_id',$category->id)->get()->isEmpty() )
+                                                        <a href="javascript:void(0);" class="item" name="{{$display->id}}">{{ $display->name }}</a>
+                                                        @if ( !App\Display::where('parent_id',$display->id)->get()->isEmpty() )
                                                             <ul class="dropdown-menu">
-                                                                @foreach ( $categoryss as $category_ )
-                                                                @if ($category_->parent_id === $category->id)
-                                                                <li>
-                                                                    <a href="javascript:void(0);" class="item" name="{{$category_->id}}">
-                                                                        {{$category_->name}}
-                                                                    </a>
-                                                                </li>
+                                                            @foreach ( $displayss as $display_ )
+                                                                @if ($display_->parent_id === $display->id)
+                                                                    <li>
+                                                                        <a href="javascript:void(0);" class="item" name="{{$display_->id}}">
+                                                                            {{$display_->name}}
+                                                                        </a>
+                                                                    </li>
                                                                 @endif
-                                                                @endforeach
+                                                            @endforeach
                                                             </ul>
                                                         @endif
-
                                                     </li>
                                                 @endif
                                             @endforeach
@@ -128,7 +123,7 @@
                                     <input type="text" class="input-md" name="name" placeholder="分类名称">
                                 </label>
                                 @if ($errors->has('name'))
-                                <em for="category" class="invalid">{{ $errors->first('name') }}</em>
+                                <em for="display" class="invalid">{{ $errors->first('name') }}</em>
                                 @endif
                             </section>
 
@@ -267,7 +262,7 @@
 <script type="text/javascript">
 $(function(){
 
-    $("#aside_category").addClass("active");//导航菜单样式
+    $("#aside_display").addClass("active");//导航菜单样式
 
 
     $("#parent_select ul a:not('.parent-item')").click(function(){
@@ -292,7 +287,7 @@ $(function(){
 
     $(".dropdown-menu").parent("li").addClass("dropdown-submenu");//给分类列表父元素加dropdown-submenu类
 
-    var $creat_form = $("#category-form").validate({//表单验证
+    var $creat_form = $("#display-form").validate({//表单验证
 		// Rules for form validation
 		rules : {
 			name : {

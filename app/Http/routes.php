@@ -18,6 +18,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => 'auth'], function () {
 
+		Route::get('/admin/articles/display', 'DisplayController@index');
+        Route::post('/admin/articles/display/store', 'DisplayController@store');
+
         Route::get('/admin','AdminController@index');
         Route::get('/admin/articles/{id?}', 'ArticleController@article_list');
         Route::get('/admin/article/create', 'ArticleController@create');
@@ -30,7 +33,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/category/store', 'CategoryController@store');
 
         Route::get('/admin/album/', 'AlbumController@index');
-        Route::get('/admin/album/upload', 'AlbumController@upload');
+        Route::get('/admin/album/create', 'AlbumController@create');
 
         Route::get('/admin/users/', 'UserController@index');
 

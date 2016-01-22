@@ -1,11 +1,23 @@
 @extends('admin.layouts.admin')
 
 @section('style')
-<style>
-    #type_select a{
-        padding: 0.5em 1em;
+
+<style media="screen">
+    #media_body {
+        min-height: 41px;
+    }
+    #wid-id-32 {
+        margin-bottom: 1em;
+    }
+    #wid-id-1g {
+        margin-bottom: 1em;
+    }
+    #summernote2,#summernote2 div[role="content"] {
+        padding: 0;
+        margin-bottom: 0;
     }
 </style>
+
 @endsection
 
 @section('content')
@@ -74,23 +86,6 @@
 
                 <!-- Widget ID (each widget will need unique ID)-->
                 <div class="jarviswidget" id="wid-id-1g" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="true">
-                <!-- widget options:
-                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-                data-widget-colorbutton="false"
-                data-widget-editbutton="false"
-                data-widget-togglebutton="false"
-                data-widget-deletebutton="false"
-                data-widget-fullscreenbutton="false"
-                data-widget-custombutton="false"
-                data-widget-collapsed="true"
-                data-widget-sortable="false"
-
-                -->
-                    <header>
-                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                        <h2>新建内容 </h2>
-                    </header>
 
                     <!-- widget div-->
                     <div>
@@ -101,7 +96,9 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="thumbnail">
                                 <input type="hidden" name="category">
+                                <input type="hidden" name="display">
                                 <textarea id="input_content" class="hidden" name="content"></textarea>
+                                <textarea id="media_content" class="hidden" name="media"></textarea>
 
 
                                         <fieldset>
@@ -130,8 +127,8 @@
                                                 <div class="col col-1">
                                                     <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
                                                 </div>
-                                                <section class="col col-3">
-                                                    <div id="type_select" class="dropdown">
+                                                <section class="col col-8">
+                                                    <div id="type_select" class="dropdown inline_block">
                                                         <a id="dLabel" role="button" name="{{App\Category::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
                                                             <i class="fa fa-code-fork"></i>      {{App\Category::find(1)->name}}
                                                             <span class="caret"></span>
@@ -140,18 +137,50 @@
                                                             @foreach ( $categorys as $category )
                                                                 @if ( $category->parent_id === 1 )
                                                                     <li>
-                                                                        <a href="javascript:void(0);" name="{{$category->id}}"><i class="fa fa-circle-o">   </i>{{ $category->name }}</a>
-
-                                                                        @foreach ( $categoryss as $category_ )
-                                                                            @if ($category_->parent_id === $category->id)
+                                                                        <a href="javascript:void(0);" class="item" name="{{$category->id}}">{{ $category->name }}</a>
+                                                                        @if ( !App\Category::where('parent_id',$category->id)->get()->isEmpty() )
+                                                                            <ul class="dropdown-menu">
+                                                                                @foreach ( $categoryss as $category_ )
+                                                                                @if ($category_->parent_id === $category->id)
                                                                                 <li>
-                                                                                    <a href="javascript:void(0);" name="{{$category_->id}}">
-                                                                                        <i class="fa fa-circle-o">  </i>{{ $category->name }} <i class="fa fa-chevron-circle-right"></i> {{$category_->name}}
+                                                                                    <a href="javascript:void(0);" class="item" name="{{$category_->id}}">
+                                                                                        {{$category_->name}}
                                                                                     </a>
                                                                                 </li>
-                                                                            @endif
-                                                                        @endforeach
+                                                                                @endif
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        @endif
 
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+
+                                                        </ul>
+                                                    </div>
+                                                    <div id="display_select" class="dropdown inline_block">
+                                                        <a id="dLabel2" role="button" name="{{App\display::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
+                                                            <i class="fa fa-code-fork"></i>      {{App\display::find(1)->name}}
+                                                            <span class="caret"></span>
+                                                        </a>
+                                                        <ul class="dropdown-menu multi-level" role="menu">
+                                                            @foreach ( $displays as $display )
+                                                                @if ( $display->parent_id === 1 )
+                                                                    <li>
+                                                                        <a href="javascript:void(0);" class="item" name="{{$display->id}}">{{ $display->name }}</a>
+                                                                        @if ( !App\Display::where('parent_id',$display->id)->get()->isEmpty() )
+                                                                            <ul class="dropdown-menu">
+                                                                            @foreach ( $displayss as $display_ )
+                                                                                @if ($display_->parent_id === $display->id)
+                                                                                    <li>
+                                                                                        <a href="javascript:void(0);" class="item" name="{{$display_->id}}">
+                                                                                            {{$display_->name}}
+                                                                                        </a>
+                                                                                    </li>
+                                                                                @endif
+                                                                            @endforeach
+                                                                            </ul>
+                                                                        @endif
                                                                     </li>
                                                                 @endif
                                                             @endforeach
@@ -242,20 +271,46 @@
                         </div>
                         <!-- end widget -->
 
+
+                        <div class="jarviswidget well transparent" id="wid-id-32" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+                            <div>
+                                <!-- widget content -->
+                                <div id="media_body" class="widget-body">
+                                    <div class="panel-group smart-accordion-default" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a id="media_bt" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                        插入媒体、表格、图表
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body" style="padding:0;">
+                                                    <div class="jarviswidget jarviswidget-color-blue" id="summernote2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
+                                                        <!-- widget div-->
+                                                        <div>
+                                                            <!-- widget edit box -->
+                                                            <div class="jarviswidget-editbox"> </div>
+                                                            <div class="widget-body no-padding">
+
+                                                                <div class="web_area"> </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="jarviswidget jarviswidget-color-blue" id="summernote" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
-            				<!-- widget options:
-            				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-            				data-widget-colorbutton="false"
-            				data-widget-editbutton="false"
-            				data-widget-togglebutton="false"
-            				data-widget-deletebutton="false"
-            				data-widget-fullscreenbutton="false"
-            				data-widget-custombutton="false"
-            				data-widget-collapsed="false"
-            				data-widget-sortable="false"
-
-            				-->
             				<header>
             					<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
             					<h2>网页内容编辑器</h2>
@@ -321,12 +376,7 @@
 
 
                     </article>
-                    <!-- END COL -->
-
         </div>
-
-        <!-- END ROW -->
-
     </section>
     <!-- end widget grid -->
 
@@ -381,6 +431,12 @@ $(function(){
 		tabsize : 2
 	});
 
+    $('#media_edit').summernote({
+        height : 180,
+        focus : false,
+        tabsize : 2
+    });
+
     $("#summernote textarea").attr("name","content");
     $('#summernote #summernote_save').addClass("disabled");
     $('#summernote #summernote_clear').addClass("disabled");
@@ -398,7 +454,7 @@ $(function(){
 
     $('#summernote #summernote_save').click(function(){
         $("#summernote").removeClass("jarviswidget-color-blue").addClass("jarviswidget-color-greenDark");
-        $("#input_content").val($(".note-editable").html());
+        $("#input_content").val($("#summernote .note-editable").html());
         $('#summernote #summernote_save').addClass("disabled");
         $('#summernote #summernote_clear').addClass("disabled");
     });
@@ -410,12 +466,26 @@ $(function(){
         $(this).addClass("disabled");
     });
 
+    // 分类点击赋值
     $("#type_select ul a:not('.parent-item')").click(function(){
-        $("input[name='category']").val($(this).text());
+        $("input[name='category']").val($(this).attr("name"));
         $("#dLabel").html("<i class='fa fa-gear'></i>   "+$(this).text()+"   <span class='caret'></span>");
     });
 
+    // 显示页面设置
+    $("#display_select ul a:not('.parent-item')").click(function(){
+        $("input[name='display']").val($(this).attr("name"));
+        $("#dLabel2").html("<i class='fa fa-gear'></i>   "+$(this).text()+"   <span class='caret'></span>");
+    });
 
+    //media收起保存
+    $("#media_bt").click(function(){
+        if (!$(this).hasClass("collapsed")) {
+            $("#media_content").val($("#summernote2 .note-editable").html());
+        }
+    });
+
+    $(".dropdown-menu").parent("li").addClass("dropdown-submenu");//给分类列表父元素加dropdown-submenu类
 
     var $creat_form = $("#create_form").validate({//表单验证
 		// Rules for form validation

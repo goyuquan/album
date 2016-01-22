@@ -189,7 +189,6 @@ class ArticleController extends Controller
                 Session()->flash('img',$fileName);
 
                 // return view('/admin/fileselect');
-
                 return $fileName;
             } else {
                 return "上传文件无效！";

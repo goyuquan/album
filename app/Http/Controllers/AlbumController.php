@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Img;
+use App\Category;
+use App\Display;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -17,13 +20,20 @@ class AlbumController extends Controller
 
     public function upload()
     {
-        return view('admin.album.upload');
+
     }
 
 
     public function create()
     {
-        //
+        $displays = $displayss = Display::all();
+        $categorys = $categoryss = Category::all();
+        return view('admin.album.create',[
+            "categorys" => $categorys,
+            "categoryss" => $categoryss,
+            "displays" => $displays,
+            "displayss" => $displayss
+        ]);
     }
 
     /**

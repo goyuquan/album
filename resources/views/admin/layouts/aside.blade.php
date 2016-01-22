@@ -43,6 +43,9 @@
             <li id="aside_article_add">
                 <a href="/admin/article/create">新建文章</a>
             </li>
+            <li id="aside_article_display">
+                <a href="/admin/articles/display">文章展示页面列表</a>
+            </li>
         </ul>
     </li>
     <li id="aside_category">
@@ -66,7 +69,7 @@
                 <a href="javascript:void(0);"><i class="fa fa-fw fa-folder-open"></i> 列表 </a>
             </li>
             <li id="aside_album_upload">
-                <a href="/admin/album/upload"><i class="fa fa-fw fa-folder-open"></i> 上传 </a>
+                <a href="/admin/album/create"><i class="fa fa-fw fa-folder-open"></i> 创建相册 </a>
             </li>
         </ul>
     </li>
