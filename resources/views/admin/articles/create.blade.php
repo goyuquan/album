@@ -6,6 +6,9 @@
     #media_body {
         min-height: 41px;
     }
+    #type_select,#display_select {
+        display: inline-block;
+    }
     #wid-id-32 {
         margin-bottom: 1em;
     }

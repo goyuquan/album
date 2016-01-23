@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Gate;
 use App\Article;
 use App\Category;
+use App\Display;
 use App\Img;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,19 +14,9 @@ use App\Repositories\ArticleRepository;
 
 class ArticleController extends Controller
 {
-    /**
-    * The task repository instance.
-    *
-    * @var TaskRepository
-    */
+
     protected $articles;
 
-    /**
-    * Create a new controller instance.
-    *
-    * @param  TaskRepository  $tasks
-    * @return void
-    */
     public function __construct(ArticleRepository $articles)
     {
         $this->middleware('auth',['except' => [
@@ -46,7 +37,7 @@ class ArticleController extends Controller
 
     public function article_list($id = 1)
     {
-        return view('admin.articles.list', [
+        return view('admin.articles.index', [
             'articles' => $this->articles->for_guest($id)
         ]);
     }
@@ -70,10 +61,16 @@ class ArticleController extends Controller
 
 
 
-    public function create(Request $request)
+    public function create()
     {
+        $displays = $displayss = Display::all();
         $categorys = $categoryss = Category::all();
-        return view('admin.articles.create',["categorys" => $categorys,"categoryss" => $categoryss]);
+        return view('admin.articles.create',[
+            "categorys" => $categorys,
+            "categoryss" => $categoryss,
+            "displays" => $displays,
+            "displayss" => $displayss
+        ]);
     }
 
 

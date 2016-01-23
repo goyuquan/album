@@ -77,7 +77,7 @@
 
                     <div class="widget-body no-padding">
 
-                        <form id="display-form" method="POST" action="/admin/articles/display/store" class="smart-form" novalidate="novalidate">
+                        <form id="display-form" method="POST" action="/admin/display/store" class="smart-form" novalidate="novalidate">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="parent_id">
 

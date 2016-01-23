@@ -3,7 +3,6 @@
 @section('style')
 
 
-
 @endsection
 
 @section('content')
@@ -28,7 +27,7 @@
                 控制台
             </li>
             <li>
-                内容管理
+                相册管理
             </li>
         </ol>
         <!-- end breadcrumb -->
@@ -54,8 +53,8 @@
 
 					<!-- col -->
 					<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> Other Pages <span>&gt;
-							Forum Layout </span></h1>
+						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-image"></i> 相册 <span>&gt;
+							&nbsp;列表 </span></h1>
 					</div>
 					<!-- end col -->
 
@@ -65,7 +64,7 @@
 						<!-- sparks -->
 						<ul id="sparks">
 							<li class="sparks-info">
-								<h5> 全部文章共计 <span class="txt-color-blue"><i class="fa fa-search-plus"></i>&nbsp;{{$articles->total()}}&nbsp;条</span></h5>
+								<h5> 全部文章共计 <span class="txt-color-blue"><i class="fa fa-search-plus"></i>&nbsp;{{$albums->total()}}&nbsp;条</span></h5>
 							</li>
 							<li class="sparks-info">
 								<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span></h5>
@@ -82,7 +81,7 @@
 
 
         <div class="row">
-            @if (count($articles) > 0)
+            @if (count($albums) > 0)
             <div class="col-sm-12">
 
                 <div class="well">
@@ -96,35 +95,44 @@
                                 </th>
                                 <th style="width:20px;">ID</th>
                                 <th>标题</th>
-                                <th style="width:60px;"> 缩略图 </th>
-                                <th style="width:50px;">用户</th>
-                                <th class="text-center hidden-xs hidden-sm" style="width: 60px;">类别</th>
-                                <th class="text-center hidden-xs hidden-sm" style="width: 100px;">发布时间</th>
+                                <th> 缩略图 </th>
+                                <th> 上传 </th>
+                                <th>用户</th>
+                                <th class="text-center hidden-xs hidden-sm">类别</th>
+                                <th class="text-center hidden-xs hidden-sm">发布时间</th>
                                 <th class="hidden-xs hidden-sm" style="width: 50px;">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($articles as $article)
+                            @foreach ($albums as $album)
                             <tr>
                                 <td>
                                     <label class="checkbox"> <input type="checkbox" name="checkbox-inline"> <i></i>
                                     </label>
                                 </td>
-                                <td class="text-center">{{ $article->id }}</td>
-                                <td><h4><a href="/article/{{ $article->id }}"> {{str_limit($article->title,50)}} </a><small></small></h4></td>
+                                <td class="text-center">{{ $album->id }}</td>
+                                <td><h4><a href="/album/{{ $album->id }}"> {{str_limit($album->title,50)}} </a><small></small></h4></td>
                                 <td class="text-center">
-                                    @if($article->thumbnail)
-                                        <a href="/uploads/{{ $article->thumbnail }}"><i class="fa fa-photo fa-2x text-muted text-success"></i></a>
+                                    @if($album->thumbnail)
+                                        <a href="/uploads/{{ $album->thumbnail }}"><i class="fa fa-photo fa-2x text-muted text-success"></i></a>
                                     @endif
                                 </td>
-                                <td>{{App\Article::find($article->user_id)->user->name}}</td>
-                                <td class="text-center hidden-xs hidden-sm">{{ $article->category }}</td>
-                                <td class="text-center hidden-xs hidden-sm">{{ substr($article->published_at,1,10) }}</td>
+                                <td class="text-center">
+                                    @if(!$album->img->isEmpty())
+                                        {{$album->img->first()->name}}
+                                    @else
+                                    <a href="/admin/album/upload/{{$album->id}}"><i class="fa fa-photo fa-2x text-muted"></i></a>
+
+                                    @endif
+                                </td>
+                                <td>{{$album->user->name}}</td>
+                                <td class="text-center hidden-xs hidden-sm">{{ $album->category->name }}</td>
+                                <td class="text-center hidden-xs hidden-sm">{{ substr($album->published_at,0,10) }}</td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
-                                        <a href="/admin/article/{{ $article->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
+                                        <a href="/admin/article/{{ $album->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
                                         </a>
-                                        <a href="/admin/article/{{ $article->id }}/destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
+                                        <a href="/admin/article/{{ $album->id }}/destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -137,7 +145,7 @@
                     <div class="dt-row dt-bottom-row">
                         <div class="row text-center">
                             <div class="dataTables_paginate paging_bootstrap_full">
-                                {{ $articles->links() }}
+                                {{ $albums->links() }}
                             </div>
                         </div>
                     </div>
@@ -160,9 +168,9 @@
 @section('script')
 
 <script type="text/javascript">
-    $("#aside_article").addClass("open");
-    $("#aside_article_").show();
-    $("#aside_article_list").addClass("active");
+    $("#aside_album").addClass("open");
+    $("#aside_album_").show();
+    $("#aside_album_index").addClass("active");
 </script>
 
 @endsection

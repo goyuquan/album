@@ -37,39 +37,40 @@
     <li id="aside_article">
         <a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">内容管理</span></a>
         <ul id="aside_article_">
-            <li id="aside_article_list">
+            <li id="aside_article_index">
                 <a href="/admin/articles/">文章列表</a>
             </li>
             <li id="aside_article_add">
                 <a href="/admin/article/create">新建文章</a>
             </li>
-            <li id="aside_article_display">
-                <a href="/admin/articles/display">文章展示页面列表</a>
-            </li>
-        </ul>
-    </li>
-    <li id="aside_category">
-        <a href="/admin/categorys/"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">文章分类</span></a>
-    </li>
-    <li id="aside_user">
-        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">用户管理</span></a>
-        <ul id="aside_user_">
-            <li id="aside_user_list">
-                <a href="/admin/users/">用户列表</a>
-            </li>
-            <li id="aside_user_add">
-                <a href="/admin/article/create">添加用户</a>
-            </li>
+
         </ul>
     </li>
     <li id="aside_album">
         <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-folder-open"></i> <span class="menu-item-parent">相册</span></a>
         <ul id="aside_album_">
-            <li id="aside_album_list">
-                <a href="javascript:void(0);"><i class="fa fa-fw fa-folder-open"></i> 列表 </a>
+            <li id="aside_album_index">
+                <a href="/admin/albums/"> 相册列表 </a>
             </li>
-            <li id="aside_album_upload">
-                <a href="/admin/album/create"><i class="fa fa-fw fa-folder-open"></i> 创建相册 </a>
+            <li id="aside_album_create">
+                <a href="/admin/album/create"> 创建相册 </a>
+            </li>
+        </ul>
+    </li>
+    <li id="aside_category">
+        <a href="/admin/categorys/"><i class="fa fa-lg fa-fw fa-table"></i> 分类管理</a>
+    </li>
+    <li id="aside_display">
+        <a href="/admin/display"><i class="fa fa-lg fa-fw fa-table"></i> 文章展示页面列表</a>
+    </li>
+    <li id="aside_user">
+        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">用户管理</span></a>
+        <ul id="aside_user_">
+            <li id="aside_user_index">
+                <a href="/admin/users/">用户列表</a>
+            </li>
+            <li id="aside_user_add">
+                <a href="/admin/article/create">添加用户</a>
             </li>
         </ul>
     </li>

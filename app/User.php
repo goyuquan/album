@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
 
-    public function articles()
+    public function article()
     {
         return $this->hasMany('App\Article');
     }

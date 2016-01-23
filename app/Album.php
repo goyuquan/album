@@ -2,14 +2,11 @@
 
 namespace App;
 
-use App\User;
-use App\Category;
-use App\Img;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
 {
-    protected $fillable = ['title','thumbnail','category_id','display','content','published_at'];
+    protected $fillable = ['title','thumbnail','category_id','display_id','content','published_at'];
 
 
     public function user()

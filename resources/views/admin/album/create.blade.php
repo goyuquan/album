@@ -23,7 +23,7 @@
 
 @section('content')
 
-@include('common.upload')
+@include('common.thumbnail')
 
 <!-- MAIN PANEL -->
 <div id="main" role="main">
@@ -112,20 +112,8 @@
                 <article class="col-sm-12 col-md-12 col-lg-12">
 
                     <!-- Widget ID (each widget will need unique ID)-->
-                    <div class="jarviswidget" id="wid-id-5655" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
-                        <!-- widget options:
-                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    <div class="jarviswidget" id="wid-id-5h55" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
 
-                        data-widget-colorbutton="false"
-                        data-widget-editbutton="false"
-                        data-widget-togglebutton="false"
-                        data-widget-deletebutton="false"
-                        data-widget-fullscreenbutton="false"
-                        data-widget-custombutton="false"
-                        data-widget-collapsed="true"
-                        data-widget-sortable="false"
-
-                        -->
                         <header>
                             <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
                             <h2>album Create </h2>
@@ -135,20 +123,18 @@
                             <div class="jarviswidget-editbox"> </div>
                             <div class="widget-body no-padding">
 
-                                <form id="album_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/article/store" enctype="multipart/form-data" >
+                                <form id="album_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/album/store" >
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="thumbnail">
                                     <input type="hidden" name="category">
                                     <input type="hidden" name="display">
-                                    <textarea id="input_content" class="hidden" name="content"></textarea>
-                                    <textarea id="media_content" class="hidden" name="media"></textarea>
 
                                     <fieldset>
                                         <div class="row">
                                             <section class="col col-3">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-user"></i>
-                                                    <input type="text" placeholder="标题">
+                                                    <input type="text" name="title" placeholder="标题">
                                                 </label>
                                             </section>
                                             <section class="col col-3">
@@ -227,14 +213,14 @@
 
                                         <section>
                                             <label class="textarea">
-                                                <textarea rows="3" name="info" placeholder="描述"></textarea>
+                                                <textarea rows="2" name="content" placeholder="描述"></textarea>
                                             </label>
                                         </section>
                                     </fieldset>
 
 
                                     <footer>
-                                        <button type="submit" class="btn btn-primary btn-block">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
                                             提交
                                         </button>
                                     </footer>
@@ -254,26 +240,7 @@
 
             </div>
 
-            <div class="row">
-                <article class="col-sm-12">
-                    <div class="jarviswidget jarviswidget-color-blueLight" id="wid-id-eje" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
-                        <header>
-                            <span class="widget-icon"> <i class="fa fa-cloud"></i> </span>
-                            <h2>My Dropzone! </h2>
-                        </header>
-                        <div class="jarviswidget-editbox">
-                        </div>
-                        <div class="widget-body">
-                            <input type="hidden" name="name" value="{{getdate()[0]}}">
 
-                            <form action="upload.php" class="dropzone" id="mydropzone"  method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="file" name="file" style="display:none;"/>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
             </article>
         </div>
 </div>
@@ -282,78 +249,15 @@
 @endsection
 
 @section('script')
-<script src="/js/upload.js"></script>
-<script src="/js/plugin/summernote/summernote.js"></script>
-<script src="/js/plugin/markdown/markdown.min.js"></script>
-<script src="/js/plugin/markdown/to-markdown.min.js"></script>
-<script src="/js/plugin/markdown/bootstrap-markdown.min.js"></script>
-<script src="/js/plugin/jquery-form/jquery-form.min.js"></script>
-<script src="/js/plugin/dropzone/dropzone.min.js"></script>
-
+<script src="/js/thumbnail.js"></script>
 <script type="text/javascript">
 
 $(function(){
 
-    Dropzone.autoDiscover = false;
-    $("#mydropzone").dropzone({
-        url: "/article/fileupload",
-        addRemoveLinks : true,
-        maxFilesize: 1,
-        dictResponseError: 'Error uploading file!',
-        success : function(data){
-            console.log(data.name);
-        },
-    });
+    $("#aside_album").addClass("open");
+    $("#aside_album_").show();
+    $("#aside_album_create").addClass("active");
 
-    $("#aside_article").addClass("open");
-    $("#aside_article_").show();
-    $("#aside_article_add").addClass("active");
-
-    $("#text_area").markdown({
-        autofocus:false,
-        savable:false
-    });
-
-    $('.web_area').summernote({
-		height : 280,
-		focus : false,
-		tabsize : 2
-	});
-
-    $('#media_edit').summernote({
-        height : 180,
-        focus : false,
-        tabsize : 2
-    });
-
-    $("#summernote textarea").attr("name","content");
-    $('#summernote #summernote_save').addClass("disabled");
-    $('#summernote #summernote_clear').addClass("disabled");
-
-    $(".note-editable").keyup(function(){
-        if ($(this).html() != "") {
-            $("#summernote").removeClass("jarviswidget-color-greenDark jarviswidget-color-redLight").addClass("jarviswidget-color-blue");
-            $('#summernote #summernote_save').removeClass("disabled");
-            $('#summernote #summernote_clear').removeClass("disabled");
-        } else {
-            $('#summernote #summernote_save').addClass("disabled");
-            $('#summernote #summernote_clear').addClass("disabled");
-        }
-    });
-
-    $('#summernote #summernote_save').click(function(){
-        $("#summernote").removeClass("jarviswidget-color-blue").addClass("jarviswidget-color-greenDark");
-        $("#input_content").val($("#summernote .note-editable").html());
-        $('#summernote #summernote_save').addClass("disabled");
-        $('#summernote #summernote_clear').addClass("disabled");
-    });
-
-    $('#summernote #summernote_clear').click(function(){
-        $("#input_content").empty();
-        $(".note-editable").empty();
-        $('#summernote #summernote_save').addClass("disabled");
-        $(this).addClass("disabled");
-    });
 
     // 分类点击赋值
     $("#type_select ul a:not('.parent-item')").click(function(){
@@ -376,12 +280,12 @@ $(function(){
 
     $(".dropdown-menu").parent("li").addClass("dropdown-submenu");//给分类列表父元素加dropdown-submenu类
 
-    var $creat_form = $("#create_form").validate({//表单验证
-		// Rules for form validation
+    //表单验证
+    var $album_form = $("#album_form").validate({
 		rules : {
 			title : {
 				required : true,
-				minlength : 5,
+				minlength : 2,
 				maxlength : 200
 			},
 			category : {
@@ -393,7 +297,7 @@ $(function(){
 		messages : {
 			title : {
 				required : '请输入标题',
-                minlength : '不能小于5位',
+                minlength : '不能小于2位',
                 maxlength : '不能大于200位',
 			},
 			category : {
@@ -406,16 +310,6 @@ $(function(){
 			error.insertAfter(element.parent());
 		}
 	});
-
-    $("#create_form").submit(function(){//文本域验证
-
-        if ($("#input_content").val() == "") {
-            $("#summernote").removeClass("jarviswidget-color-blue").addClass("jarviswidget-color-redLight");
-            $("#summernote h2").text("内容不能为空");
-            return false;
-        }
-    });
-
 
 });
 

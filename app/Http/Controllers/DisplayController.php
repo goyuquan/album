@@ -44,7 +44,7 @@ class DisplayController extends Controller
 
         Session()->flash('status', 'display create was successful!');
 
-        return redirect('/admin/articles/display/');
+        return redirect('/admin/display');
     }
 
 }

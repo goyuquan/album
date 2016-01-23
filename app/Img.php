@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Album;
 use Illuminate\Database\Eloquent\Model;
 
 class Img extends Model
