@@ -73,7 +73,13 @@ class AlbumController extends Controller
 
     public function show($id)
     {
-        //
+        $imgs = Img::where('album_id',$id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+        return view('admin.album.show',[
+            'imgs' => $imgs,
+            'album' => $id
+        ]);
     }
 
     public function edit($id)

@@ -119,7 +119,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if(!$album->img->isEmpty())
-                                        {{$album->img->first()->name}}
+                                        <a href="/admin/album/{{$album->id}}/show"><i class="fa fa-photo fa-2x text-info"></i></a>
                                     @else
                                     <a href="/admin/album/upload/{{$album->id}}"><i class="fa fa-photo fa-2x text-muted"></i></a>
 

@@ -66,7 +66,14 @@
                     </span>
                 </h1>
             </div>
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            @if(App\Img::where('album_id',$album->id))
+            <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1 text-align-right">
+                <div class="page-title">
+                    <a href="/admin/album/{{$album->id}}/show" class="btn btn-primary">查看相册</a>
+                </div>
+            </div>
+            @endif
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
                 <ul id="sparks" class="">
                     <li class="sparks-info">
                         <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
@@ -106,7 +113,6 @@
                         <div class="jarviswidget-editbox">
                         </div>
                         <div class="widget-body">
-                            <input type="hidden" name="name" value="{{getdate()[0]}}">
 
                             <form action="/admin/album/upload/uploadstore" class="dropzone" id="mydropzone"  method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -136,16 +142,12 @@ $(function(){
         url: "/admin/album/upload/uploadstore",
         addRemoveLinks : true,
         maxFilesize: 1,
-        dictResponseError: 'Error uploading file!',
-        success : function(data){
-            console.log(data.name);
-        },
+        dictResponseError: 'Error uploading file!'
     });
 
     $("#aside_album").addClass("open");
     $("#aside_album_").show();
     $("#aside_album_add").addClass("active");
-
 
 });
 

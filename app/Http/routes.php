@@ -35,6 +35,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/display/store', 'DisplayController@store');
 
         Route::get('/admin/albums/{id?}', 'AlbumController@index');
+        Route::get('/admin/album/{id?}/show', 'AlbumController@show');
         Route::get('/admin/album/create', 'AlbumController@create');
         Route::post('/admin/album/store', 'AlbumController@store');
         Route::get('/admin/album/upload/{id?}', 'AlbumController@upload');
