@@ -16,6 +16,7 @@ class CreateImgsTable extends Migration
             $table->increments('id');
             $table->integer('album_id')->index();
             $table->string('name');
+            $table->text('thumbnail');
             $table->timestamps();
         });
     }

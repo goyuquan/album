@@ -138,16 +138,16 @@ class AlbumController extends Controller
     {
         if ($request->hasFile('file'))//文件是否上传
         {
-
             if ($request->file('file')->isValid())//上传文件是否有效
             {
-                $file_pre = getdate()[0];//取得当前时间戳
+                $file_pre = sha1(time().time());//取得当前时间戳
                 $file_suffix = substr(strchr($request->file('file')->getMimeType(),"/"),1);//取得文件后缀
                 $destinationPath = 'uploads';//上传路径
                 $fileName = $file_pre.'.'.$file_suffix;//上传文件名
                 $request->file('file')->move($destinationPath, $fileName);
 
                 $img = new Img;
+                $img->thumbnail = $request->thumb;
                 $img->name = $fileName;
                 $img->album_id = $request->album;
                 $img->save();
@@ -163,8 +163,6 @@ class AlbumController extends Controller
             return "文件上传失败！";
         }
     }
-
-
 
 
 }
