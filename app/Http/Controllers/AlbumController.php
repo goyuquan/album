@@ -147,7 +147,7 @@ class AlbumController extends Controller
                 $request->file('file')->move($destinationPath, $fileName);
 
                 $img = new Img;
-                $img->thumbnail = $request->thumb;
+                // $img->thumbnail = $request->thumbnail;
                 $img->name = $fileName;
                 $img->album_id = $request->album;
                 $img->save();
