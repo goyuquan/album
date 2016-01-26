@@ -74,7 +74,7 @@ class AlbumController extends Controller
     public function show($id)
     {
         $imgs = Img::where('album_id',$id)
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id')
                     ->get();
         return view('admin.album.show',[
             'imgs' => $imgs,
@@ -145,6 +145,7 @@ class AlbumController extends Controller
                 $destinationPath = 'uploads';//上传路径
                 $fileName = $file_pre.'.'.$file_suffix;//上传文件名
                 $request->file('file')->move($destinationPath, $fileName);
+
 
                 $img = new Img;
                 // $img->thumbnail = $request->thumbnail;
