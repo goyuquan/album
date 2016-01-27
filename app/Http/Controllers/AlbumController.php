@@ -6,6 +6,7 @@ use App\Album;
 use App\Img;
 use App\Category;
 use App\Display;
+use Image;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -144,18 +145,22 @@ class AlbumController extends Controller
                 $file_suffix = substr(strchr($request->file('file')->getMimeType(),"/"),1);//取得文件后缀
                 $destinationPath = 'uploads';//上传路径
                 $fileName = $file_pre.'.'.$file_suffix;//上传文件名
+                $thumbnail_name = $file_pre.'_thumbnail.'.$file_suffix;
+
+                Image::make($request->file('file'))//生成缩略图
+                                    ->fit(160,160)
+                                    ->save('uploads/thumbnails/'.$thumbnail_name);
+
                 $request->file('file')->move($destinationPath, $fileName);
 
-
                 $img = new Img;
-                // $img->thumbnail = $request->thumbnail;
+                $img->thumbnail = $thumbnail_name;
                 $img->name = $fileName;
                 $img->album_id = $request->album;
                 $img->save();
 
                 Session()->flash('img',$fileName);
 
-                // return view('/admin/fileselect');
                 return $fileName;
             } else {
                 return "上传文件无效！";

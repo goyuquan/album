@@ -5,8 +5,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::get('/', function () {
-        return view('welcome');
+
+        // $img = Image::make('abc.jpg')->resize(300, 200);
+        $img = Image::canvas(400, 300, '#abc')->resize(100,100);
+
+        // return "ddddddddddddd";
+        return $img->response('jpg');
+        // return view('welcome');
     });
+
 
     Route::get('/articles/{id?}', 'ArticleController@index');
     Route::post('/article/fileupload','ArticleController@fileUpload');
