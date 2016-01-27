@@ -75,7 +75,7 @@
             @if (count($imgs) > 0)
                 @foreach ($imgs as $img)
                 <div class="superbox-list">
-                    <img src="/uploads/{{ $img->name }}" data-img="/uploads/{{ $img->name }}"  title="/uploads/{{ $img->name }}" class="superbox-img">
+                    <img src="/uploads/thumbnails/{{ $img->thumbnail }}" data-img="/uploads/{{ $img->name }}"  title="/uploads/thumbnails/{{ $img->thumbnail }}" class="superbox-img">
                 </div>
                 @endforeach
             @endif
