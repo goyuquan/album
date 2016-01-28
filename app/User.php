@@ -35,4 +35,9 @@ class User extends Authenticatable
         return $this->hasMany('App\album');
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
 }

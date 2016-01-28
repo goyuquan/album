@@ -5,13 +5,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::get('/', function () {
-
-        // $img = Image::make('abc.jpg')->resize(300, 200);
-        $img = Image::canvas(400, 300, '#abc')->resize(100,100);
-
-        // return "ddddddddddddd";
-        return $img->response('jpg');
-        // return view('welcome');
+        return view('welcome');
     });
 
 
@@ -49,6 +43,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/album/upload/uploadstore','AlbumController@uploadstore');
 
         Route::get('/admin/users/', 'UserController@index');
+        Route::get('/admin/user/create', 'UserController@create');
+        Route::get('/admin/user/roles', 'UserController@roles');
+        Route::post('/admin/user/role/store', 'UserController@role_store');
+        Route::get('/admin/user/role/{id}/edit', 'UserController@role_edit');
+        Route::post('/admin/user/role/{id}/update', 'UserController@role_update');
+        Route::get('/admin/user/role/{id}/destroy', 'UserController@role_destroy');
+
 
     });
 

@@ -58,10 +58,14 @@
         </ul>
     </li>
     <li id="aside_category">
-        <a href="/admin/categorys/"><i class="fa fa-lg fa-fw fa-table"></i> 分类管理</a>
+        <a href="/admin/categorys/"><i class="fa fa-lg fa-fw fa-table"></i>
+            <span class="menu-item-parent">分类管理</span>
+        </a>
     </li>
     <li id="aside_display">
-        <a href="/admin/display"><i class="fa fa-lg fa-fw fa-table"></i> 文章展示页面列表</a>
+        <a href="/admin/display"><i class="fa fa-lg fa-fw fa-table"></i>
+            <span class="menu-item-parent">文章展示页面列表</span>
+        </a>
     </li>
     <li id="aside_user">
         <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">用户管理</span></a>
@@ -70,7 +74,10 @@
                 <a href="/admin/users/">用户列表</a>
             </li>
             <li id="aside_user_add">
-                <a href="/admin/article/create">添加用户</a>
+                <a href="/admin/user/create">添加用户</a>
+            </li>
+            <li id="aside_user_roles">
+                <a href="/admin/user/roles">角色管理</a>
             </li>
         </ul>
     </li>
