@@ -6,7 +6,9 @@
 table th,table td {
     text-align: center;
 }
-
+table thead {
+    border-top: 1px solid #ccc;
+}
 </style>
 
 @endsection
@@ -59,8 +61,8 @@ table th,table td {
 
         <!-- col -->
         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-            <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> Other Pages <span>&gt;
-                Forum Layout </span></h1>
+            <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> 用户管理 <span>&gt;
+                用户列表 </span></h1>
             </div>
             <!-- end col -->
 
@@ -70,7 +72,9 @@ table th,table td {
                 <!-- sparks -->
                 <ul id="sparks">
                     <li class="sparks-info">
-                        <h5> 全部文章共计 <span class="txt-color-blue"><i class="fa fa-search-plus"></i>&nbsp;&nbsp;条</span></h5>
+                        <h5> 全部文章共计
+                            <span class="txt-color-blue">
+                                <i class="fa fa-search-plus"></i>&nbsp;&nbsp;&nbsp;条</span></h5>
                     </li>
                     <li class="sparks-info">
                         <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span></h5>
@@ -86,12 +90,6 @@ table th,table td {
         </div>
 
         <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-erysy" data-widget-editbutton="false">
-
-            <header>
-                <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                <h2>Column Filters </h2>
-
-            </header>
 
             <!-- widget div-->
             <div>
@@ -116,18 +114,17 @@ table th,table td {
                                 <th>ID</th>
                                 <th>用户名</th>
                                 <th>email</th>
+                                <th>catetory</th>
+                                <th>catetory</th>
+                                <th>catetory</th>
+                                <th>catetory</th>
                                 <th>创建时间</th>
                                 <th>更新时间</th>
                                 <th>操作</th>
                             </tr>
                             <tr class="second">
-                                <td>
-                                </td>
-                                <td>
-                                    <label class="input">
-                                        <input type="text" name="search_browser" value="Filter browsers" class="search_init">
-                                    </label>
-                                </td>
+                                <td> </td>
+                                <td> </td>
                                 <td>
                                     <label class="input">
                                         <input type="text" name="search_platform" value="Filter platforms" class="search_init">
@@ -138,16 +135,13 @@ table th,table td {
                                         <input type="text" name="search_version" value="Filter versions" class="search_init">
                                     </label>
                                 </td>
-                                <td>
-                                    <label class="input">
-                                        <input type="text" name="search_grade" value="Filter grades" class="search_init">
-                                    </label>
-                                </td>
-                                <td>
-                                    <label class="input">
-                                        <input type="text" name="search_grade" value="Filter grades" class="search_init">
-                                    </label>
-                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -161,6 +155,10 @@ table th,table td {
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }} </td>
                                 <td>{{ $user->email }} </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
                                 <td>{{ substr($user->created_at,0,10) }} </td>
                                 <td>{{ substr($user->updated_at,0,10) }} </td>
                                 <td class="hidden-xs hidden-sm">
@@ -264,7 +262,7 @@ $(function(){
             });
         }
     });
-    
+
 });
 
 
