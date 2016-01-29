@@ -73,7 +73,7 @@
             <li id="aside_user_index">
                 <a href="/admin/users/">用户列表</a>
             </li>
-            <li id="aside_user_add">
+            <li id="aside_user_create">
                 <a href="/admin/user/create">添加用户</a>
             </li>
             <li id="aside_user_roles">

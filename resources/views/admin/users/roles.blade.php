@@ -31,70 +31,75 @@
         </ol>
         <!-- end breadcrumb -->
 
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
-
     </div>
     <!-- END RIBBON -->
 
     <!-- MAIN CONTENT -->
     <div id="content">
 
+        <div class="inbox-nav-bar no-content-padding">
 
-        <div class="row">
-            <article class="col-md-12">
+            <h1 class="page-title txt-color-blueDark hidden-tablet"><i class="fa fa-fw fa-inbox"></i> 添加角色 &nbsp;</h1>
 
-                <!-- Widget ID (each widget will need unique ID)-->
-                <div class="jarviswidget jarviswidget-color-greenDark" id="wid-id-649618" data-widget-colorbutton="false" data-widget-editbutton="false">
+            <div class="btn-group hidden-desktop visible-tablet">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Inbox333 <i class="fa fa-caret-down"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="inbox-content" class="inbox-body no-content-padding">
+
+            <div class="inbox-side-bar">
+
+                <form id="role_form" class="smart-form" method="POST" action="/admin/user/role/store" >
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                    <section>
+                        <label class="input">
+                            <i class="icon-prepend fa fa-user"></i>
+                            <input name="name" placeholder="name" type="text">
+                        </label>
+                        @if ($errors->has('name'))
+                        <em for="title" class="invalid">{{ $errors->first('name') }}</em>
+                        @endif
+                    </section>
+                    <section>
+                        <label class="input">
+                            <i class="icon-prepend fa fa-search"></i>
+                            <input name="alias" placeholder="alias" type="text">
+                        </label>
+                        @if ($errors->has('alias'))
+                        <em for="title" class="invalid">{{ $errors->first('alias') }}</em>
+                        @endif
+                    </section>
+
+                    <button type="submit" class="btn btn-primary btn-block" style="height:2.4em">
+                        <i class="fa fa-plus"></i>添加角色
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+            <div class="table-wrap custom-scroll animated fast fadeInRight">
+
+                <div class="jarviswidget jarviswidget-color-greenDark" id="wid-id-6gf618" data-widget-colorbutton="false" data-widget-editbutton="false">
 
                     <!-- widget div-->
                     <div>
                         <div class="widget-body no-padding">
-                            <div class="widget-body-toolbar">
-
-                                <div class="row">
-                                    <form id="role_form" method="POST" action="/admin/user/role/store" >
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                        <div class="col-xs-9 col-sm-5 col-md-5 col-lg-5">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                                <input class="form-control" name="name" placeholder="name" type="text">
-                                                @if ($errors->has('name'))
-                                                    <em for="title" class="invalid">{{ $errors->first('name') }}</em>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-3 col-sm-7 col-md-7 col-lg-7 text-right">
-
-                                            <button class="btn btn-success">
-                                                <i class="fa fa-plus"></i> <span class="hidden-mobile">添加角色</span>
-                                            </button>
-
-                                        </div>
-                                    </form>
-                                </div>
-
-
-
-                            </div>
-
                             <div class="table-responsive" style="max-height:500px; overflow-y: scroll;">
-
-
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th><i class="fa fa-key text-warning"></i> ID</th>
-                                            <th>角色 <i class="text-danger">!</i></th>
+                                            <th>角色</th>
+                                            <th>别名</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -104,6 +109,7 @@
                                         <tr>
                                             <td>{{$role->id}}</td>
                                             <td>{{$role->name}}</td>
+                                            <td>{{$role->alias}}</td>
                                             <td class="hidden-xs hidden-sm">
                                                 <div class="btn-group">
                                                     <a href="/admin/user/role/{{ $role->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
@@ -117,35 +123,16 @@
                                         @endif
                                     </tbody>
                                 </table>
-
                             </div>
-
                         </div>
-                        <!-- end widget content -->
-
                     </div>
-                    <!-- end widget div -->
-
                 </div>
-            <!-- end widget -->
-
-
-
-
-
-
-
-        </article>
-
-
-
+            </div>
 
         </div>
+        <!-- END MAIN CONTENT -->
 
     </div>
-    <!-- END MAIN CONTENT -->
-
-</div>
 <!-- END MAIN PANEL -->
 
 
@@ -154,7 +141,6 @@
 @endsection
 
 @section('script')
-
 <script src="/js/plugin/jquery-form/jquery-form.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -173,38 +159,46 @@ $(function(){
 
 		// ask verification
 		$.SmartMessageBox({
-			title : "<i class='fa fa-sign-out txt-color-orangeDark'></i> 危险操作 !",
+			title : "<i class='fa fa-exclamation-triangle txt-color-orangeDark'></i> 危险操作 !",
 			content : $.destroyMSG || "删除角色会影响到关联用户",
-			buttons : '[取消][删除]'
+			buttons : '[取消][确认删除]'
 
 		}, function(ButtonPressed) {
-			if (ButtonPressed == "删除") {
+			if (ButtonPressed == "确认删除") {
 				$.root_.addClass('animated fadeOutDown');
-				setTimeout(role_destroy, 100)
+				role_destroy();
 			}
 
 		});
 		e.preventDefault();
 	});
+
     function role_destroy() {
 		window.location = $.destroyURL;
 	}
 
-    var $role_form = $("#role-form").validate({//表单验证
-		// Rules for form validation
+    var role = $("#role_form").validate({
+        
 		rules : {
 			name : {
 				required : true,
-				maxlength : 10
+				maxlength : 20
+			},
+			alias : {
+				required : true,
+				maxlength : 20
 			}
 		},
 
-		// Messages for form validation
 		messages : {
 			name : {
 				required : '请输入名称',
-                maxlength : '不能大于10位',
-			}
+                maxlength : '不能大于20位',
+			},
+            alias : {
+                required : '请输入别名',
+                maxlength : '别名不能大于20位',
+            }
 		},
 
 		// Do not change code below

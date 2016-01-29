@@ -210,7 +210,7 @@ $(function(){
 
     $("#aside_user").addClass("open");
     $("#aside_user_").show();
-    $("#aside_user_list").addClass("active");
+    $("#aside_user_index").addClass("active");
 
 
     /* Add the events etc before DataTables hides a column */

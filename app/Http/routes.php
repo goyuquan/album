@@ -43,6 +43,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/album/upload/uploadstore','AlbumController@uploadstore');
 
         Route::get('/admin/users/', 'UserController@index');
+        Route::post('/admin/user/store', 'UserController@store');
         Route::get('/admin/user/create', 'UserController@create');
         Route::get('/admin/user/roles', 'UserController@roles');
         Route::post('/admin/user/role/store', 'UserController@role_store');

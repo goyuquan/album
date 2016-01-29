@@ -16,7 +16,7 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name')->unique();
-            $table->rememberToken();
+            $table->string('alias')->unique();
             $table->timestamps();
         });
     }

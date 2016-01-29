@@ -19,6 +19,9 @@
         padding: 0;
         margin-bottom: 0;
     }
+    .jarviswidget {
+        border-top: 1px solid #ccc;
+    }
 </style>
 
 @endsection
@@ -88,7 +91,7 @@
             <article class="col-sm-12 col-md-12 col-lg-12">
 
                 <!-- Widget ID (each widget will need unique ID)-->
-                <div class="jarviswidget" id="wid-id-1g" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="true">
+                <div class="jarviswidget" id="wid-id-khg" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="true">
 
                     <!-- widget div-->
                     <div>
