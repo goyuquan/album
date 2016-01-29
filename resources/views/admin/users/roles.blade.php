@@ -163,6 +163,32 @@ $(function(){
     $("#aside_user_").show();
     $("#aside_user_roles").addClass("active");
 
+    //角色删除确认
+    $('.role_destroy').click(function(e) {
+		//get the link
+        console.log($(this));
+		var $this = $(this);
+		$.destroyURL = $this.attr('href');
+		$.destroyMSG = $this.data('logout-msg');
+
+		// ask verification
+		$.SmartMessageBox({
+			title : "<i class='fa fa-sign-out txt-color-orangeDark'></i> 危险操作 !",
+			content : $.destroyMSG || "删除角色会影响到关联用户",
+			buttons : '[取消][删除]'
+
+		}, function(ButtonPressed) {
+			if (ButtonPressed == "删除") {
+				$.root_.addClass('animated fadeOutDown');
+				setTimeout(role_destroy, 100)
+			}
+
+		});
+		e.preventDefault();
+	});
+    function role_destroy() {
+		window.location = $.destroyURL;
+	}
 
     var $role_form = $("#role-form").validate({//表单验证
 		// Rules for form validation
