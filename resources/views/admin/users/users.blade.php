@@ -155,17 +155,17 @@ table thead {
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }} </td>
                                 <td>{{ $user->email }} </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
+                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
+                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
+                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
+                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
                                 <td>{{ substr($user->created_at,0,10) }} </td>
                                 <td>{{ substr($user->updated_at,0,10) }} </td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
                                     <a href="/admin/user/{{ $user->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
                                     </a>
-                                    <a href="/admin/user/{{ $user->id }}/destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
+                                    <a href="/admin/user/{{ $user->id }}/destroy" class="destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
                                     </a>
                                 </div>
                             </td>
@@ -262,6 +262,32 @@ $(function(){
             });
         }
     });
+
+    //角色删除确认
+    $('.destroy').click(function(e) {
+        var $this = $(this);
+        $.destroyURL = $this.attr('href');
+        $.destroyMSG = $this.data('logout-msg');
+
+        // ask verification
+        $.SmartMessageBox({
+            title : "<i class='fa fa-exclamation-triangle txt-color-orangeDark'></i> 危险操作 !",
+            content : $.destroyMSG || "删除用户会影响到关联用户",
+            buttons : '[取消][确认删除]'
+
+        }, function(ButtonPressed) {
+            if (ButtonPressed == "确认删除") {
+                $.root_.addClass('animated fadeOutDown');
+                category_destroy();
+            }
+
+        });
+        e.preventDefault();
+    });
+
+    function category_destroy() {
+        window.location = $.destroyURL;
+    }
 
 });
 

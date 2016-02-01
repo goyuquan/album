@@ -44,6 +44,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/user/{id}/edit', 'UserController@edit');
         Route::post('/admin/user/{id}/update', 'UserController@update');
         Route::post('/admin/user/store', 'UserController@store');
+        Route::get('/admin/user/{id}/destroy', 'UserController@destroy');
 
 
     });

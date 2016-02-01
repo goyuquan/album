@@ -113,54 +113,109 @@
                                         </section>
                                     </div>
                                 </div>
-                                <div class="col col-4">
+                                <div class="col col-8">
 									<label class="label">用户权限</label>
 
-									<label class="toggle state-error">
-                                        分类1
-                                        <span class="onoffswitch">
-                                            <input type="checkbox" name="category1" class="onoffswitch-checkbox" id="category1" {{ $user->category1 ? 'checked="checked"' : '' }} >
-                                            <label class="onoffswitch-label" for="category1">
-                                                <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                            </label>
-                                        </span>
-                                    </label>
-									<label class="toggle state-error">
-                                        分类2
-                                        <span class="onoffswitch">
-                                            <input type="checkbox" name="category2" class="onoffswitch-checkbox" id="category2" {{ $user->category2 ? 'checked="checked"' : '' }} >
-                                            <label class="onoffswitch-label" for="category2">
-                                                <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                            </label>
-                                        </span>
-                                    </label>
-									<label class="toggle state-error">
-                                        分类3
-                                        <span class="onoffswitch">
-                                            <input type="checkbox" name="category3" class="onoffswitch-checkbox" id="category3" {{ $user->category3 ? 'checked="checked"' : '' }} >
-                                            <label class="onoffswitch-label" for="category3">
-                                                <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                            </label>
-                                        </span>
-                                    </label>
-									<label class="toggle state-error">
-                                        分类4
-                                        <span class="onoffswitch">
-                                            <input type="checkbox" name="category4" class="onoffswitch-checkbox" id="category4" {{ $user->category4 ? 'checked="checked"' : '' }} >
-                                            <label class="onoffswitch-label" for="category4">
-                                                <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                            </label>
-                                        </span>
-                                    </label>
+                                    <h6>分类1</h6>
+                                    <div class="progress progress-micro">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
+                                    </div>
+                                    <div class="row">
+    									<label class="label col col-3">添加时间</label>
+    									<section class="col col-4">
+    										<label class="select">
+    											<select name="category1" class="valid">
+    												<option value="0" selected="" disabled="">无</option>
+    												<option value="30">一个月</option>
+    												<option value="90">三个月</option>
+    												<option value="180">半年</option>
+    												<option value="360">一年</option>
+    											</select> <i></i> </label>
+    									</section>
+                                        <section class="col col-5">
+                                            <label class="input">
+												<input type="text" class="input-sm" value="{{ $user->category1 }}">
+											</label>
+                                        </section>
+    								</div>
+                                    <hr class="simple">
 
-                                    <div class="note note-error">You must select one option.</div>
+                                    <h6>分类2</h6>
+                                    <div class="progress progress-micro">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
+                                    </div>
+                                    <div class="row">
+    									<label class="label col col-3">添加时间</label>
+    									<section class="col col-4">
+    										<label class="select">
+    											<select name="category2" class="valid">
+    												<option value="0" selected="" disabled="">无</option>
+    												<option value="30">一个月</option>
+    												<option value="90">三个月</option>
+    												<option value="180">半年</option>
+    												<option value="360">一年</option>
+    											</select> <i></i> </label>
+    									</section>
+                                        <section class="col col-5">
+                                            <label class="input">
+												<input type="text" class="input-sm" value="{{ $user->category2 }}">
+											</label>
+                                        </section>
+    								</div>
+                                    <hr class="simple">
+
+                                    <h6>分类3</h6>
+                                    <div class="progress progress-micro">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
+                                    </div>
+                                    <div class="row">
+    									<label class="label col col-3">添加时间</label>
+    									<section class="col col-4">
+    										<label class="select">
+    											<select name="category3" class="valid">
+    												<option value="0" selected="" disabled="">无</option>
+    												<option value="30">一个月</option>
+    												<option value="90">三个月</option>
+    												<option value="180">半年</option>
+    												<option value="360">一年</option>
+    											</select> <i></i> </label>
+    									</section>
+                                        <section class="col col-5">
+                                            <label class="input">
+												<input type="text" class="input-sm" value="{{ $user->category3 }}">
+											</label>
+                                        </section>
+    								</div>
+                                    <hr class="simple">
+
+                                    <h6>分类4</h6>
+                                    <div class="progress progress-micro">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
+                                    </div>
+                                    <div class="row">
+    									<label class="label col col-3">添加时间</label>
+    									<section class="col col-4">
+    										<label class="select">
+    											<select name="category4" class="valid">
+    												<option value="0" selected="" disabled="">无</option>
+    												<option value="30">一个月</option>
+    												<option value="90">三个月</option>
+    												<option value="180">半年</option>
+    												<option value="360">一年</option>
+    											</select> <i></i> </label>
+    									</section>
+                                        <section class="col col-5">
+                                            <label class="input">
+												<input type="text" class="input-sm" value="{{ $user->category4 }}">
+											</label>
+                                        </section>
+    								</div>
+
                                 </div>
                             </div>
                         </fieldset>
+
+                        <hr class="simple">
 
                         <footer>
                             <button type="submit" name="submit" class="btn btn-primary btn-block">
@@ -197,7 +252,6 @@
 @endsection
 
 @section('script')
-<script src="/js/plugin/jquery-form/jquery-form.min.js"></script>
 <script type="text/javascript">
 
 $(function(){

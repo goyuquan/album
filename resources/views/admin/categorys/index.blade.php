@@ -216,7 +216,6 @@
 
 @section('script')
 
-<script src="/js/plugin/jquery-form/jquery-form.min.js"></script>
 <script type="text/javascript">
 $(function(){
 
@@ -271,7 +270,7 @@ $(function(){
         window.location = $.destroyURL;
     }
 
-    
+
     $("#category_form").validate({
 		rules : {
 			name : {
