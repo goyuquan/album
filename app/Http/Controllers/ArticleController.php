@@ -26,6 +26,10 @@ class ArticleController extends Controller
         $this->articles = $articles;
     }
 
+    public function homepage()
+    {
+        return view('welcome');
+    }
 
     public function index($id = 1)
     {

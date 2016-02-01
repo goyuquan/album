@@ -21,8 +21,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::all();
-        return view('admin.users.create',['roles' => $roles]);
+        return view('admin.users.create');
     }
 
 
@@ -38,11 +37,12 @@ class UserController extends Controller
             'password.required' => 'password不能为空',
             'password.max' => 'password不能大于:max位',
             'password.min' => 'password不能小于:min位',
+            'password_confirmation.confirmed' => '密码不一致'
         ];
         $this->validate($request, [
             'name' => 'required|min:1|max:20',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|max:20'
+            'password' => 'confirmed|required|min:6|max:20'
         ],$messages);
 
         $user = new User;
@@ -65,13 +65,36 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('/admin/users/edit',['user' => $user]);
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'password.max' => '密码不能大于:max位',
+            'password.min' => '密码不能小于:min位',
+            'password.confirmed' => '密码不一致'
+        ];
+        $this->validate($request, [
+            'password' => 'confirmed|min:6|max:20'
+        ],$messages);
+
+        $user = User::findOrFail($id);
+        if ($request->password) {
+            $user->password = $request->password;
+        }
+
+        $user->category1 = $request->category1? 1: 0;
+        $user->category2 = $request->category2? 1: 0;
+        $user->category3 = $request->category3? 1: 0;
+        $user->category4 = $request->category4? 1: 0;
+        $user->save();
+
+        Session()->flash('status', 'User update was successful!');
+
+        return redirect('/admin/users');
     }
 
 

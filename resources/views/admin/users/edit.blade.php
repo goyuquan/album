@@ -40,7 +40,7 @@
                 控制台
             </li>
             <li>
-                创建用户
+                编辑用户
             </li>
         </ol>
         <!-- end breadcrumb -->
@@ -52,7 +52,7 @@
     <!-- MAIN CONTENT -->
     <div id="content">
 
-        <div class="jarviswidget" id="wid-id86fc56" data-widget-editbutton="false" data-widget-custombutton="false">
+        <div class="jarviswidget" id="wid-idfdg6fc56" data-widget-editbutton="false" data-widget-custombutton="false">
 
             <!-- widget div-->
             <div>
@@ -66,7 +66,7 @@
                 <!-- widget content -->
                 <div class="widget-body no-padding">
 
-                    <form action="/admin/user/store" method="post" id="comment-form" class="smart-form">
+                    <form action="/admin/user/{{$user->id}}/update" method="post" id="comment-form" class="smart-form">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <fieldset>
                             <div class="row">
@@ -74,8 +74,8 @@
                                     <div class="row">
                                         <section class="col col-10">
                                             <label class="label">用户名</label>
-                                            <label class="input"> <i class="icon-append fa fa-user"></i>
-                                                <input type="text" name="name" value="{{ old('name') }}">
+                                            <label class="input state-disabled"> <i class="icon-append fa fa-user"></i>
+                                                <input type="text" name="name" value="{{ $user->name }}"  disabled="disabled" >
                                             </label>
                                             @if ($errors->has('name'))
                                                 <em for="name" class="invalid">{{ $errors->first('name') }}</em>
@@ -85,8 +85,8 @@
                                     <div class="row">
                                         <section class="col col-10">
                                             <label class="label">E-mail</label>
-                                            <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
-                                                <input type="email" name="email" value="{{ old('email') }}">
+                                            <label class="input state-disabled"> <i class="icon-append fa fa-envelope-o"></i>
+                                                <input type="email" name="email" value="{{ $user->email }}"  disabled="disabled" >
                                             </label>
                                             @if ($errors->has('email'))
                                             <em for="email" class="invalid">{{ $errors->first('email') }}</em>
@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="row">
                                         <section class="col col-10">
-                                            <label class="label">密码</label>
+                                            <label class="label">密码 <em class="note">(留空不修改密码)</em></label>
                                             <label class="input"> <i class="icon-append fa fa-user"></i>
                                                 <input type="password" id="password" name="password" value="{{ old('password') }}">
                                             </label>
@@ -119,7 +119,7 @@
 									<label class="toggle state-error">
                                         分类1
                                         <span class="onoffswitch">
-                                            <input type="checkbox" name="category1" class="onoffswitch-checkbox" id="category1" {{ !empty(old('category1')) ? 'checked="checked"' : '' }} >
+                                            <input type="checkbox" name="category1" class="onoffswitch-checkbox" id="category1" {{ $user->category1 ? 'checked="checked"' : '' }} >
                                             <label class="onoffswitch-label" for="category1">
                                                 <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -129,7 +129,7 @@
 									<label class="toggle state-error">
                                         分类2
                                         <span class="onoffswitch">
-                                            <input type="checkbox" name="category2" class="onoffswitch-checkbox" id="category2" {{ !empty(old('category2')) ? 'checked="checked"' : '' }} >
+                                            <input type="checkbox" name="category2" class="onoffswitch-checkbox" id="category2" {{ $user->category2 ? 'checked="checked"' : '' }} >
                                             <label class="onoffswitch-label" for="category2">
                                                 <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -139,7 +139,7 @@
 									<label class="toggle state-error">
                                         分类3
                                         <span class="onoffswitch">
-                                            <input type="checkbox" name="category3" class="onoffswitch-checkbox" id="category3" {{ !empty(old('category3')) ? 'checked="checked"' : '' }} >
+                                            <input type="checkbox" name="category3" class="onoffswitch-checkbox" id="category3" {{ $user->category3 ? 'checked="checked"' : '' }} >
                                             <label class="onoffswitch-label" for="category3">
                                                 <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -149,7 +149,7 @@
 									<label class="toggle state-error">
                                         分类4
                                         <span class="onoffswitch">
-                                            <input type="checkbox" name="category4" class="onoffswitch-checkbox" id="category4" {{ !empty(old('category4')) ? 'checked="checked"' : '' }} >
+                                            <input type="checkbox" name="category4" class="onoffswitch-checkbox" id="category4" {{ $user->category4 ? 'checked="checked"' : '' }} >
                                             <label class="onoffswitch-label" for="category4">
                                                 <span class="onoffswitch-inner" data-swchon-text="True" data-swchoff-text="NO"></span>
                                                 <span class="onoffswitch-switch"></span>
@@ -164,7 +164,7 @@
 
                         <footer>
                             <button type="submit" name="submit" class="btn btn-primary btn-block">
-                                添加用户
+                                保存
                             </button>
                         </footer>
 
@@ -197,14 +197,14 @@
 @endsection
 
 @section('script')
-<!-- <script src="/js/plugin/jquery-form/jquery-form.min.js"></script> -->
+<script src="/js/plugin/jquery-form/jquery-form.min.js"></script>
 <script type="text/javascript">
 
 $(function(){
 
     $("#aside_user").addClass("open");
     $("#aside_user_").show();
-    $("#aside_user_create").addClass("active");
+    $("#aside_user_index").addClass("active");
 
     $("#comment-form").validate({
 
@@ -218,24 +218,20 @@ $(function(){
                 maxlength : 20
             },
             password : {
-                required : true,
                 minlength : 4,
                 maxlength : 20
             },
             password_confirmation : {
-                required : true,
                 equalTo:"#password"
             }
         },
 
         messages : {
             name : {
-                required : '请输入名称',
                 maxlength : '不能大于20位',
                 minlength : '不能小于2位'
             },
             email : {
-                required : '请输入email',
                 email : '格式不正确'
             },
             password : {

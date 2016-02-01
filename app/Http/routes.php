@@ -2,21 +2,15 @@
 
 Route::group(['middleware' => ['web']], function () {
 
+    Route::get('/', 'ArticleController@homepage');
+
     Route::auth();
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
-
 
     Route::get('/articles/{id?}', 'ArticleController@index');
     Route::post('/article/fileupload','ArticleController@fileUpload');
     Route::post('/Album/thumbnail','AlbumController@thumbnail');
 
-    Route::get('/article/{article}', function (App\Article $article) {
-        return view('articles.show',['article'=>$article]);
-    });
-
+    Route::get('/article/{article}', 'ArticleController@show' );
 
     Route::group(['middleware' => 'auth'], function () {
 
@@ -47,6 +41,8 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/admin/users/', 'UserController@index');
         Route::get('/admin/user/create', 'UserController@create');
+        Route::get('/admin/user/{id}/edit', 'UserController@edit');
+        Route::post('/admin/user/{id}/update', 'UserController@update');
         Route::post('/admin/user/store', 'UserController@store');
 
 
