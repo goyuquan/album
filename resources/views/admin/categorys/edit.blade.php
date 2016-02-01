@@ -48,7 +48,7 @@
 
         <div class="inbox-nav-bar no-content-padding">
 
-            <h1 class="page-title txt-color-blueDark hidden-tablet"><i class="fa fa-fw fa-inbox"></i> 添加角色 &nbsp;</h1>
+            <h1 class="page-title txt-color-blueDark hidden-tablet"><i class="fa fa-fw fa-edit"></i> 编辑角色 &nbsp;</h1>
 
             <div class="btn-group hidden-desktop visible-tablet">
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -60,19 +60,16 @@
         </div>
 
         <div id="inbox-content" class="inbox-body no-content-padding">
-
             <div class="inbox-side-bar">
-
-                <form id="category_form" class="smart-form" method="POST" action="/admin/category/store" >
+                <form id="category_form" class="smart-form" method="POST" action="/admin/category/{{ $current->id }}/update" >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="parent_id">
-
+                    <input type="hidden" name="parent_id" value="{{ $current->parent_id }}">
                     @if (count($categorys) > 0)
                     <div class="row">
                         <section class="col col-3">
                             <div id="parent_select" class="dropdown">
-                                <a id="dLabel" role="button" name="{{App\Category::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
-                                    <i class="fa fa-code-fork"></i>      {{App\Category::find(1)->name}}
+                                <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
+                                    <i class="fa fa-code-fork"></i>    {{App\Category::find($current->parent_id)->name}}
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu multi-level" role="menu">
@@ -108,7 +105,7 @@
                     <section>
                         <label class="input">
                             <i class="icon-prepend fa fa-user"></i>
-                            <input name="name" placeholder="name" type="text">
+                            <input name="name" value="{{$current->name}}" placeholder="name" type="text">
                         </label>
                         @if ($errors->has('name'))
                         <em for="title" class="invalid">{{ $errors->first('name') }}</em>
@@ -117,7 +114,7 @@
                     <section>
                         <label class="input">
                             <i class="icon-prepend fa fa-font"></i>
-                            <input name="alias" placeholder="alias" type="text">
+                            <input name="alias" value="{{$current->alias}}" placeholder="alias" type="text">
                         </label>
                         @if ($errors->has('alias'))
                         <em for="title" class="invalid">{{ $errors->first('alias') }}</em>
@@ -125,7 +122,7 @@
                     </section>
 
                     <button type="submit" class="btn btn-primary btn-block" style="height:2.4em">
-                        <i class="fa fa-plus"></i>添加类别
+                        <i class="fa fa-plus"></i>修改类别
                     </button>
 
 
@@ -245,6 +242,7 @@ $(function(){
 
     $(".dropdown-menu").parent("li").addClass("dropdown-submenu");//给分类列表父元素加dropdown-submenu类
 
+
     //角色删除确认
     $('.destroy').click(function(e) {
         var $this = $(this);
@@ -271,7 +269,7 @@ $(function(){
         window.location = $.destroyURL;
     }
 
-    
+
     $("#category_form").validate({
 		rules : {
 			name : {

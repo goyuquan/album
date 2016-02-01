@@ -76,9 +76,6 @@
             <li id="aside_user_create">
                 <a href="/admin/user/create">添加用户</a>
             </li>
-            <li id="aside_user_roles">
-                <a href="/admin/user/roles">角色管理</a>
-            </li>
         </ul>
     </li>
     <li>

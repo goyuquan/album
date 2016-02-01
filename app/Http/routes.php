@@ -31,6 +31,9 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/admin/categorys/', 'CategoryController@index');
         Route::post('/admin/category/store', 'CategoryController@store');
+        Route::get('/admin/category/{id}/edit', 'CategoryController@edit');
+        Route::post('/admin/category/{id}/update', 'CategoryController@update');
+        Route::get('/admin/category/{id}/destroy', 'CategoryController@destroy');
 
         Route::get('/admin/display', 'DisplayController@index');
         Route::post('/admin/display/store', 'DisplayController@store');
@@ -43,13 +46,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/album/upload/uploadstore','AlbumController@uploadstore');
 
         Route::get('/admin/users/', 'UserController@index');
-        Route::post('/admin/user/store', 'UserController@store');
         Route::get('/admin/user/create', 'UserController@create');
-        Route::get('/admin/user/roles', 'UserController@roles');
-        Route::post('/admin/user/role/store', 'UserController@role_store');
-        Route::get('/admin/user/role/{id}/edit', 'UserController@role_edit');
-        Route::post('/admin/user/role/{id}/update', 'UserController@role_update');
-        Route::get('/admin/user/role/{id}/destroy', 'UserController@role_destroy');
+        Route::post('/admin/user/store', 'UserController@store');
 
 
     });
