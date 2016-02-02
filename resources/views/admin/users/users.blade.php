@@ -72,9 +72,9 @@ table thead {
                 <!-- sparks -->
                 <ul id="sparks">
                     <li class="sparks-info">
-                        <h5> 全部文章共计
+                        <h5> 用户共计total
                             <span class="txt-color-blue">
-                                <i class="fa fa-search-plus"></i>&nbsp;&nbsp;&nbsp;条</span></h5>
+                                <i class="fa fa-user"></i>&nbsp;{{$users->count()}}</span></h5>
                     </li>
                     <li class="sparks-info">
                         <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span></h5>
@@ -104,9 +104,7 @@ table thead {
                 <!-- widget content -->
                 <div class="widget-body no-padding">
                     @if (count($users) > 0)
-                    <?php
-                    $current_time = date('y-m-d h:i:s',time());
-                     ?>
+                    <?php $current_time = strtotime(date('y-m-d h:i:s',time())); ?>
 
                     <table id="user_table" class="table table-striped table-bordered smart-form">
                         <thead>
@@ -122,9 +120,9 @@ table thead {
                                 <th>catetory2</th>
                                 <th>catetory3</th>
                                 <th>catetory4</th>
-                                <th>创建时间</th>
-                                <th>更新时间</th>
-                                <th>操作</th>
+                                <th> 创建时间 </th>
+                                <th> 更新时间 </th>
+                                <th style="width:40px">操作</th>
                             </tr>
                             <tr class="second">
                                 <td> </td>
@@ -139,10 +137,10 @@ table thead {
                                         <input type="text" name="search_version" value="查找email" class="search_init">
                                     </label>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
+                                <td><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
+                                <td><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
+                                <td><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -157,32 +155,53 @@ table thead {
                                     </label>
                                 </td>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }} </td>
+                                <td>{{ $user->name }}
+                                    @if (($current_time - strtotime($user->created_at))/86400 < 7)
+                                    <i class="fa fa-flag txt-color-red"></i>
+                                    @endif
+                                </td>
                                 <td>{{ $user->email }} </td>
-                                @if ($user->category1 - $current_time > 0)
+                                @if (strtotime($user->category1) - $current_time > 0)
                                     <td class="success">
-                                        <i class="fa fa-fw fa-check-circle txt-color-green"></i>
+                                        <strong class="txt-color-greenDark"> &nbsp;
+                                        {{sprintf("%.1f",(strtotime($user->category1) - $current_time)/86400)}}&nbsp;天
+                                        </strong>
                                     </td>
                                 @else
                                     <td></td>
                                 @endif
-                                @if ($user->category2 - $current_time > 0)
-                                    <td class="success"></td>
+
+                                @if (strtotime($user->category2) - $current_time > 0)
+                                    <td class="success">
+                                        <strong class="txt-color-greenDark"> &nbsp;
+                                        {{sprintf("%.1f",(strtotime($user->category2) - $current_time)/86400)}}&nbsp;天
+                                        </strong>
+                                    </td>
                                 @else
                                     <td></td>
                                 @endif
-                                @if ($user->category3 - $current_time > 0)
-                                    <td class="success"></td>
+
+                                @if (strtotime($user->category3) - $current_time > 0)
+                                    <td class="success">
+                                        <strong class="txt-color-greenDark"> &nbsp;
+                                        {{sprintf("%.1f",(strtotime($user->category3) - $current_time)/86400)}}&nbsp;天
+                                        </strong>
+                                    </td>
                                 @else
                                     <td></td>
                                 @endif
-                                @if ($user->category4 - $current_time > 0)
-                                    <td class="success"></td>
+
+                                @if (strtotime($user->category4) - $current_time > 0)
+                                    <td class="success">
+                                        <strong class="txt-color-greenDark"> &nbsp;
+                                        {{sprintf("%.1f",(strtotime($user->category4) - $current_time)/86400)}}&nbsp;天
+                                        </strong>
+                                    </td>
                                 @else
                                     <td></td>
                                 @endif
-                                <td>{{ substr($user->created_at,0,10) }} </td>
-                                <td>{{ substr($user->updated_at,0,10) }} </td>
+                                <td> {{$user->created_at}} </td>
+                                <td> {{$user->updated_at}} </td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
                                     <a href="/admin/user/{{ $user->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
