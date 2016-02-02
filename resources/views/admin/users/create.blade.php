@@ -247,8 +247,7 @@ $(function(){
                 maxlength : 20
             },
             email : {
-                required : true,
-                maxlength : 20
+                required : true
             },
             password : {
                 required : true,

@@ -104,6 +104,10 @@ table thead {
                 <!-- widget content -->
                 <div class="widget-body no-padding">
                     @if (count($users) > 0)
+                    <?php
+                    $current_time = date('y-m-d h:i:s',time());
+                     ?>
+
                     <table id="user_table" class="table table-striped table-bordered smart-form">
                         <thead>
                             <tr>
@@ -114,10 +118,10 @@ table thead {
                                 <th>ID</th>
                                 <th>用户名</th>
                                 <th>email</th>
-                                <th>catetory</th>
-                                <th>catetory</th>
-                                <th>catetory</th>
-                                <th>catetory</th>
+                                <th>catetory1</th>
+                                <th>catetory2</th>
+                                <th>catetory3</th>
+                                <th>catetory4</th>
                                 <th>创建时间</th>
                                 <th>更新时间</th>
                                 <th>操作</th>
@@ -127,12 +131,12 @@ table thead {
                                 <td> </td>
                                 <td>
                                     <label class="input">
-                                        <input type="text" name="search_platform" value="Filter platforms" class="search_init">
+                                        <input type="text" name="search_platform" value="查找用户名" class="search_init">
                                     </label>
                                 </td>
                                 <td>
                                     <label class="input">
-                                        <input type="text" name="search_version" value="Filter versions" class="search_init">
+                                        <input type="text" name="search_version" value="查找email" class="search_init">
                                     </label>
                                 </td>
                                 <td></td>
@@ -155,10 +159,28 @@ table thead {
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }} </td>
                                 <td>{{ $user->email }} </td>
-                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
-                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
-                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
-                                <td> <i class="fa fa-fw fa-check-circle txt-color-green"></i> </td>
+                                @if ($user->category1 - $current_time > 0)
+                                    <td class="success">
+                                        <i class="fa fa-fw fa-check-circle txt-color-green"></i>
+                                    </td>
+                                @else
+                                    <td></td>
+                                @endif
+                                @if ($user->category2 - $current_time > 0)
+                                    <td class="success"></td>
+                                @else
+                                    <td></td>
+                                @endif
+                                @if ($user->category3 - $current_time > 0)
+                                    <td class="success"></td>
+                                @else
+                                    <td></td>
+                                @endif
+                                @if ($user->category4 - $current_time > 0)
+                                    <td class="success"></td>
+                                @else
+                                    <td></td>
+                                @endif
                                 <td>{{ substr($user->created_at,0,10) }} </td>
                                 <td>{{ substr($user->updated_at,0,10) }} </td>
                                 <td class="hidden-xs hidden-sm">
