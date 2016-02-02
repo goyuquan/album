@@ -20,7 +20,7 @@ class ArticleController extends Controller
     public function __construct(ArticleRepository $articles)
     {
         $this->middleware('auth',['except' => [
-            'index', 'show',
+            'index', 'show','homepage'
         ]]);
 
         $this->articles = $articles;

@@ -1,0 +1,8 @@
+/*common.css*/
+body {
+    background: #1c1d1f;
+}
+.fixed.menu {
+    background: rgba(52,54,58, 0.96)!important;
+    height: 4em;
+}
