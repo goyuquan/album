@@ -18,6 +18,7 @@
 
     @include('layouts.header')
     @yield('content')
+    @include('layouts.footer')
 
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/semantic.min.js"></script>

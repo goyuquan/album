@@ -1,9 +1,13 @@
 /*common.css*/
-body {
-    background: #1c1d1f;
+body { background: #1c1d1f; }
+.inline_block { display: inline-block; }
+hr {margin: 10px 0 10px;!important}
+#footer {
+    text-align:center;
+    color:#989ba2;
 }
-.inline_block {
-    display: inline-block;
+#footer > a {
+    margin: 0 1em;
 }
 .fixed.menu {
     background: rgba(52,54,58, 0.96)!important;
