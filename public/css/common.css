@@ -4,10 +4,13 @@ body { background: #1c1d1f; }
 hr {margin: 10px 0 10px;!important}
 #footer {
     text-align:center;
-    color:#989ba2;
 }
-#footer > a {
+#footer a {
     margin: 0 1em;
+}
+#copyright {
+    text-align:center;
+    color:#989ba2;
 }
 .fixed.menu {
     background: rgba(52,54,58, 0.96)!important;

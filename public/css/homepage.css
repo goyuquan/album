@@ -1,0 +1,24 @@
+/*homepage.css*/
+#latest_head {
+    margin: 4em 0 1em 0!important;
+}
+#category_head {
+    margin: 2em 0 1em 0!important;
+}
+#latest {
+    padding: 0 2em 3em!important;
+}
+#category {
+    padding: 0 2em 3em!important;
+}
+img {
+    width: 100%;
+}
+.card {
+    width: 100%!important;
+    background: #efefef;
+}
+.divider {
+    color:#989ba2!important;
+    margin: 1em 0!important;
+}
