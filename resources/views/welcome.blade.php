@@ -84,8 +84,9 @@
         slidesPerView: 'auto',
         centeredSlides: true,
         autoplay: 2500,
+        autoplayDisableOnInteraction: false,
         paginationClickable: true,
-        spaceBetween: 30
+        spaceBetween: 20
     });
 $(function(){
 });
