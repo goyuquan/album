@@ -1,7 +1,7 @@
 <div class="ui fixed inverted menu">
   <div class="ui container">
     <a href="{{ url('/') }}" class="header item">
-      <img class="logo" src="assets/images/logo.png">
+      
       welcome logo
     </a>
 

@@ -8,7 +8,7 @@
 
 .swiper-container {
     width: 100%;
-    height: 500px;
+    height: 600px;
     margin: 20px auto;
 }
 .swiper-slide {
@@ -16,7 +16,7 @@
     font-size: 18px;
     background: #fff;
     width: auto;
-    height: 500px;
+    height: 600px;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -88,7 +88,5 @@
         paginationClickable: true,
         spaceBetween: 20
     });
-$(function(){
-});
 </script>
 @endsection
