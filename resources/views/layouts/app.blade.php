@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/css/bootstrap-pagination.min.css">
     <link rel="stylesheet" href="/css/semantic.min.css">
     <link rel="stylesheet" href="/css/common.css">
+
+    @yield('style')
 
 </head>
 <body>
