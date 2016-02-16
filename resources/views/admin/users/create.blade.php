@@ -43,27 +43,49 @@
                 创建用户
             </li>
         </ol>
-        <!-- end breadcrumb -->
-
 
     </div>
-    <!-- END RIBBON -->
 
-    <!-- MAIN CONTENT -->
     <div id="content">
 
-        <div class="jarviswidget" id="wid-id86fc56" data-widget-editbutton="false" data-widget-custombutton="false">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-pencil-square-o fa-fw "></i>
+                    用户管理
+                    <span>>
+                        添加用户
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+                <ul id="sparks" class="">
+                    <li class="sparks-info">
+                        <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+                        <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+                            1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+                        </div>
+                    </li>
+                    <li class="sparks-info">
+                        <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
+                        <div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
+                            110,150,300,130,400,240,220,310,220,300, 270, 210
+                        </div>
+                    </li>
+                    <li class="sparks-info">
+                        <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
+                        <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
+                            110,150,300,130,400,240,220,310,220,300, 270, 210
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-            <!-- widget div-->
+        <div class="jarviswidget" id="wid-id86fc56">
             <div>
-                <!-- widget edit box -->
                 <div class="jarviswidget-editbox">
-                    <!-- This area used as dropdown edit box -->
-
                 </div>
-                <!-- end widget edit box -->
-
-                <!-- widget content -->
                 <div class="widget-body no-padding">
 
                     <form action="/admin/user/store" method="post" id="comment-form" class="smart-form">
@@ -115,7 +137,7 @@
                                 </div>
                                 <div class="col col-4">
 
-                                    <h6>分类1</h6>
+                                    <h6>member</h6>
                                     <div class="progress progress-micro">
                                         <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
                                     </div>
@@ -134,61 +156,6 @@
     								</div>
                                     <hr class="simple">
 
-                                    <h6>分类2</h6>
-                                    <div class="progress progress-micro">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
-                                    </div>
-                                    <div class="row">
-    									<label class="label col col-4">添加时间</label>
-    									<section class="col col-8">
-    										<label class="select">
-    											<select name="category2" class="valid">
-    												<option value="0" selected="" disabled="">无</option>
-    												<option value="30">一个月</option>
-    												<option value="90">三个月</option>
-    												<option value="180">半年</option>
-    												<option value="360">一年</option>
-    											</select> <i></i> </label>
-    									</section>
-    								</div>
-                                    <hr class="simple">
-
-                                    <h6>分类3</h6>
-                                    <div class="progress progress-micro">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
-                                    </div>
-                                    <div class="row">
-    									<label class="label col col-4">添加时间</label>
-    									<section class="col col-8">
-    										<label class="select">
-    											<select name="category3" class="valid">
-    												<option value="0" selected="" disabled="">无</option>
-    												<option value="30">一个月</option>
-    												<option value="90">三个月</option>
-    												<option value="180">半年</option>
-    												<option value="360">一年</option>
-    											</select> <i></i> </label>
-    									</section>
-    								</div>
-                                    <hr class="simple">
-
-                                    <h6>分类4</h6>
-                                    <div class="progress progress-micro">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
-                                    </div>
-                                    <div class="row">
-    									<label class="label col col-4">添加时间</label>
-    									<section class="col col-8">
-    										<label class="select">
-    											<select name="category4" class="valid">
-    												<option value="0" selected="" disabled="">无</option>
-    												<option value="30">一个月</option>
-    												<option value="90">三个月</option>
-    												<option value="180">半年</option>
-    												<option value="360">一年</option>
-    											</select> <i></i> </label>
-    									</section>
-    								</div>
 
                                 </div>
                             </div>

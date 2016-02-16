@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Gate;
 use App\Article;
-use App\Category;
 use App\Display;
 use App\Img;
 use App\Http\Requests;
@@ -68,10 +67,7 @@ class ArticleController extends Controller
     public function create()
     {
         $displays = $displayss = Display::all();
-        $categorys = $categoryss = Category::all();
         return view('admin.articles.create',[
-            "categorys" => $categorys,
-            "categoryss" => $categoryss,
             "displays" => $displays,
             "displayss" => $displayss
         ]);
@@ -82,7 +78,6 @@ class ArticleController extends Controller
     {
         $messages = [
             'title.required' => '标题不能为空',
-            'category.required' => '选择分类',
             'title.unique' => '标题不能重复',
             'title.max' => '标题不能大于:max位',
             'title.min' => '标题不能小于:min位',
@@ -91,7 +86,6 @@ class ArticleController extends Controller
         ];
         $this->validate($request, [
             'title' => 'required|min:5|max:255',
-            'category' => 'required',
             'photo' => 'max:1024',
             'content' => 'required',
             'published_at' => 'required',
@@ -100,14 +94,13 @@ class ArticleController extends Controller
         $request->user()->articles()->create([
             'title' => $request->title,
             'thumbnail' => $request->thumbnail,
-            'category' => $request->category,
             'content' => $request->content,
             'published_at' => $request->published_at,
         ]);
 
         Session()->flash('status', 'Article create was successful!');
 
-        return redirect('/articles');
+        return redirect('/articles/');
     }
 
 
@@ -139,7 +132,6 @@ class ArticleController extends Controller
 
         $article = Article::find($id);
         $article->title = $request->title;
-        $article->category = $request->category;
         $article->content = $request->content;
         $article->published_at = $request->published_at;
         $article->save();

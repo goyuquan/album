@@ -51,18 +51,7 @@
                 内容管理
             </li>
         </ol>
-        <!-- end breadcrumb -->
 
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
 
     </div>
 <!-- END RIBBON -->
@@ -75,41 +64,24 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1 class="page-title txt-color-blueDark">
 
-                <!-- PAGE HEADER -->
                 <i class="fa-fw fa fa-pencil-square-o"></i> 内容管理 <span>> 新建文章 </span>
             </h1>
         </div>
     </div>
 
-    <!-- widget grid -->
     <section id="widget-grid">
-
-        <!-- START ROW -->
         <div class="row">
-
-            <!-- NEW COL START -->
             <article class="col-sm-12 col-md-12 col-lg-12">
-
-                <!-- Widget ID (each widget will need unique ID)-->
                 <div class="jarviswidget" id="wid-id-khg" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="true">
-
-                    <!-- widget div-->
                     <div>
-
-                        <!-- widget content -->
                         <div class="widget-body no-padding">
                             <form id="create_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/article/store" enctype="multipart/form-data" >
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="thumbnail">
-                                <input type="hidden" name="category">
                                 <input type="hidden" name="display">
                                 <textarea id="input_content" class="hidden" name="content"></textarea>
-                                <textarea id="media_content" class="hidden" name="media"></textarea>
-
 
                                         <fieldset>
-
-                                            <!-- 标题 -->
                                             <section>
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-user"></i>
@@ -134,36 +106,6 @@
                                                     <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
                                                 </div>
                                                 <section class="col col-8">
-                                                    <div id="type_select" class="dropdown inline_block">
-                                                        <a id="dLabel" role="button" name="{{App\Category::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
-                                                            <i class="fa fa-code-fork"></i>      {{App\Category::find(1)->name}}
-                                                            <span class="caret"></span>
-                                                        </a>
-                                                        <ul class="dropdown-menu multi-level" role="menu">
-                                                            @foreach ( $categorys as $category )
-                                                                @if ( $category->parent_id === 1 )
-                                                                    <li>
-                                                                        <a href="javascript:void(0);" class="item" name="{{$category->id}}">{{ $category->name }}</a>
-                                                                        @if ( !App\Category::where('parent_id',$category->id)->get()->isEmpty() )
-                                                                            <ul class="dropdown-menu">
-                                                                                @foreach ( $categoryss as $category_ )
-                                                                                @if ($category_->parent_id === $category->id)
-                                                                                <li>
-                                                                                    <a href="javascript:void(0);" class="item" name="{{$category_->id}}">
-                                                                                        {{$category_->name}}
-                                                                                    </a>
-                                                                                </li>
-                                                                                @endif
-                                                                                @endforeach
-                                                                            </ul>
-                                                                        @endif
-
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-
-                                                        </ul>
-                                                    </div>
                                                     <div id="display_select" class="dropdown inline_block">
                                                         <a id="dLabel2" role="button" name="{{App\display::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
                                                             <i class="fa fa-code-fork"></i>      {{App\display::find(1)->name}}
@@ -196,121 +138,7 @@
 
                                                 </section>
                                             </div>
-
-
-                                            <!-- <div class="form-group">
-                                                <label>标签 (多选)</label>
-                                                <select multiple style="width:100%" class="select2">
-                                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                        <option value="AK">Alaska</option>
-                                                        <option value="HI">Hawaii</option>
-                                                    </optgroup>
-                                                    <optgroup label="Pacific Time Zone">
-                                                        <option value="CA">California</option>
-                                                        <option value="NV" selected="selected">Nevada</option>
-                                                        <option value="OR">Oregon</option>
-                                                        <option value="WA">Washington</option>
-                                                    </optgroup>
-                                                    <optgroup label="Mountain Time Zone">
-                                                        <option value="AZ">Arizona</option>
-                                                        <option value="CO">Colorado</option>
-                                                        <option value="ID">Idaho</option>
-                                                        <option value="MT" selected="selected">Montana</option><option value="NE">Nebraska</option>
-                                                        <option value="NM">New Mexico</option>
-                                                        <option value="ND">North Dakota</option>
-                                                        <option value="UT">Utah</option>
-                                                        <option value="WY">Wyoming</option>
-                                                    </optgroup>
-                                                    <optgroup label="Central Time Zone">
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="AR">Arkansas</option>
-                                                        <option value="IL">Illinois</option>
-                                                        <option value="IA">Iowa</option>
-                                                        <option value="KS">Kansas</option>
-                                                        <option value="KY">Kentucky</option>
-                                                        <option value="LA">Louisiana</option>
-                                                        <option value="MN">Minnesota</option>
-                                                        <option value="MS">Mississippi</option>
-                                                        <option value="MO">Missouri</option>
-                                                        <option value="OK">Oklahoma</option>
-                                                        <option value="SD">South Dakota</option>
-                                                        <option value="TX">Texas</option>
-                                                        <option value="TN">Tennessee</option>
-                                                        <option value="WI">Wisconsin</option>
-                                                    </optgroup>
-                                                    <optgroup label="Eastern Time Zone">
-                                                        <option value="CT">Connecticut</option>
-                                                        <option value="DE">Delaware</option>
-                                                        <option value="FL">Florida</option>
-                                                        <option value="GA">Georgia</option>
-                                                        <option value="IN">Indiana</option>
-                                                        <option value="ME">Maine</option>
-                                                        <option value="MD">Maryland</option>
-                                                        <option value="MA">Massachusetts</option>
-                                                        <option value="MI" selected="selected">Michigan</option>
-                                                        <option value="NH">New Hampshire</option>
-                                                        <option value="NJ">New Jersey</option>
-                                                        <option value="NY">New York</option>
-                                                        <option value="NC">North Carolina</option>
-                                                        <option value="OH">Ohio</option>
-                                                        <option value="PA">Pennsylvania</option>
-                                                        <option value="RI">Rhode Island</option>
-                                                        <option value="SC">South Carolina</option>
-                                                        <option value="VT">Vermont</option>
-                                                        <option value="VA">Virginia</option>
-                                                        <option value="WV">West Virginia</option>
-                                                    </optgroup>
-                                                </select>
-
-                                                <div class="note">
-                                                    <strong>提示:</strong> 按住<strong>Ctrl</strong>键多选。
-                                                </div>
-                                            </div> -->
                                         </fieldset>
-
-                                </div>
-                                <!-- end widget content -->
-
-                            </div>
-                            <!-- end widget div -->
-
-                        </div>
-                        <!-- end widget -->
-
-
-                        <div class="jarviswidget well transparent" id="wid-id-32" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
-                            <div>
-                                <!-- widget content -->
-                                <div id="media_body" class="widget-body">
-                                    <div class="panel-group smart-accordion-default" id="accordion">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a id="media_bt" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
-                                                        <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                        <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                        插入媒体、表格、图表
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="panel-body" style="padding:0;">
-                                                    <div class="jarviswidget jarviswidget-color-blue" id="summernote2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
-                                                        <!-- widget div-->
-                                                        <div>
-                                                            <!-- widget edit box -->
-                                                            <div class="jarviswidget-editbox"> </div>
-                                                            <div class="widget-body no-padding">
-
-                                                                <div class="web_area"> </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -328,12 +156,7 @@
 
             					<!-- widget edit box -->
             					<div class="jarviswidget-editbox">
-            						<!-- This area used as dropdown edit box -->
-
             					</div>
-            					<!-- end widget edit box -->
-
-            					<!-- widget content -->
             					<div class="widget-body no-padding">
 
             						<div class="web_area">

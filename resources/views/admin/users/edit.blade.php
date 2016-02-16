@@ -52,6 +52,28 @@
     <!-- MAIN CONTENT -->
     <div id="content">
 
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa fa-pencil-square-o fa-fw "></i>
+                    用户管理
+                    <span>>
+                        编辑用户
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+                <ul id="sparks" class="">
+                    <li class="sparks-info">
+                        <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+                        <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+                            1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="jarviswidget" id="wid-idfdg6fc56" data-widget-editbutton="false" data-widget-custombutton="false">
 
             <!-- widget div-->
@@ -116,7 +138,7 @@
                                 <div class="col col-8">
 									<label class="label">用户权限</label>
 
-                                    <h6>分类1</h6>
+                                    <h6>member</h6>
                                     <div class="progress progress-micro">
                                         <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
                                     </div>
@@ -140,76 +162,6 @@
     								</div>
                                     <hr class="simple">
 
-                                    <h6>分类2</h6>
-                                    <div class="progress progress-micro">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
-                                    </div>
-                                    <div class="row">
-    									<label class="label col col-3">添加时间</label>
-    									<section class="col col-4">
-    										<label class="select">
-    											<select name="category2" class="valid">
-    												<option value="0" selected="" disabled="">无</option>
-    												<option value="30">一个月</option>
-    												<option value="90">三个月</option>
-    												<option value="180">半年</option>
-    												<option value="360">一年</option>
-    											</select> <i></i> </label>
-    									</section>
-                                        <section class="col col-5">
-                                            <label class="input">
-												<input type="text" class="input-sm" value="{{ $user->category2 }}">
-											</label>
-                                        </section>
-    								</div>
-                                    <hr class="simple">
-
-                                    <h6>分类3</h6>
-                                    <div class="progress progress-micro">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
-                                    </div>
-                                    <div class="row">
-    									<label class="label col col-3">添加时间</label>
-    									<section class="col col-4">
-    										<label class="select">
-    											<select name="category3" class="valid">
-    												<option value="0" selected="" disabled="">无</option>
-    												<option value="30">一个月</option>
-    												<option value="90">三个月</option>
-    												<option value="180">半年</option>
-    												<option value="360">一年</option>
-    											</select> <i></i> </label>
-    									</section>
-                                        <section class="col col-5">
-                                            <label class="input">
-												<input type="text" class="input-sm" value="{{ $user->category3 }}">
-											</label>
-                                        </section>
-    								</div>
-                                    <hr class="simple">
-
-                                    <h6>分类4</h6>
-                                    <div class="progress progress-micro">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" style="width: 44%;"></div>
-                                    </div>
-                                    <div class="row">
-    									<label class="label col col-3">添加时间</label>
-    									<section class="col col-4">
-    										<label class="select">
-    											<select name="category4" class="valid">
-    												<option value="0" selected="" disabled="">无</option>
-    												<option value="30">一个月</option>
-    												<option value="90">三个月</option>
-    												<option value="180">半年</option>
-    												<option value="360">一年</option>
-    											</select> <i></i> </label>
-    									</section>
-                                        <section class="col col-5">
-                                            <label class="input">
-												<input type="text" class="input-sm" value="{{ $user->category4 }}">
-											</label>
-                                        </section>
-    								</div>
 
                                 </div>
                             </div>

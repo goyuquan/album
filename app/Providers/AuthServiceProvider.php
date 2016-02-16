@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Article;
+use App\Album;
 use App\Policies\ArticlePolicy;
+use App\Policies\AlbumPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Article::class => ArticlePolicy::class,
+        Album::class => AlbumPolicy::class,
         'App\Model' => 'App\Policies\ModelPolicy',
     ];
 

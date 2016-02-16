@@ -13,4 +13,9 @@ class Display extends Model
         return $this->hasMany('App\Article');
     }
 
+    public function album()
+    {
+        return $this->hasMany('App\Album');
+    }
+
 }

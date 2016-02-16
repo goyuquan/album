@@ -116,10 +116,7 @@ table thead {
                                 <th>ID</th>
                                 <th>用户名</th>
                                 <th>email</th>
-                                <th>catetory1</th>
-                                <th>catetory2</th>
-                                <th>catetory3</th>
-                                <th>catetory4</th>
+                                <th>member</th>
                                 <th> 创建时间 </th>
                                 <th> 更新时间 </th>
                                 <th style="width:40px">操作</th>
@@ -138,9 +135,6 @@ table thead {
                                     </label>
                                 </td>
                                 <td ><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
-                                <td><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
-                                <td><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
-                                <td><i class="fa fa-fw fa-clock-o txt-color-green" style="font-size: 24px; line-height: 32px;"></i></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -171,37 +165,8 @@ table thead {
                                     <td></td>
                                 @endif
 
-                                @if (strtotime($user->category2) - $current_time > 0)
-                                    <td class="success">
-                                        <strong class="txt-color-greenDark"> &nbsp;
-                                        {{sprintf("%.1f",(strtotime($user->category2) - $current_time)/86400)}}&nbsp;天
-                                        </strong>
-                                    </td>
-                                @else
-                                    <td></td>
-                                @endif
-
-                                @if (strtotime($user->category3) - $current_time > 0)
-                                    <td class="success">
-                                        <strong class="txt-color-greenDark"> &nbsp;
-                                        {{sprintf("%.1f",(strtotime($user->category3) - $current_time)/86400)}}&nbsp;天
-                                        </strong>
-                                    </td>
-                                @else
-                                    <td></td>
-                                @endif
-
-                                @if (strtotime($user->category4) - $current_time > 0)
-                                    <td class="success">
-                                        <strong class="txt-color-greenDark"> &nbsp;
-                                        {{sprintf("%.1f",(strtotime($user->category4) - $current_time)/86400)}}&nbsp;天
-                                        </strong>
-                                    </td>
-                                @else
-                                    <td></td>
-                                @endif
-                                <td> {{$user->created_at}} </td>
-                                <td> {{$user->updated_at}} </td>
+                                <td>{{ substr($user->created_at,0,10) }}</td>
+                                <td>{{ substr($user->updated_at,0,10) }}</td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
                                     <a href="/admin/user/{{ $user->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
@@ -216,23 +181,12 @@ table thead {
                     </table>
                     @endif
                 </div>
-                <!-- end widget content -->
-
             </div>
-            <!-- end widget div -->
-
         </div>
 
 
-
-
     </div>
-    <!-- END MAIN CONTENT -->
-
 </div>
-<!-- END MAIN PANEL -->
-
-
 
 
 @endsection

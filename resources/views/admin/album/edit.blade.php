@@ -67,7 +67,7 @@
                     <i class="fa fa-pencil-square-o fa-fw "></i>
                     相册管理
                     <span>>
-                        创建相册
+                        编辑相册
                     </span>
                 </h1>
             </div>
@@ -90,7 +90,7 @@
         <section id="widget-grid" class="">
             <div class="row">
                 <article class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="jarviswidget" id="wid-id-5h55" >
+                    <div class="jarviswidget" id="wid-id-5hhgfd55" >
 
                         <div>
                             <div class="jarviswidget-editbox"> </div>
@@ -98,22 +98,22 @@
 
                                 <form id="album_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/album/store" >
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="thumbnail">
-                                    <input type="hidden" name="display">
+                                    <input type="hidden" name="thumbnail" value="{{$album->thumbnail}}">
+                                    <input type="hidden" name="display" value="{{ $album->display_id or 0}}">
 
                                     <fieldset>
                                         <div class="row">
                                             <section class="col col-4">
                                                 <label class="input">
                                                     <i class="icon-prepend fa fa-user"></i>
-                                                    <input type="text" name="title" placeholder="标题">
+                                                    <input type="text" name="title" value="{{$album->title}}" placeholder="标题">
                                                 </label>
                                             </section>
                                         </div>
                                         <div class="row">
                                             <section class="col col-4">
                                                 <label class="input"> <i class="icon-append fa fa-calendar"></i>
-                                                    <input type="text" name="published_at" placeholder="选择发布时间" class="datepicker" value="{{ old('published_at') }}" data-dateformat="yy-mm-dd">
+                                                    <input type="text" name="published_at" value="{{$album->published_at}}" placeholder="选择发布时间" class="datepicker" value="{{ old('published_at') }}" data-dateformat="yy-mm-dd">
                                                 </label>
                                                 @if ($errors->has('published_at'))
                                                 <em>{{ $errors->first('published_at') }}</em>
@@ -123,7 +123,7 @@
                                         <div class="row">
                                             <section class="col col-4">
                                                 <span class="onoffswitch">
-                                                    <input type="checkbox" name="free" class="onoffswitch-checkbox" id="show-tabs">
+                                                    <input type="checkbox" name="free" class="onoffswitch-checkbox" id="show-tabs" @if($album->free) checked="checked" @endif >
                                                     <label class="onoffswitch-label" for="show-tabs">
                                                         <span class="onoffswitch-inner" data-swchon-text="Free" data-swchoff-text="Member"></span>
                                                         <span class="onoffswitch-switch"></span>
@@ -134,8 +134,8 @@
                                         <div class="row">
                                             <section class="col">
                                                 <div id="display_select" class="dropdown inline_block">
-                                                    <a id="dLabel2" role="button" name="{{App\display::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
-                                                        <i class="fa fa-code-fork"></i>      {{App\display::find(1)->name}}
+                                                    <a id="dLabel2" role="button" name="" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
+                                                        <i class="fa fa-code-fork"></i>     @if($album->display_id) {{ $album->display->name }} @endif
                                                         <span class="caret"></span>
                                                     </a>
                                                     <ul class="dropdown-menu multi-level" role="menu">
@@ -173,7 +173,7 @@
 
                                         <section>
                                             <label class="textarea">
-                                                <textarea rows="2" name="content" placeholder="描述"></textarea>
+                                                <textarea rows="2" name="content" placeholder="描述">{{ $album->content }}</textarea>
                                             </label>
                                         </section>
                                     </fieldset>

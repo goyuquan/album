@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\RoleUser;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -47,53 +46,18 @@ class UserController extends Controller
 
         $user = new User;
 
-        if ($request->category1) {
-            switch ($request->category1)
+        if ($request->member) {
+            switch ($request->member)
                 {
-                    case 30: $category1 = date('y-m-d h:i:s',time() + 30*86400); break;
-                    case 90: $category1 = date('y-m-d h:i:s',time() + 90*86400); break;
-                    case 180: $category1 = date('y-m-d h:i:s',time() + 180*86400); break;
-                    case 360: $category1 = date('y-m-d h:i:s',time() + 360*86400); break;
-                    default: $category1 = null;
+                    case 30: $member = date('y-m-d h:i:s',time() + 30*86400); break;
+                    case 90: $member = date('y-m-d h:i:s',time() + 90*86400); break;
+                    case 180: $member = date('y-m-d h:i:s',time() + 180*86400); break;
+                    case 360: $member = date('y-m-d h:i:s',time() + 360*86400); break;
+                    default: $member = null;
                 }
-            $user->category1 = $category1;
+            $user->member = $member;
         }
 
-        if ($request->category2) {
-            switch ($request->category2)
-                {
-                    case 30: $category2 = date('y-m-d h:i:s',time() + 30*86400); break;
-                    case 90: $category2 = date('y-m-d h:i:s',time() + 90*86400); break;
-                    case 180: $category2 = date('y-m-d h:i:s',time() + 180*86400); break;
-                    case 360: $category2 = date('y-m-d h:i:s',time() + 360*86400); break;
-                    default: $category2 = null;
-                }
-            $user->category2 = $category2;
-        }
-
-        if ($request->category3) {
-            switch ($request->category3)
-                {
-                    case 30: $category3 = date('y-m-d h:i:s',time() + 30*86400); break;
-                    case 90: $category3 = date('y-m-d h:i:s',time() + 90*86400); break;
-                    case 180: $category3 = date('y-m-d h:i:s',time() + 180*86400); break;
-                    case 360: $category3 = date('y-m-d h:i:s',time() + 360*86400); break;
-                    default: $category3 = null;
-                }
-            $user->category3 = $category1;
-        }
-
-        if ($request->category4) {
-            switch ($request->category4)
-                {
-                    case 30: $category4 = date('y-m-d h:i:s',time() + 30*86400); break;
-                    case 90: $category4 = date('y-m-d h:i:s',time() + 90*86400); break;
-                    case 180: $category4 = date('y-m-d h:i:s',time() + 180*86400); break;
-                    case 360: $category4 = date('y-m-d h:i:s',time() + 360*86400); break;
-                    default: $category4 = null;
-                }
-            $user->category4 = $category1;
-        }
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -136,57 +100,17 @@ class UserController extends Controller
         }
 
 
-        if ($request->category1) {
-            $later_time = $user->category1 ? strtotime($user->category1) : strtotime(date('y-m-d h:i:s',time()));
-            switch ($request->category1)
+        if ($request->member) {
+            $later_time = $user->member ? strtotime($user->member) : strtotime(date('y-m-d h:i:s',time()));
+            switch ($request->member)
                 {
-                    case 30: $category1 = date('y-m-d h:i:s',$later_time + 30*86400); break;
-                    case 90: $category1 = date('y-m-d h:i:s',$later_time + 90*86400); break;
-                    case 180: $category1 = date('y-m-d h:i:s',$later_time + 180*86400); break;
-                    case 360: $category1 = date('y-m-d h:i:s',$later_time + 360*86400); break;
-                    default: $category1 = null;
+                    case 30: $member = date('y-m-d h:i:s',$later_time + 30*86400); break;
+                    case 90: $member = date('y-m-d h:i:s',$later_time + 90*86400); break;
+                    case 180: $member = date('y-m-d h:i:s',$later_time + 180*86400); break;
+                    case 360: $member = date('y-m-d h:i:s',$later_time + 360*86400); break;
+                    default: $member = null;
                 }
-            $user->category1 = $category1;
-        }
-
-
-        if ($request->category2) {
-            $later_time = $user->category2 ? strtotime($user->category2) : strtotime(date('y-m-d h:i:s',time()));
-            switch ($request->category2)
-                {
-                    case 30: $category2 = date('y-m-d h:i:s',$later_time + 30*86400); break;
-                    case 90: $category2 = date('y-m-d h:i:s',$later_time + 90*86400); break;
-                    case 180: $category2 = date('y-m-d h:i:s',$later_time + 180*86400); break;
-                    case 360: $category2 = date('y-m-d h:i:s',$later_time + 360*86400); break;
-                    default: $category2 = null;
-                }
-            $user->category2 = $category2;
-        }
-
-        if ($request->category3) {
-            $later_time = $user->category3 ? strtotime($user->category3) : strtotime(date('y-m-d h:i:s',time()));
-            switch ($request->category3)
-                {
-                    case 30: $category3 = date('y-m-d h:i:s',$later_time + 30*86400); break;
-                    case 90: $category3 = date('y-m-d h:i:s',$later_time + 90*86400); break;
-                    case 180: $category3 = date('y-m-d h:i:s',$later_time + 180*86400); break;
-                    case 360: $category3 = date('y-m-d h:i:s',$later_time + 360*86400); break;
-                    default: $category3 = null;
-                }
-            $user->category3 = $category3;
-        }
-
-        if ($request->category4) {
-            $later_time = $user->category4 ? strtotime($user->category4) : strtotime(date('y-m-d h:i:s',time()));
-            switch ($request->category4)
-                {
-                    case 30: $category4 = date('y-m-d h:i:s',$later_time + 30*86400); break;
-                    case 90: $category4 = date('y-m-d h:i:s',$later_time + 90*86400); break;
-                    case 180: $category4 = date('y-m-d h:i:s',$later_time + 180*86400); break;
-                    case 360: $category4 = date('y-m-d h:i:s',$later_time + 360*86400); break;
-                    default: $category4 = null;
-                }
-            $user->category4 = $category4;
+            $user->member = $member;
         }
 
         $user->save();

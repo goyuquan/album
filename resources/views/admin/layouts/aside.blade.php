@@ -57,11 +57,6 @@
             </li>
         </ul>
     </li>
-    <li id="aside_category">
-        <a href="/admin/categorys/"><i class="fa fa-lg fa-fw fa-table"></i>
-            <span class="menu-item-parent">分类管理</span>
-        </a>
-    </li>
     <li id="aside_display">
         <a href="/admin/display"><i class="fa fa-lg fa-fw fa-table"></i>
             <span class="menu-item-parent">文章展示页面列表</span>

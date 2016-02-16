@@ -12,11 +12,11 @@ class CreateAlbumsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index();
             $table->string('title');
-            $table->integer('category_id');
             $table->integer('display_id');
             $table->string('thumbnail',20);
             $table->string('photo',20);
             $table->text('content');
+            $table->bit('free')->nullable();
             $table->timestamps();
             $table->timestamp('published_at');
         });

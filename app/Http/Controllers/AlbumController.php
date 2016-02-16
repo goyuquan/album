@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use App\Img;
-use App\Category;
 use App\Display;
 use Image;
+use Gate;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ class AlbumController extends Controller
         $albums = Album::orderBy('published_at', 'desc')
         ->orderBy('id', 'desc')
         ->paginate($perPage = 10, $columns = ['*'], $pageName = 'page', $page = $id);
-        return view('admin.album.index',['albums' => $albums]);
+        return view('admin.album.albums',['albums' => $albums]);
     }
 
 
@@ -33,10 +33,7 @@ class AlbumController extends Controller
     public function create()
     {
         $displays = $displayss = Display::all();
-        $categorys = $categoryss = Category::all();
         return view('admin.album.create',[
-            "categorys" => $categorys,
-            "categoryss" => $categoryss,
             "displays" => $displays,
             "displayss" => $displayss
         ]);
@@ -46,7 +43,6 @@ class AlbumController extends Controller
     {
         $messages = [
             'title.required' => '标题不能为空',
-            'category.required' => '选择分类',
             'title.unique' => '标题不能重复',
             'title.max' => '标题不能大于:max位',
             'title.min' => '标题不能小于:min位',
@@ -54,16 +50,15 @@ class AlbumController extends Controller
         ];
         $this->validate($request, [
             'title' => 'required|min:2|max:255',
-            'category' => 'required',
             'published_at' => 'required',
         ],$messages);
 
         $request->user()->album()->create([
             'title' => $request->title,
             'thumbnail' => $request->thumbnail,
-            'category_id' => $request->category,
             'display_id' => $request->display,
             'content' => $request->content,
+            'free' => $request->free,
             'published_at' => $request->published_at,
         ]);
 
@@ -85,17 +80,56 @@ class AlbumController extends Controller
 
     public function edit($id)
     {
-        //
+        $album = Album::find($id);
+        $displays = $displayss = Display::all();
+
+        return view('admin.album.edit',[
+            'album'=>$album,
+            "displays" => $displays,
+            "displayss" => $displayss
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $album = Album::findOrFail($id);
+        if (Gate::denies('album_authorize', $album)) {
+            return "authorize fails";
+        }
+
+        $messages = [
+            'title.required' => '标题不能为空',
+            'title.max' => '标题不能小于:max位',
+            'title.min' => '标题不能小于:min位',
+            'content.required' => '内容不能为空',
+        ];
+        $this->validate($request, [
+            'title' => 'required|min:5|max:255',
+            'content' => 'required',
+        ],$messages);
+
+        $album = Album::find($id);
+        $album->title = $request->title;
+        $album->content = $request->content;
+        $album->free = $request->free;
+        $album->published_at = $request->published_at;
+        $album->save();
+
+        Session()->flash('status', 'Album update was successful!');
+
+        return redirect('/admin/albums/');
     }
 
     public function destroy($id)
     {
-        //
+        $album = Album::findOrFail($id);
+        if (Gate::denies('album_authorize', $album)) {
+            return "authorize fails";
+        }
+
+        Album::destroy($id);
+
+        return redirect('/admin/albums/');
     }
 
     public function thumbnail(Request $request)

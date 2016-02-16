@@ -1,10 +1,5 @@
 @extends('admin.layouts.admin')
 
-@section('style')
-
-
-@endsection
-
 @section('content')
 
 
@@ -95,11 +90,10 @@
                                 </th>
                                 <th style="width:20px;">ID</th>
                                 <th>标题</th>
-                                <th> 缩略图 </th>
-                                <th> 上传 </th>
-                                <th>用户</th>
-                                <th class="text-center hidden-xs hidden-sm">类别</th>
-                                <th class="text-center hidden-xs hidden-sm">发布时间</th>
+                                <th class="text-center"> 缩略图 </th>
+                                <th class="text-center"> 上传 </th>
+                                <th class="text-center hidden-xs hidden-sm" style="width: 40px;"> 开放 </th>
+                                <th class="text-center hidden-xs hidden-sm" style="width: 100px;">发布时间</th>
                                 <th class="hidden-xs hidden-sm" style="width: 50px;">操作</th>
                             </tr>
                         </thead>
@@ -125,14 +119,18 @@
 
                                     @endif
                                 </td>
-                                <td>{{$album->user->name}}</td>
-                                <td class="text-center hidden-xs hidden-sm">{{ $album->category->name }}</td>
+                                <td class="text-center hidden-xs hidden-sm">
+                                    @if ( $album->free )
+                                        <i class="fa fa-fw fa-check-circle txt-color-green" style="font-size:1.4em"></i>
+                                    @endif
+
+                                </td>
                                 <td class="text-center hidden-xs hidden-sm">{{ substr($album->published_at,0,10) }}</td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
-                                        <a href="/admin/article/{{ $album->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
+                                        <a href="/admin/album/{{ $album->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
                                         </a>
-                                        <a href="/admin/article/{{ $album->id }}/destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
+                                        <a href="/admin/album/{{ $album->id }}/destroy" class="destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -171,6 +169,33 @@
     $("#aside_album").addClass("open");
     $("#aside_album_").show();
     $("#aside_album_index").addClass("active");
+
+    //角色删除确认
+    $('.destroy').click(function(e) {
+        var $this = $(this);
+        $.destroyURL = $this.attr('href');
+        $.destroyMSG = $this.data('logout-msg');
+
+        // ask verification
+        $.SmartMessageBox({
+            title : "<i class='fa fa-exclamation-triangle txt-color-orangeDark'></i> 危险操作 !",
+            content : $.destroyMSG || "删除相册会影响到关联用户",
+            buttons : '[取消][确认删除]'
+
+        }, function(ButtonPressed) {
+            if (ButtonPressed == "确认删除") {
+                $.root_.addClass('animated fadeOutDown');
+                category_destroy();
+            }
+
+        });
+        e.preventDefault();
+    });
+
+    function category_destroy() {
+        window.location = $.destroyURL;
+    }
+
 </script>
 
 @endsection
