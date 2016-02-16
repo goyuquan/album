@@ -91,7 +91,7 @@ class ArticleController extends Controller
             'published_at' => 'required',
         ],$messages);
 
-        $request->user()->articles()->create([
+        $request->user()->article()->create([
             'title' => $request->title,
             'thumbnail' => $request->thumbnail,
             'content' => $request->content,
@@ -100,7 +100,7 @@ class ArticleController extends Controller
 
         Session()->flash('status', 'Article create was successful!');
 
-        return redirect('/articles/');
+        return redirect('/admin/articles/');
     }
 
 
