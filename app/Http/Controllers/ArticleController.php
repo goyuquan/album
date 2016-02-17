@@ -106,9 +106,14 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
+        $displays = $displayss = Display::all();
         $article = Article::find($id);
 
-        return view('admin.articles.edit',['article'=>$article]);
+        return view('admin.articles.edit',[
+            'article'=>$article,
+            "displays" => $displays,
+            "displayss" => $displayss
+        ]);
     }
 
 
@@ -151,7 +156,7 @@ class ArticleController extends Controller
 
         Article::destroy($id);
 
-        return redirect('/articles');
+        return redirect('/admin/articles');
     }
 
     public function fileUpload(Request $request)

@@ -33,18 +33,7 @@
                 内容管理
             </li>
         </ol>
-        <!-- end breadcrumb -->
 
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
 
     </div>
 <!-- END RIBBON -->
@@ -63,30 +52,11 @@
         </div>
     </div>
 
-    <!-- widget grid -->
     <section id="widget-grid">
-
-        <!-- START ROW -->
         <div class="row">
-
-            <!-- NEW COL START -->
             <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget" id="wid-idfdshd-786" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="true">
 
-                <!-- Widget ID (each widget will need unique ID)-->
-                <div class="jarviswidget" id="wid-id-786" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="true">
-                <!-- widget options:
-                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-                data-widget-colorbutton="false"
-                data-widget-editbutton="false"
-                data-widget-togglebutton="false"
-                data-widget-deletebutton="false"
-                data-widget-fullscreenbutton="false"
-                data-widget-custombutton="false"
-                data-widget-collapsed="true"
-                data-widget-sortable="false"
-
-                -->
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
                         <h2>编辑内容 </h2>
@@ -128,48 +98,37 @@
                                                     @endif
                                                 </section>
                                                 <div class="col col-1">
-                                                    <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
+                                                    <a data-toggle="modal" href="#myModal" id="upload_bdt0" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
                                                 </div>
                                                 <section class="col col-3">
-                                                    <div id="type_select" class="dropdown">
-                                                        <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
-                                                            <i class="fa fa-gear"></i>      <span id="category_bt"></span>
+                                                    <div id="display_select" class="dropdown inline_block">
+                                                        <a id="dLabel2" role="button" name="{{App\display::find(1)->id}}" data-toggle="dropdown" class="btn btn-primary btn-sm" data-target="#" href="javascript:void(0);">
+                                                            <i class="fa fa-code-fork"></i>      {{App\display::find(1)->name}}
                                                             <span class="caret"></span>
                                                         </a>
                                                         <ul class="dropdown-menu multi-level" role="menu">
-                                                            <li>
-                                                                <a href="javascript:void(0);">类别1</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:void(0);">类别2</a>
-                                                            </li>
-                                                            <li class="dropdown-submenu">
-                                                                <a tabindex="-1" href="javascript:void(0);" class="parent-item">有子类别</a>
-                                                                <ul class="dropdown-menu">
+                                                            @foreach ( $displays as $display )
+                                                                @if ( $display->parent_id === 1 )
                                                                     <li>
-                                                                        <a tabindex="-1" href="javascript:void(0);">Second level</a>
+                                                                        <a href="javascript:void(0);" class="item" name="{{$display->id}}">{{ $display->name }}</a>
+                                                                        @if ( !App\Display::where('parent_id',$display->id)->get()->isEmpty() )
+                                                                            <ul class="dropdown-menu">
+                                                                            @foreach ( $displayss as $display_ )
+                                                                                @if ($display_->parent_id === $display->id)
+                                                                                    <li>
+                                                                                        <a href="javascript:void(0);" class="item" name="{{$display_->id}}">
+                                                                                            {{$display_->name}}
+                                                                                        </a>
+                                                                                    </li>
+                                                                                @endif
+                                                                            @endforeach
+                                                                            </ul>
+                                                                        @endif
                                                                     </li>
-                                                                    <li>
-                                                                        <a href="javascript:void(0);">Second level</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript:void(0);">Second level</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:void(0);">类别1</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:void(0);">类别1</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:void(0);">类别1</a>
-                                                            </li>
+                                                                @endif
+                                                            @endforeach
+
                                                         </ul>
-                                                        @if ($errors->has('category'))
-                                                        <em for="category" class="invalid">{{ $errors->first('category') }}</em>
-                                                        @endif
                                                     </div>
 
                                                 </section>

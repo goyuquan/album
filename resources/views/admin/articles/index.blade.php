@@ -31,36 +31,21 @@
                 内容管理
             </li>
         </ol>
-        <!-- end breadcrumb -->
 
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
 
     </div>
-    <!-- END RIBBON -->
 
-    <!-- MAIN CONTENT -->
+
     <div id="content">
 
         <div class="row">
 
 					<!-- col -->
 					<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> Other Pages <span>&gt;
-							Forum Layout </span></h1>
+						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> 文章管理 <span>&gt;
+							文章列表 </span></h1>
 					</div>
-					<!-- end col -->
 
-					<!-- right side of the page with the sparkline graphs -->
-					<!-- col -->
 					<div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
 						<!-- sparks -->
 						<ul id="sparks">
@@ -97,8 +82,6 @@
                                 <th style="width:20px;">ID</th>
                                 <th>标题</th>
                                 <th style="width:60px;"> 缩略图 </th>
-                                <th style="width:50px;">用户</th>
-                                <th class="text-center hidden-xs hidden-sm" style="width: 60px;">类别</th>
                                 <th class="text-center hidden-xs hidden-sm" style="width: 100px;">发布时间</th>
                                 <th class="hidden-xs hidden-sm" style="width: 50px;">操作</th>
                             </tr>
@@ -117,14 +100,12 @@
                                         <a href="/uploads/{{ $article->thumbnail }}"><i class="fa fa-photo fa-2x text-muted text-success"></i></a>
                                     @endif
                                 </td>
-                                <td>{{App\Article::find($article->user_id)->user->name}}</td>
-                                <td class="text-center hidden-xs hidden-sm">{{ $article->category }}</td>
                                 <td class="text-center hidden-xs hidden-sm">{{ substr($article->published_at,1,10) }}</td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
                                         <a href="/admin/article/{{ $article->id }}/edit"> <i class="fa fa-edit" style="font-size:24px;"></i>
                                         </a>
-                                        <a href="/admin/article/{{ $article->id }}/destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
+                                        <a href="/admin/article/{{ $article->id }}/destroy" class="destroy"> <i class="fa fa-times" style="font-size:24px;"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -163,6 +144,32 @@
     $("#aside_article").addClass("open");
     $("#aside_article_").show();
     $("#aside_article_index").addClass("active");
+
+    //角色删除确认
+    $('.destroy').click(function(e) {
+        var $this = $(this);
+        $.destroyURL = $this.attr('href');
+        $.destroyMSG = $this.data('logout-msg');
+
+        // ask verification
+        $.SmartMessageBox({
+            title : "<i class='fa fa-exclamation-triangle txt-color-orangeDark'></i> 危险操作 !",
+            content : $.destroyMSG || "删除文章会影响到关联用户",
+            buttons : '[取消][确认删除]'
+
+        }, function(ButtonPressed) {
+            if (ButtonPressed == "确认删除") {
+                $.root_.addClass('animated fadeOutDown');
+                category_destroy();
+            }
+
+        });
+        e.preventDefault();
+    });
+
+    function category_destroy() {
+        window.location = $.destroyURL;
+    }
 </script>
 
 @endsection
