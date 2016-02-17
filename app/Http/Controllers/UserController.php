@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'desc')->get();
-        return view('admin.users.users',['users' => $users]);
+        return view('admin.users.index',['users' => $users]);
     }
 
 
@@ -111,6 +111,10 @@ class UserController extends Controller
                     default: $member = null;
                 }
             $user->member = $member;
+        } else {
+            if ($request->member2) {
+                $user->member = $request->member2;
+            }
         }
 
         $user->save();

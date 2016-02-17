@@ -38,36 +38,19 @@ table thead {
                 内容管理
             </li>
         </ol>
-        <!-- end breadcrumb -->
 
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
 
 </div>
-<!-- END RIBBON -->
 
-<!-- MAIN CONTENT -->
+
 <div id="content">
 
     <div class="row">
-
-        <!-- col -->
         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
             <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> 用户管理 <span>&gt;
                 用户列表 </span></h1>
             </div>
-            <!-- end col -->
 
-            <!-- right side of the page with the sparkline graphs -->
-            <!-- col -->
             <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
                 <!-- sparks -->
                 <ul id="sparks">
@@ -79,9 +62,6 @@ table thead {
                     <li class="sparks-info">
                         <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span></h5>
                     </li>
-                    <li class="sparks-info">
-                        <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-                    </li>
                 </ul>
                 <!-- end sparks -->
             </div>
@@ -89,7 +69,7 @@ table thead {
 
         </div>
 
-        <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-erysy" data-widget-editbutton="false">
+        <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-erysy">
 
             <!-- widget div-->
             <div>
@@ -155,10 +135,10 @@ table thead {
                                     @endif
                                 </td>
                                 <td>{{ $user->email }} </td>
-                                @if (strtotime($user->category1) - $current_time > 0)
+                                @if (strtotime($user->member) - $current_time > 0)
                                     <td class="success">
                                         <strong class="txt-color-greenDark"> &nbsp;
-                                        {{sprintf("%.1f",(strtotime($user->category1) - $current_time)/86400)}}&nbsp;天
+                                        {{sprintf("%.1f",(strtotime($user->member) - $current_time)/86400)}}&nbsp;天
                                         </strong>
                                     </td>
                                 @else

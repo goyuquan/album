@@ -146,7 +146,7 @@
     									<label class="label col col-3">添加时间</label>
     									<section class="col col-4">
     										<label class="select">
-    											<select name="category1" class="valid">
+    											<select name="member" class="valid">
     												<option value="0" selected="" disabled="">无</option>
     												<option value="30">一个月</option>
     												<option value="90">三个月</option>
@@ -155,9 +155,12 @@
     											</select> <i></i> </label>
     									</section>
                                         <section class="col col-5">
-                                            <label class="input">
-												<input type="text" class="input-sm" value="{{ $user->category1 }}">
-											</label>
+                                            <label class="input"> <i class="icon-append fa fa-calendar"></i>
+                                                <input type="text" name="member2" placeholder="选择发布时间" class="datepicker" value="{{ $user->member }}" data-dateformat="yy-mm-dd">
+                                            </label>
+                                            @if ($errors->has('member'))
+                                            <em>{{ $errors->first('member') }}</em>
+                                            @endif
                                         </section>
     								</div>
                                     <hr class="simple">

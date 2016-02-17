@@ -72,12 +72,6 @@
                             110,150,300,130,400,240,220,310,220,300, 270, 210
                         </div>
                     </li>
-                    <li class="sparks-info">
-                        <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-                        <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
-                            110,150,300,130,400,240,220,310,220,300, 270, 210
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -145,7 +139,7 @@
     									<label class="label col col-4">添加时间</label>
     									<section class="col col-8">
     										<label class="select">
-    											<select name="category1" class="valid">
+    											<select name="member" class="valid">
     												<option value="0" selected="" disabled="">无</option>
     												<option value="30">一个月</option>
     												<option value="90">三个月</option>
