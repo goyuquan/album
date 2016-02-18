@@ -32,7 +32,12 @@ class User extends Authenticatable
 
     public function album()
     {
-        return $this->hasMany('App\album');
+        return $this->hasMany('App\Album');
+    }
+
+    public function video()
+    {
+        return $this->hasMany('App\Video');
     }
 
 }

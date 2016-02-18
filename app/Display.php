@@ -18,4 +18,9 @@ class Display extends Model
         return $this->hasMany('App\Album');
     }
 
+    public function video()
+    {
+        return $this->hasMany('App\Video');
+    }
+
 }

@@ -36,7 +36,7 @@
 
 					<!-- col -->
 					<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-image"></i> 相册 <span>&gt;
+						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-image text-success"></i> 相册 <span>&gt;
 							&nbsp;列表 </span></h1>
 					</div>
 					<!-- end col -->
@@ -50,7 +50,7 @@
 								<h5> 全部相册共计 <span class="txt-color-blue"><i class="fa fa-cubes"></i>&nbsp;{{$albums->total()}}</span></h5>
 							</li>
 							<li class="sparks-info">
-								<h5> 会员相册 <span class="txt-color-purple"><i class="fa fa-group"></i>&nbsp;{{$albums->where('free',0)->count()}}</span></h5>
+								<h5> 会员相册 <span class="txt-color-purple"><i class="fa fa-group"></i>&nbsp;{{$albums->where('free',null)->count()}}</span></h5>
 							</li>
 							<li class="sparks-info">
 								<h5> 开放相册 <span class="txt-color-greenDark"><i class="fa fa-child"></i>&nbsp;{{$albums->where('free',1)->count()}}</span></h5>
@@ -96,7 +96,9 @@
                                 <td><h4><a href="/album/{{ $album->id }}"> {{str_limit($album->title,50)}} </a><small></small></h4></td>
                                 <td class="text-center">
                                     @if($album->thumbnail)
-                                        <a href="/uploads/{{ $album->thumbnail }}"><i class="fa fa-photo fa-2x text-muted text-success"></i></a>
+                                        <img src="/uploads/thumbnails/{{ $album->thumbnail }}" alt="" />
+                                    @else
+                                        <i class="fa fa-photo fa-2x text-muted"></i>
                                     @endif
                                 </td>
                                 <td class="text-center">

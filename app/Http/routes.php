@@ -8,7 +8,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/articles/{id?}', 'ArticleController@index');
     Route::post('/article/fileupload','ArticleController@fileUpload');
-    Route::post('/Album/thumbnail','AlbumController@thumbnail');
 
     Route::get('/article/{article}', 'ArticleController@show' );
 
@@ -26,15 +25,25 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/display', 'DisplayController@index');
         Route::post('/admin/display/store', 'DisplayController@store');
 
-        Route::get('/admin/albums/{id?}', 'AlbumController@index');
+        Route::post('/album/thumbnail','AlbumController@thumbnail');
         Route::get('/admin/album/{id?}/show', 'AlbumController@show');
         Route::get('/admin/album/create', 'AlbumController@create');
+        Route::post('/admin/album/store', 'AlbumController@store');
         Route::get('/admin/album/{id}/edit', 'AlbumController@edit');
         Route::post('/admin/album/{id}/update', 'AlbumController@update');
-        Route::post('/admin/album/store', 'AlbumController@store');
         Route::get('/admin/album/upload/{id?}', 'AlbumController@upload');
         Route::post('/admin/album/upload/uploadstore','AlbumController@uploadstore');
         Route::get('/admin/album/{id}/destroy', 'AlbumController@destroy');
+        Route::get('/admin/albums/{id?}', 'AlbumController@index');
+
+        Route::get('/admin/video/create', 'VideoController@create');
+        Route::post('/admin/video/store', 'VideoController@store');
+        Route::get('/admin/video/{id}/edit', 'VideoController@edit');
+        Route::post('/admin/video/{id}/update', 'VideoController@update');
+        Route::get('/admin/video/upload/{id?}', 'VideoController@upload');
+        Route::post('/admin/video/upload/uploadstore','VideoController@uploadstore');
+        Route::get('/admin/video/{id}/destroy', 'VideoController@destroy');
+        Route::get('/admin/videos/{id?}/', 'VideoController@index');
 
         Route::get('/admin/users/', 'UserController@index');
         Route::get('/admin/user/create', 'UserController@create');

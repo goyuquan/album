@@ -13,8 +13,7 @@ class CreateAlbumsTable extends Migration
             $table->integer('user_id')->index();
             $table->string('title');
             $table->integer('display_id');
-            $table->string('thumbnail',20);
-            $table->string('photo',20);
+            $table->string('thumbnail',100);
             $table->text('content');
             $table->bit('free')->nullable();
             $table->timestamps();

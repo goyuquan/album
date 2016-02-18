@@ -19,7 +19,7 @@ class AlbumController extends Controller
     {
         $albums = Album::orderBy('published_at', 'desc')
         ->orderBy('id', 'desc')
-        ->paginate($perPage = 10, $columns = ['*'], $pageName = 'page', $page = $id);
+        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
         return view('admin.album.index',['albums' => $albums]);
     }
 
@@ -128,9 +128,12 @@ class AlbumController extends Controller
         }
 
         foreach ($album->img as $albums) {
-            File::delete('uploads/'.$albums->name);
-            File::delete('uploads/thumbnails/'.'thumbnail_'.$albums->name);
-            File::delete('uploads/'.$albums->thumbnail);
+            File::delete([
+                'uploads/'.$albums->name,
+                'uploads/thumbnails/'.'thumbnail_'.$albums->name,
+                'uploads/'.$albums->thumbnail,
+                'uploads/thumbnails/'.$albums->thumbnail,
+            ]);
         }
 
         Img::where('album_id', $album->id)->delete();
@@ -159,6 +162,13 @@ class AlbumController extends Controller
                 $file_suffix = substr(strchr($request->file('thumbnail_file')->getMimeType(),"/"),1);//取得文件后缀
                 $destinationPath = 'uploads';//上传路径
                 $fileName = $file_pre.'.'.$file_suffix;//上传文件名
+
+                Image::make($request->file('thumbnail_file'))//生成缩略图
+                                    ->resize(100, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    })
+                                    ->save('uploads/thumbnails/'.$fileName);
+
                 $request->file('thumbnail_file')->move($destinationPath, $fileName);
 
                 $img = new Img;
@@ -191,7 +201,7 @@ class AlbumController extends Controller
                 $thumbnail_name = 'thumbnail_'.$file_pre.'.'.$file_suffix;
 
                 Image::make($request->file('file'))//生成缩略图
-                                    ->fit(160,160)
+                                    ->fit(160)
                                     ->save('uploads/thumbnails/'.$thumbnail_name);
 
                 $request->file('file')->move($destinationPath, $fileName);

@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                 <h1 class="page-title txt-color-blueDark">
-                    <i class="fa fa-pencil-square-o fa-fw "></i>
+                    <i class="fa fa-image text-success "></i>
                     相册管理
                     <span>>
                         创建相册

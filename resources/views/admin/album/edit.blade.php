@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                 <h1 class="page-title txt-color-blueDark">
-                    <i class="fa fa-pencil-square-o fa-fw "></i>
+                    <i class="fa fa-image text-success"></i>
                     相册管理
                     <span>>
                         编辑相册
@@ -159,6 +159,7 @@
                                             <section class="col">
                                                 <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
                                             </section>
+                                            <img src="/uploads/thumbnails/{{ $album->thumbnail }}" alt="" />
                                         </div>
 
                                         <section>
