@@ -25,18 +25,6 @@
                 相册管理
             </li>
         </ol>
-        <!-- end breadcrumb -->
-
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
 
     </div>
     <!-- END RIBBON -->
@@ -59,13 +47,13 @@
 						<!-- sparks -->
 						<ul id="sparks">
 							<li class="sparks-info">
-								<h5> 全部文章共计 <span class="txt-color-blue"><i class="fa fa-search-plus"></i>&nbsp;{{$albums->total()}}&nbsp;条</span></h5>
+								<h5> 全部相册共计 <span class="txt-color-blue"><i class="fa fa-cubes"></i>&nbsp;{{$albums->total()}}</span></h5>
 							</li>
 							<li class="sparks-info">
-								<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span></h5>
+								<h5> 会员相册 <span class="txt-color-purple"><i class="fa fa-group"></i>&nbsp;{{$albums->where('free',0)->count()}}</span></h5>
 							</li>
 							<li class="sparks-info">
-								<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
+								<h5> 开放相册 <span class="txt-color-greenDark"><i class="fa fa-child"></i>&nbsp;{{$albums->where('free',1)->count()}}</span></h5>
 							</li>
 						</ul>
 						<!-- end sparks -->

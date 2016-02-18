@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/album/{id?}/show', 'AlbumController@show');
         Route::get('/admin/album/create', 'AlbumController@create');
         Route::get('/admin/album/{id}/edit', 'AlbumController@edit');
+        Route::post('/admin/album/{id}/update', 'AlbumController@update');
         Route::post('/admin/album/store', 'AlbumController@store');
         Route::get('/admin/album/upload/{id?}', 'AlbumController@upload');
         Route::post('/admin/album/upload/uploadstore','AlbumController@uploadstore');

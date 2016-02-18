@@ -71,16 +71,6 @@
                     </span>
                 </h1>
             </div>
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-                <ul id="sparks" class="">
-                    <li class="sparks-info">
-                        <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-                        <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-                            1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
 
 

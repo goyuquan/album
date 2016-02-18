@@ -55,12 +55,12 @@ table thead {
                 <!-- sparks -->
                 <ul id="sparks">
                     <li class="sparks-info">
-                        <h5> 用户共计total
-                            <span class="txt-color-blue">
-                                <i class="fa fa-user"></i>&nbsp;{{$users->count()}}</span></h5>
+                        <h5> 全部用户
+                            <span class="txt-color-blue"> <i class="fa fa-group"></i>&nbsp;{{$users->count()}}</span>
+                        </h5>
                     </li>
                     <li class="sparks-info">
-                        <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" title="Increased"></i>&nbsp;45%</span></h5>
+                        <h5> 会员 <span class="txt-color-purple"><i class="fa fa-shield"></i>&nbsp;{{$users->count() - $users->where('member',null)->count() - 1}}</span></h5>
                     </li>
                 </ul>
                 <!-- end sparks -->

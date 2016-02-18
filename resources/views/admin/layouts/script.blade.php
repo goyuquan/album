@@ -50,7 +50,7 @@
 <script src="/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
 
 <!-- FastClick: For mobile devices -->
-<script src="/js/plugin/fastclick/fastclick.js"></script>
+<!-- <script src="/js/plugin/fastclick/fastclick.js"></script> -->
 
 <!--[if IE 7]>
 

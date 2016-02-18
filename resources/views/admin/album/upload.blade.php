@@ -36,24 +36,7 @@
                 图片上传
             </li>
         </ol>
-        <!-- end breadcrumb -->
-
-        <!-- You can also add more buttons to the
-        ribbon for further usability
-
-        Example below:
-
-        <span class="ribbon-button-alignment pull-right">
-        <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-        <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-        <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-    </span> -->
-
     </div>
-    <!-- END RIBBON -->
-
-    <!-- MAIN CONTENT -->
-
     <div id="content">
 
         <div class="row">
@@ -61,37 +44,19 @@
                 <h1 class="page-title txt-color-blueDark">
                     <i class="fa fa-pencil-square-o fa-fw "></i>
                     图片上传
-                    <span>>
-                        Dropzone
-                    </span>
                 </h1>
             </div>
-            @if(App\Img::where('album_id',$album->id))
-            <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1 text-align-right">
+            @if( App\Img::where('album_id',$album->id) )
+            <div class="col-md-6 text-align-right">
                 <div class="page-title">
-                    <a href="/admin/album/{{$album->id}}/show" class="btn btn-primary">查看相册</a>
+                    <a href="/admin/album/{{ $album->id }}/show" class="btn btn-primary">查看相册</a>
                 </div>
             </div>
             @endif
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-7">
+            <div class="col-md-1">
                 <ul id="sparks" class="">
                     <li class="sparks-info">
-                        <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-                        <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-                            1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-                        </div>
-                    </li>
-                    <li class="sparks-info">
-                        <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
-                        <div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
-                            110,150,300,130,400,240,220,310,220,300, 270, 210
-                        </div>
-                    </li>
-                    <li class="sparks-info">
-                        <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-                        <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
-                            110,150,300,130,400,240,220,310,220,300, 270, 210
-                        </div>
+                        <h5> 图片数量 <span class="txt-color-green"><i class="fa fa-image"></i>&nbsp;{{ $album->img->count() }}</span></h5>
                     </li>
                 </ul>
             </div>
@@ -140,7 +105,8 @@ $(function(){
     // Dropzone
     $("#my-awesome-dropzone").dropzone({
         url: "/admin/album/upload/uploadstore",
-        maxFilesize: 1,
+        parallelUploads: 1,
+        maxFilesize: 100,
         addRemoveLinks: true,
         thumbnailWidth: 100,
         thumbnailHeight: 100,

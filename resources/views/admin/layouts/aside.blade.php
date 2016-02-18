@@ -47,7 +47,7 @@
         </ul>
     </li>
     <li id="aside_album">
-        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-folder-open"></i> <span class="menu-item-parent">相册</span></a>
+        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-image"></i> <span class="menu-item-parent">相册</span></a>
         <ul id="aside_album_">
             <li id="aside_album_index">
                 <a href="/admin/albums/"> 相册列表 </a>
@@ -57,13 +57,24 @@
             </li>
         </ul>
     </li>
+    <li id="aside_video">
+        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-video-camera"></i> <span class="menu-item-parent">视频</span></a>
+        <ul id="aside_video_">
+            <li id="aside_video_index">
+                <a href="/admin/video/"> 视频列表 </a>
+            </li>
+            <li id="aside_video_create">
+                <a href="/admin/video/create"> 创建视频 </a>
+            </li>
+        </ul>
+    </li>
     <li id="aside_display">
         <a href="/admin/display"><i class="fa fa-lg fa-fw fa-table"></i>
-            <span class="menu-item-parent">文章展示页面列表</span>
+            <span class="menu-item-parent">展示位置</span>
         </a>
     </li>
     <li id="aside_user">
-        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">用户管理</span></a>
+        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">用户管理</span></a>
         <ul id="aside_user_">
             <li id="aside_user_index">
                 <a href="/admin/users/">用户列表</a>
