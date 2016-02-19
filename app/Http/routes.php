@@ -9,7 +9,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/articles/{id?}', 'ArticleController@index');
     Route::get('/article/{article}', 'ArticleController@show' );
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth','authuser']], function () {
 
         Route::get('/admin','AdminController@index');
         Route::post('/admin/thumbnail','AdminController@thumbnail');
