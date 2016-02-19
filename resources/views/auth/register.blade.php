@@ -67,8 +67,7 @@
 							<div class="pull-left login-desc-box-l">
 								<h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
 								<div class="login-app-icons">
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Frontend Template</a>
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+									<a href="javascript:void(0);" class="btn btn-danger btn-sm">price table</a>
 								</div>
 							</div>
 
@@ -98,7 +97,7 @@
                                 <form id="smart-form-register" class="smart-form client-form" role="form" method="POST" action="{{ url('/register') }}">
                                     {!! csrf_field() !!}
 								<header>
-									免费注册
+									用户注册
 								</header>
 
 								<fieldset>
@@ -165,6 +164,7 @@
 										</section>
 									</div> -->
 
+									{{--
 									<div class="row">
 										<section class="col col-6">
 											<label class="select">
@@ -181,6 +181,7 @@
 											</label>
 										</section>
 									</div>
+									--}}
 
 									<section>
 										<!-- <label class="checkbox">
@@ -207,19 +208,6 @@
 							</form>
 
 						</div>
-						<p class="note text-center">*FREE Registration ends on October 2015.</p>
-						<h5 class="text-center">- Or sign in using -</h5>
-						<ul class="list-inline text-center">
-							<li>
-								<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</div>
@@ -359,7 +347,7 @@
 
 					// Rules for form validation
 					rules : {
-						username : {
+						name : {
 							required : true
 						},
 						email : {
@@ -377,15 +365,6 @@
 							maxlength : 20,
 							equalTo : '#password'
 						},
-						firstname : {
-							required : true
-						},
-						lastname : {
-							required : true
-						},
-						gender : {
-							required : true
-						},
 						terms : {
 							required : true
 						}
@@ -393,31 +372,25 @@
 
 					// Messages for form validation
 					messages : {
-						login : {
-							required : 'Please enter your login'
+						name : {
+							required : '请输入用户名'
 						},
 						email : {
-							required : 'Please enter your email address',
-							email : 'Please enter a VALID email address'
+							required : '请输入 email',
+							email : 'email 格式不正确'
 						},
 						password : {
-							required : 'Please enter your password'
+							required : '请输入密码'
 						},
 						passwordConfirm : {
-							required : 'Please enter your password one more time',
-							equalTo : 'Please enter the same password as above'
-						},
-						firstname : {
-							required : 'Please select your first name'
-						},
-						lastname : {
-							required : 'Please select your last name'
+							required : '请再输入一次密码',
+							equalTo : '两次输入密码不一致'
 						},
 						gender : {
 							required : 'Please select your gender'
 						},
 						terms : {
-							required : 'You must agree with Terms and Conditions'
+							required : '同意注册条款'
 						}
 					},
 

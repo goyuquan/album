@@ -63,8 +63,7 @@
 							<div class="pull-left login-desc-box-l">
 								<h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
 								<div class="login-app-icons">
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Frontend Template</a>
-									<a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+									<a href="javascript:void(0);" class="btn btn-danger btn-sm">pricing table </a>
 								</div>
 							</div>
 
@@ -143,21 +142,6 @@
 							</form>
 
 						</div>
-
-						<h5 class="text-center"> - Or sign in using -</h5>
-
-										<ul class="list-inline text-center">
-											<li>
-												<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-											</li>
-											<li>
-												<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-											</li>
-											<li>
-												<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-											</li>
-										</ul>
-
 					</div>
 				</div>
 			</div>
