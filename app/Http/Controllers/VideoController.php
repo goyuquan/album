@@ -23,13 +23,6 @@ class VideoController extends Controller
     }
 
 
-    public function upload($id)
-    {
-        $video = Video::find($id);
-        return view('admin.video.upload',['video' => $video]);
-    }
-
-
     public function create()
     {
         $displays = $displayss = Display::all();
@@ -68,16 +61,6 @@ class VideoController extends Controller
         return redirect('/admin/videos/');
     }
 
-    public function show($id)
-    {
-        $imgs = Img::where('video_id',$id)
-                    ->orderBy('id')
-                    ->get();
-        return view('admin.video.show',[
-            'imgs' => $imgs,
-            'video' => $id
-        ]);
-    }
 
     public function edit($id)
     {
@@ -93,6 +76,7 @@ class VideoController extends Controller
 
     public function update(Request $request, $id)
     {
+        // return "kljlkjk";
         $video = Video::findOrFail($id);
         if (Gate::denies('video_authorize', $video)) {
             return "authorize fails";
@@ -104,13 +88,15 @@ class VideoController extends Controller
             'title.min' => '标题不能小于:min位',
         ];
         $this->validate($request, [
-            'title' => 'required|min:5|max:255',
+            'title' => 'required|min:3|max:255',
         ],$messages);
 
         $video = Video::find($id);
         $video->title = $request->title;
         $video->content = $request->content;
+        $video->display_id = $request->display;
         $video->thumbnail = $request->thumbnail;
+        $video->video = $request->video;
         $video->free = $request->free;
         $video->published_at = $request->published_at;
         $video->save();
@@ -127,55 +113,15 @@ class VideoController extends Controller
             return "authorize fails";
         }
 
-        foreach ($video->img as $videos) {
-            File::delete('uploads/'.$videos->name);
-            File::delete('uploads/thumbnails/'.'thumbnail_'.$videos->name);
-            File::delete('uploads/'.$videos->thumbnail);
-        }
-
-        Img::where('video_id', $video->id)->delete();
+        File::delete('videos/'.$video->video);
+        File::delete('uploads/thumbnails/'.$video->thumbnail);
+        File::delete('uploads/'.$video->thumbnail);
 
         Video::destroy($id);
 
         return redirect('/admin/videos/');
     }
 
-    public function thumbnail(Request $request)
-    {
-        if ($request->hasFile('thumbnail_file'))//文件是否上传
-        {
-            $messages = [
-                'photo.image' => '上传文件必须是图片',
-                'photo.max' => '上传文件不能大于:maxkb',
-            ];
-            $this->validate($request, [
-                'photo' => 'image|max:100000'//kilobytes
-            ],$messages);
-
-            if ($request->file('thumbnail_file')->isValid())//上传文件是否有效
-            {
-                $OriginalName = $request->file('thumbnail_file')->getClientOriginalName();
-                $file_pre = sha1(time().$OriginalName);//取得当前时间戳
-                $file_suffix = substr(strchr($request->file('thumbnail_file')->getMimeType(),"/"),1);//取得文件后缀
-                $destinationPath = 'uploads';//上传路径
-                $fileName = $file_pre.'.'.$file_suffix;//上传文件名
-                $request->file('thumbnail_file')->move($destinationPath, $fileName);
-
-                $img = new Img;
-                $img->name = $fileName;
-                $img->save();
-
-                Session()->flash('img',$fileName);
-
-                // return view('/admin/fileselect');
-                return $fileName;
-            } else {
-                return "上传文件无效！";
-            }
-        } else {
-            return "文件上传失败！";
-        }
-    }
 
     public function uploadstore(Request $request)
     {
@@ -186,30 +132,28 @@ class VideoController extends Controller
                 $OriginalName = $request->file('file')->getClientOriginalName();
                 $file_pre = sha1(time().$OriginalName);//取得当前时间戳
                 $file_suffix = substr(strchr($request->file('file')->getMimeType(),"/"),1);//取得文件后缀
-                $destinationPath = 'uploads';//上传路径
-                $fileName = $file_pre.'.'.$file_suffix;//上传文件名
-                $thumbnail_name = 'thumbnail_'.$file_pre.'.'.$file_suffix;
 
-                Image::make($request->file('file'))//生成缩略图
-                                    ->fit(160,160)
-                                    ->save('uploads/thumbnails/'.$thumbnail_name);
+                $mine_type  = array(
+                    'mp4' => 'mp4',
+                    'x-msvideo' => 'avi',
+                    'msvideo' => 'avi',
+                    'avi' => 'avi',
+                    'x-troff-msvideo' => 'avi'
+                 );
+
+                $destinationPath = 'videos';//上传路径
+                $fileName = $file_pre.'.'.$mine_type[$file_suffix];//上传文件名
 
                 $request->file('file')->move($destinationPath, $fileName);
 
-                $img = new Img;
-                $img->thumbnail = $thumbnail_name;
-                $img->name = $fileName;
-                $img->video_id = $request->video;
-                $img->save();
-
-                Session()->flash('img',$fileName);
+                Session()->flash('video',$fileName);
 
                 return $fileName;
             } else {
-                return "上传文件无效！";
+                return "视频文件无效！";
             }
         } else {
-            return "文件上传失败！";
+            return "视频上传失败！";
         }
     }
 

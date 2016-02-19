@@ -7,14 +7,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::get('/articles/{id?}', 'ArticleController@index');
-    Route::post('/article/fileupload','ArticleController@fileUpload');
-
     Route::get('/article/{article}', 'ArticleController@show' );
-
 
     Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/admin','AdminController@index');
+        Route::post('/admin/thumbnail','AdminController@thumbnail');
+
         Route::get('/admin/articles/{id?}', 'ArticleController@article_list');
         Route::get('/admin/article/create', 'ArticleController@create');
         Route::post('/admin/article/store', 'ArticleController@store');
@@ -25,7 +24,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/display', 'DisplayController@index');
         Route::post('/admin/display/store', 'DisplayController@store');
 
-        Route::post('/album/thumbnail','AlbumController@thumbnail');
         Route::get('/admin/album/{id?}/show', 'AlbumController@show');
         Route::get('/admin/album/create', 'AlbumController@create');
         Route::post('/admin/album/store', 'AlbumController@store');
@@ -40,7 +38,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/video/store', 'VideoController@store');
         Route::get('/admin/video/{id}/edit', 'VideoController@edit');
         Route::post('/admin/video/{id}/update', 'VideoController@update');
-        Route::get('/admin/video/upload/{id?}', 'VideoController@upload');
         Route::post('/admin/video/upload/uploadstore','VideoController@uploadstore');
         Route::get('/admin/video/{id}/destroy', 'VideoController@destroy');
         Route::get('/admin/videos/{id?}/', 'VideoController@index');

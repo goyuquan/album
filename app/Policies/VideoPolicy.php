@@ -20,7 +20,7 @@ class VideoPolicy
         //
     }
 
-    public function album_authorize(User $user, Video $video)
+    public function video_authorize(User $user, Video $video)
     {
         return ($user->id === $video->user_id);
     }

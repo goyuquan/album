@@ -1,10 +1,9 @@
 $(function(){
 
     $("#video_upload").click(function(){
-
         $('#file_formv').submit(function(e) {
-            e.preventDefault();
 
+            e.preventDefault();
             var fd = new FormData(this); // Neex AJAX2
             // You could show a loading image for example...
             $.ajax({
@@ -17,7 +16,7 @@ $(function(){
                         total += file.size;
                     });
                     // Called when upload progress changes. xhr2
-                    xhr.upload.addEventListener("video_progress", function(evt) {
+                    xhr.upload.addEventListener("progress", function(evt) {
                         // show progress like example
                         var loaded = (evt.loaded / total).toFixed(2)*100; // percent
                         $('#video_progress').width(loaded + '%');
@@ -36,11 +35,12 @@ $(function(){
                     $('#video_progress').removeClass('bg-color-primary').addClass('progress-bar-success');
                     $('#video_progress').parent().removeClass('active');
                     $('#upload_bt1').removeClass("btn-warning").addClass("btn-success").html("<i class='fa fa-upload'></i>缩略图已上传");
+                    $("#upload_bt1").after('<i class="fa fa-video-camera text-info" style="font-size: 2em; position: relative; left: 1em; top: 6px;"></i>');
                 }
             });
         });
 
-        $('#file_form').submit();
+        $('#file_formv').submit();
     });
 
     $("#upload_bt").click(function(){

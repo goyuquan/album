@@ -159,7 +159,9 @@
                                             <section class="col">
                                                 <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
                                             </section>
+                                            @if ($album->thumbnail)
                                             <img src="/uploads/thumbnails/{{ $album->thumbnail }}" alt="" />
+                                            @endif
                                         </div>
 
                                         <section>

@@ -8,7 +8,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    图片上传
+                    视频上传
                 </h4>
             </div>
             <div class="modal-body no-padding">
@@ -24,13 +24,13 @@
                                     <label class="input"> <i class="icon-append fa fa-lock"></i>
                                         <div class="input input-file">
             								<span class="button">
-                                                <input type="file" id="video" name="video_file" onchange="this.parentNode.nextSibling.value = this.value">点击选择</span>
+                                                <input type="file" id="video" name="file" onchange="this.parentNode.nextSibling.value = this.value">点击选择</span>
                                                 <input type="text" placeholder="选择视频" readonly="">
             							</div>
                                     </label>
                                 </div>
                                 <div class="col col-2">
-                                    <input type="button" id="video_upload" class="btn btn-success btn-sm" name="name" value="     点击上传      ">
+                                    <input type="button" id="video_upload" class="btn btn-success btn-sm" value="     点击上传      ">
                                     @if ($errors->has('video'))
                                     <strong>{{ $errors->first('video') }}</strong>
                                     @endif

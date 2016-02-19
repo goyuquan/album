@@ -4,11 +4,10 @@ $(function(){
 
         $('#file_form').submit(function(e) {
             e.preventDefault();
-
             var fd = new FormData(this); // Neex AJAX2
             // You could show a loading image for example...
             $.ajax({
-                url: "/Album/thumbnail",
+                url: "/admin/thumbnail",
                 xhr: function() { // custom xhr (is the best)
                     var xhr = new XMLHttpRequest();
                     var total = 0;

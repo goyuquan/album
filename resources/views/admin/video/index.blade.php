@@ -65,7 +65,7 @@
 
         <div class="row">
             @if (count($videos) > 0)
-            <div class="col-sm-12">
+            <div class="col-md-12">
 
                 <div class="well">
 
@@ -96,7 +96,7 @@
                                 <td><h4><a href="/video/{{ $video->id }}"> {{str_limit($video->title,50)}} </a><small></small></h4></td>
                                 <td class="text-center">
                                     @if($video->thumbnail)
-                                        <img src="/videos/thumbnails/{{ $video->thumbnail }}" alt="" />
+                                        <img src="/uploads/thumbnails/{{ $video->thumbnail }}" alt="" />
                                     @else
                                         <i class="fa fa-photo fa-2x text-muted"></i>
                                     @endif

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Image;
+use App\Img;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -9,77 +11,79 @@ use App\Http\Controllers\Controller;
 class AdminController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('admin.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function thumbnail(Request $request)
+    {
+        if ($request->hasFile('thumbnail_file'))//文件是否上传
+        {
+            $messages = [
+                'photo.image' => '上传文件必须是图片',
+                'photo.max' => '上传文件不能大于:maxkb',
+            ];
+            $this->validate($request, [
+                'photo' => 'image|max:100000'//kilobytes
+            ],$messages);
+
+            if ($request->file('thumbnail_file')->isValid())//上传文件是否有效
+            {
+                $OriginalName = $request->file('thumbnail_file')->getClientOriginalName();
+                $file_pre = sha1(time().$OriginalName);//取得当前时间戳
+                $file_suffix = substr(strchr($request->file('thumbnail_file')->getMimeType(),"/"),1);//取得文件后缀
+                $destinationPath = 'uploads';//上传路径
+                $fileName = $file_pre.'.'.$file_suffix;//上传文件名
+
+                Image::make($request->file('thumbnail_file'))//生成缩略图
+                                    ->resize(100, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    })
+                                    ->save('uploads/thumbnails/'.$fileName);
+
+                $request->file('thumbnail_file')->move($destinationPath, $fileName);
+
+                $img = new Img;
+                $img->name = $fileName;
+                $img->save();
+
+                Session()->flash('img',$fileName);
+
+                return $fileName;
+            } else {
+                return "上传文件无效！";
+            }
+        } else {
+            return "文件上传失败！";
+        }
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

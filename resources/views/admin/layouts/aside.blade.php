@@ -61,7 +61,7 @@
         <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-video-camera"></i> <span class="menu-item-parent">视频</span></a>
         <ul id="aside_video_">
             <li id="aside_video_index">
-                <a href="/admin/video/"> 视频列表 </a>
+                <a href="/admin/videos/"> 视频列表 </a>
             </li>
             <li id="aside_video_create">
                 <a href="/admin/video/create"> 创建视频 </a>

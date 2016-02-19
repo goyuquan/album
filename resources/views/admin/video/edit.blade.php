@@ -34,6 +34,8 @@
 
 @include('common.thumbnail')
 
+@include('common.videoupload')
+
 <!-- MAIN PANEL -->
 <div id="main" role="main">
 
@@ -89,6 +91,7 @@
                                 <form id="video_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/video/{{$video->id}}/update" >
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="thumbnail" value="{{$video->thumbnail}}">
+                                    <input type="hidden" name="video" value="{{$video->video}}">
                                     <input type="hidden" name="display" value="{{ $video->display_id or 0}}">
 
                                     <fieldset>
@@ -155,9 +158,19 @@
                                                 </div>
                                             </section>
                                         </div>
+
                                         <div class="row">
                                             <section class="col">
                                                 <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
+                                            </section>
+                                            @if ($video->thumbnail)
+                                            <img src="/uploads/thumbnails/{{$video->thumbnail}}" alt="" />
+                                            @endif
+                                        </div>
+
+                                        <div class="row">
+                                            <section class="col">
+                                                <a data-toggle="modal" href="#myModalv" id="upload_bt1" class="btn btn-info btn-sm"><i class="fa fa-video-camera"></i>     缩略图</a>
                                             </section>
                                         </div>
 
@@ -200,6 +213,7 @@
 
 @section('script')
 <script src="/js/thumbnail.js"></script>
+<script src="/js/video.js"></script>
 <script type="text/javascript">
 
 $(function(){

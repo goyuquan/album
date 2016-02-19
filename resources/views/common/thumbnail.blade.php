@@ -13,7 +13,7 @@
             </div>
             <div class="modal-body no-padding">
 
-                <form id="file_form" class="smart-form" method="POST" action="/Album/thumbnail" enctype="multipart/form-data" >
+                <form id="file_form" class="smart-form" method="POST" action="/admin/thumbnail" enctype="multipart/form-data" >
                     <input id="thumbnail_token" type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <fieldset>
@@ -23,7 +23,10 @@
                                 <div class="col col-10">
                                     <label class="input"> <i class="icon-append fa fa-lock"></i>
                                         <div class="input input-file">
-            								<span class="button"><input type="file" id="thumbnail" name="thumbnail_file" onchange="this.parentNode.nextSibling.value = this.value">点击选择</span><input type="text" placeholder="选择文件" readonly="">
+            								<span class="button">
+                                                <input type="file" id="thumbnail" name="thumbnail_file" onchange="this.parentNode.nextSibling.value = this.value">点击选择
+                                            </span>
+                                            <input type="text" placeholder="选择文件" readonly="">
             							</div>
                                     </label>
                                 </div>

@@ -167,7 +167,7 @@
 
                                         <div class="row">
                                             <section class="col">
-                                                <a data-toggle="modal" href="#myModalv" id="upload_bt1" class="btn btn-info btn-sm"><i class="fa fa-video-camera"></i>     缩略图</a>
+                                                <a data-toggle="modal" href="#myModalv" id="upload_bt1" class="btn btn-info btn-sm"><i class="fa fa-video-camera"></i>     视频</a>
                                             </section>
                                         </div>
 
