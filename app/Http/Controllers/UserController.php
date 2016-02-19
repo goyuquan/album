@@ -61,7 +61,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         Session()->flash('user', 'user create was successful!');
@@ -96,7 +96,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         if ($request->password) {
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
         }
 
 
