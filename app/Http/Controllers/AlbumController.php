@@ -159,7 +159,9 @@ class AlbumController extends Controller
                 $thumbnail_name = 'thumbnail_'.$file_pre.'.'.$file_suffix;
 
                 Image::make($request->file('file'))//生成缩略图
-                                    ->fit(160)
+                                    ->resize(100, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    })
                                     ->save('uploads/thumbnails/'.$thumbnail_name);
 
                 $request->file('file')->move($destinationPath, $fileName);

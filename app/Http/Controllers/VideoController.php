@@ -76,7 +76,6 @@ class VideoController extends Controller
 
     public function update(Request $request, $id)
     {
-        // return "kljlkjk";
         $video = Video::findOrFail($id);
         if (Gate::denies('video_authorize', $video)) {
             return "authorize fails";
