@@ -13,7 +13,19 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        // $users = User::orderBy('id', 'desc')->get();
+
+        $currenttime = strtotime(date('y-m-d h:i:s',time()));
+        echo $currenttime."<>";
+        $users = User::all();
+        foreach ($users as $user) {
+            echo strtotime($user->member)-$currenttime."-";
+            if (!is_null($user->member) && strtotime($user->member) - $currenttime < 0){
+                $user->member = NULL;
+                $user->save();
+            }
+        }
+
         return view('admin.users.index',['users' => $users]);
     }
 

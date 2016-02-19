@@ -49,6 +49,7 @@ table thead {
         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
             <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> 用户管理 <span>&gt;
                 用户列表 </span></h1>
+                <?php echo date('y-m-d h:i:s',time());?>
             </div>
 
             <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
