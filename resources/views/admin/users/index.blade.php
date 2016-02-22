@@ -49,7 +49,6 @@ table thead {
         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
             <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-file-o"></i> 用户管理 <span>&gt;
                 用户列表 </span></h1>
-                <?php echo date('y-m-d h:i:s',time());?>
             </div>
 
             <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
@@ -61,7 +60,7 @@ table thead {
                         </h5>
                     </li>
                     <li class="sparks-info">
-                        <h5> 会员 <span class="txt-color-purple"><i class="fa fa-shield"></i>&nbsp;{{$users->count() - $users->where('member',null)->count() - 1}}</span></h5>
+                        <h5> 会员 <span class="txt-color-purple"><i class="fa fa-shield"></i>&nbsp;{{$users->count() - $users->where('member','')->count() - 1}}</span></h5>
                     </li>
                 </ul>
                 <!-- end sparks -->
@@ -85,7 +84,6 @@ table thead {
                 <!-- widget content -->
                 <div class="widget-body no-padding">
                     @if (count($users) > 0)
-                    <?php $current_time = strtotime(date('y-m-d h:i:s',time())); ?>
 
                     <table id="user_table" class="table table-striped table-bordered smart-form">
                         <thead>
@@ -131,15 +129,21 @@ table thead {
                                 </td>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}
-                                    @if (($current_time - strtotime($user->created_at))/86400 < 7)
+                                    @if ((time() - strtotime($user->created_at))/86400 < 7)
                                     <i class="fa fa-flag txt-color-red"></i>
                                     @endif
                                 </td>
                                 <td>{{ $user->email }} </td>
-                                @if (strtotime($user->member) - $current_time > 0)
+                                @if ($user->member - time() > 0)
                                     <td class="success">
                                         <strong class="txt-color-greenDark"> &nbsp;
-                                        {{sprintf("%.1f",(strtotime($user->member) - $current_time)/86400)}}&nbsp;天
+                                        {{sprintf("%.1f",($user->member - time())/86400)}}&nbsp;天
+                                        </strong>
+                                    </td>
+                                @elseif ($user->member != NULL && $user->member - time() < 0)
+                                    <td class="danger">
+                                        <strong class="txt-color-greenDark"> &nbsp;
+                                        {{sprintf("%.1f",($user->member - time())/86400)}}&nbsp;天
                                         </strong>
                                     </td>
                                 @else

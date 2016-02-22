@@ -13,18 +13,8 @@ class UserController extends Controller
 
     public function index()
     {
-        // $users = User::orderBy('id', 'desc')->get();
 
-        $currenttime = strtotime(date('y-m-d h:i:s',time()));
-        echo $currenttime."<>";
         $users = User::all();
-        foreach ($users as $user) {
-            echo strtotime($user->member)-$currenttime."-";
-            if (!is_null($user->member) && strtotime($user->member) - $currenttime < 0){
-                $user->member = NULL;
-                $user->save();
-            }
-        }
 
         return view('admin.users.index',['users' => $users]);
     }
@@ -61,10 +51,10 @@ class UserController extends Controller
         if ($request->member) {
             switch ($request->member)
                 {
-                    case 30: $member = date('y-m-d h:i:s',time() + 30*86400); break;
-                    case 90: $member = date('y-m-d h:i:s',time() + 90*86400); break;
-                    case 180: $member = date('y-m-d h:i:s',time() + 180*86400); break;
-                    case 360: $member = date('y-m-d h:i:s',time() + 360*86400); break;
+                    case 30: $member = (time() + 30*86400); break;
+                    case 90: $member = (time() + 90*86400); break;
+                    case 180: $member = (time() + 180*86400); break;
+                    case 360: $member = (time() + 360*86400); break;
                     default: $member = null;
                 }
             $user->member = $member;
@@ -113,19 +103,19 @@ class UserController extends Controller
 
 
         if ($request->member) {
-            $later_time = $user->member ? strtotime($user->member) : strtotime(date('y-m-d h:i:s',time()));
+            $later_time = $user->member ? $user->member : time();
             switch ($request->member)
                 {
-                    case 30: $member = date('y-m-d h:i:s',$later_time + 30*86400); break;
-                    case 90: $member = date('y-m-d h:i:s',$later_time + 90*86400); break;
-                    case 180: $member = date('y-m-d h:i:s',$later_time + 180*86400); break;
-                    case 360: $member = date('y-m-d h:i:s',$later_time + 360*86400); break;
+                    case 30: $member = ($later_time + 30*86400); break;
+                    case 90: $member = ($later_time + 90*86400); break;
+                    case 180: $member = ($later_time + 180*86400); break;
+                    case 360: $member = ($later_time + 360*86400); break;
                     default: $member = null;
                 }
             $user->member = $member;
         } else {
             if ($request->member2) {
-                $user->member = $request->member2;
+                $user->member = strtotime($request->member2);
             }
         }
 

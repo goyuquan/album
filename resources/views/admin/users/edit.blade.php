@@ -148,7 +148,7 @@
     									</section>
                                         <section class="col col-5">
                                             <label class="input"> <i class="icon-append fa fa-calendar"></i>
-                                                <input type="text" name="member2" placeholder="选择发布时间" class="datepicker" value="{{ $user->member }}" data-dateformat="yy-mm-dd">
+                                                <input type="text" name="member2" placeholder="选择发布时间" class="datepicker" value="{{ $user->member ? date('y-m-d h:i:s',$user->member) : ' '  }}" data-dateformat="yy-mm-dd">
                                             </label>
                                             @if ($errors->has('member'))
                                             <em>{{ $errors->first('member') }}</em>

@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\user;
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\Inspire::class,
+        // \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\FiterUser::class,
     ];
 
     /**
@@ -26,14 +27,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            $currenttime = strtotime(date('y-m-d h:i:s',time()));
-            $users = User::all();
-            foreach ($users as $user) {
-                if (strtotime($user->member) - $currenttime < 0){
-                    $user->member = NULL;
-                    $user->save();
-                }
-            }
+            // $members = User::where('member','!=','')
+            //         ->where('member','<',time())
+            //         ->get();
+            // foreach ($members as $member) {
+            //     $user = User::find($member->id);
+            //     $user->member = '';
+            //     $user->save();
+            // }
         })->everyMinute();
     }
 }
