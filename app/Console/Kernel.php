@@ -26,15 +26,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            // $members = User::where('member','!=','')
-            //         ->where('member','<',time())
-            //         ->get();
-            // foreach ($members as $member) {
-            //     $user = User::find($member->id);
-            //     $user->member = '';
-            //     $user->save();
-            // }
-        })->everyMinute();
+        $schedule->command('fiter:user')->dailyAt('4:00');
     }
 }
