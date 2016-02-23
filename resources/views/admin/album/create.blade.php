@@ -89,6 +89,7 @@
                                 <form id="album_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/album/store" >
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="thumbnail">
+                                    <input type="hidden" name="thumbnail2">
                                     <input type="hidden" name="display">
 
                                     <fieldset>
@@ -158,6 +159,11 @@
                                         <div class="row">
                                             <section class="col">
                                                 <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col">
+                                                <a data-toggle="modal" href="#myModal2" id="upload_bt02" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图2</a>
                                             </section>
                                         </div>
 

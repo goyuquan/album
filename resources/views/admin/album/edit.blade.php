@@ -89,6 +89,7 @@
                                 <form id="album_form" class="smart-form" novalidate="novalidate" method="POST" action="/admin/album/{{$album->id}}/update" >
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="thumbnail" value="{{$album->thumbnail}}">
+                                    <input type="hidden" name="thumbnail2" value="{{$album->thumbnail2}}">
                                     <input type="hidden" name="display" value="{{ $album->display_id or 0}}">
 
                                     <fieldset>
@@ -157,10 +158,18 @@
                                         </div>
                                         <div class="row">
                                             <section class="col">
-                                                <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图</a>
+                                                <a data-toggle="modal" href="#myModal" id="upload_bt0" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图1</a>
                                             </section>
                                             @if ($album->thumbnail)
                                             <img src="/uploads/thumbnails/{{ $album->thumbnail }}" alt="" />
+                                            @endif
+                                        </div>
+                                        <div class="row">
+                                            <section class="col">
+                                                <a data-toggle="modal" href="#myModal2" id="upload_bt02" class="btn btn-success btn-sm"><i class="fa fa-upload"></i>     缩略图2</a>
+                                            </section>
+                                            @if ($album->thumbnail2)
+                                            <img src="/uploads/thumbnails/{{ $album->thumbnail2 }}" alt="" />
                                             @endif
                                         </div>
 

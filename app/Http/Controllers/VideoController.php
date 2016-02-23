@@ -49,6 +49,7 @@ class VideoController extends Controller
         $request->user()->video()->create([
             'title' => $request->title,
             'thumbnail' => $request->thumbnail,
+            'thumbnail2' => $request->thumbnail2,
             'display_id' => $request->display,
             'content' => $request->content,
             'video' => $request->video,
@@ -95,6 +96,7 @@ class VideoController extends Controller
         $video->content = $request->content;
         $video->display_id = $request->display;
         $video->thumbnail = $request->thumbnail;
+        $video->thumbnail2 = $request->thumbnail;
         $video->video = $request->video;
         $video->free = $request->free;
         $video->published_at = $request->published_at;
@@ -115,6 +117,8 @@ class VideoController extends Controller
         File::delete('videos/'.$video->video);
         File::delete('uploads/thumbnails/'.$video->thumbnail);
         File::delete('uploads/'.$video->thumbnail);
+        File::delete('uploads/thumbnails/'.$video->thumbnail2);
+        File::delete('uploads/'.$video->thumbnail2);
 
         Video::destroy($id);
 

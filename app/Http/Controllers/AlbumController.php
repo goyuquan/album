@@ -56,6 +56,7 @@ class AlbumController extends Controller
         $request->user()->album()->create([
             'title' => $request->title,
             'thumbnail' => $request->thumbnail,
+            'thumbnail2' => $request->thumbnail2,
             'display_id' => $request->display,
             'content' => $request->content,
             'free' => $request->free,
@@ -111,6 +112,7 @@ class AlbumController extends Controller
         $album->content = $request->display;
         $album->display_id = $request->content;
         $album->thumbnail = $request->thumbnail;
+        $album->thumbnail2 = $request->thumbnail2;
         $album->free = $request->free;
         $album->published_at = $request->published_at;
         $album->save();
@@ -133,6 +135,8 @@ class AlbumController extends Controller
                 'uploads/thumbnails/'.'thumbnail_'.$albums->name,
                 'uploads/'.$albums->thumbnail,
                 'uploads/thumbnails/'.$albums->thumbnail,
+                'uploads/'.$albums->thumbnail2,
+                'uploads/thumbnails/'.$albums->thumbnail2,
             ]);
         }
 

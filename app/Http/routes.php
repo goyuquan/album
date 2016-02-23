@@ -13,6 +13,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/admin','AdminController@index');
         Route::post('/admin/thumbnail','AdminController@thumbnail');
+        Route::post('/admin/thumbnail2','AdminController@thumbnail2');
 
         Route::get('/admin/articles/{id?}', 'ArticleController@article_list');
         Route::get('/admin/article/create', 'ArticleController@create');

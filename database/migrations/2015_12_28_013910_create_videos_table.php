@@ -14,6 +14,7 @@ class CreateVideosTable extends Migration
             $table->string('title');
             $table->integer('display_id');
             $table->string('thumbnail',100);
+            $table->string('thumbnail2',100);
             $table->string('video',100);
             $table->text('content');
             $table->bit('free')->nullable();
