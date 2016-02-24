@@ -1,23 +1,23 @@
-<div class="ui fixed inverted menu">
+<div class="ui fixed menu">
   <div class="ui container">
     <a href="{{ url('/') }}" class="header item">
-      
+
       welcome logo
     </a>
 
     <div class="right menu">
-    <a href="{{ url('/') }}" class="item">Home</a>
-    <a href="/articles/" class="item">文章</a>
-    <a href="#" class="item">分类一</a>
-    <a href="#" class="item">分类二</a>
+    <a href="{{ url('/') }}" class="item">首页</a>
+    <a href="/albums/" class="item">相册</a>
+    <a href="/videos/" class="item">视频</a>
+    <a href="#" class="item">会员价格表</a>
       @if (Auth::guest())
-      <a href="{{ url('/login') }}" class="item">Login</a>
-      <a href="{{ url('/register') }}" class="item">Register</a>
+      <a href="{{ url('/login') }}" class="item">登陆</a>
+      <a href="{{ url('/register') }}" class="item">注册</a>
       @else
       <a href="/admin" class="item">
           {{ Auth::user()->name }}
       </a>
-      <a href="{{ url('/logout') }}" class="item"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+      <a href="{{ url('/logout') }}" class="item"><i class="fa fa-btn fa-sign-out"></i>退出</a>
       @endif
     </div>
 

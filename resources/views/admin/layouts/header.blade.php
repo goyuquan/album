@@ -3,7 +3,9 @@
 
         <!-- PLACE YOUR LOGO HERE -->
         <span id="logo">
-            <h1 style=" margin: 0; ">www.abc.com</h1>
+            <a href="{{ url('/') }}">
+                <h1 style=" margin: 0; ">www.abc.com</h1>
+            </a>
         </span>
         <!-- END LOGO PLACEHOLDER -->
 

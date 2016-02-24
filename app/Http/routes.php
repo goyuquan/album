@@ -2,10 +2,13 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', 'ArticleController@homepage');
-
     Route::auth();
 
+    Route::get('/', 'ArticleController@homepage');
+
+
+    Route::get('/albums/{id?}', 'AlbumController@albums');
+    Route::get('/album/{id?}', 'AlbumController@album');
     Route::get('/articles/{id?}', 'ArticleController@index');
     Route::get('/article/{article}', 'ArticleController@show' );
 

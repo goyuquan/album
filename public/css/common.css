@@ -1,5 +1,5 @@
 /*common.css*/
-body { background: #1c1d1f; }
+body { background: #f3f3f3; }
 .inline_block { display: inline-block; }
 hr {margin: 10px 0 10px;!important}
 #footer {
@@ -13,6 +13,6 @@ hr {margin: 10px 0 10px;!important}
     color:#989ba2;
 }
 .fixed.menu {
-    background: rgba(52,54,58, 0.96)!important;
+    background:rgba(255,255,255,0.8);
     height: 4em;
 }

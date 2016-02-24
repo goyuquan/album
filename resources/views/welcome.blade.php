@@ -3,8 +3,94 @@
 @section('style')
 
 <link rel="stylesheet" href="/css/swiper.min.css" >
-<link rel="stylesheet" href="/css/homepage.css" >
 
+<style media="screen">
+/*homepage.css*/
+
+.swiper-container {
+    width: 100%;
+    height: 600px;
+    margin: 20px auto 50px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    width: auto;
+    height: 600px;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-slide img {
+    height: 100%;
+    width: auto;
+    visibility: hidden;
+}
+.swiper-pagination-bullet {
+    background: #fff;
+}
+.ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
+    top:-16px;
+}
+
+
+
+
+#latest_photo_head,#latest_video_head {
+    margin: 2em 0 1em 0!important;
+}
+#latest_photo,#latest_video {
+    padding: 0 2em 3em!important;
+}
+#link_head {
+    margin: 2em 0 1em 0!important;
+}
+#link {
+    padding: 0 2em 3em!important;
+}
+#order {
+    margin:3em 0 0 0!important;
+    padding: 2em 0;
+}
+#order h2 {
+    color:#989ba2!important;
+}
+img {
+    width: 100%;
+}
+.card {
+    width: 100%!important;
+    background: #efefef;
+}
+.divider {
+    color:#555!important;
+    margin: 1em 0!important;
+}
+.inverted {
+    width:100%;
+    padding: 1px 0 0 0;
+    background:#fff;
+}
+.statistics div {
+    color:#666!important;
+}
+.statistic > .label {
+    margin: 1em 0 0 0!important;
+}
+
+</style>
 @endsection
 
 @section('content')
@@ -24,22 +110,18 @@
 </div>
 
 
-<div class="ui four statistics">
+<div class="ui three statistics">
   <div class="statistic">
-    <div class="value"><i class="file image outline icon"></i> 22 </div>
+    <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> 22 </div>
     <div class="label">相册数量 </div>
   </div>
   <div class="statistic">
-    <div class="value"><i class="photo icon"></i> 1700 </div>
+    <div class="value" style="color:#339933!important"><i class="photo icon"></i> 1700 </div>
     <div class="label">图片 </div>
   </div>
   <div class="statistic">
-    <div class="value"><i class="record icon"></i> 55 </div>
+    <div class="value" style="color:#336699!important"><i class="record icon"></i> 55 </div>
     <div class="label">视频 </div>
-  </div>
-  <div class="statistic">
-    <div class="value"><i class="Video play icon"></i> 5 </div>
-    <div class="label">Flights </div>
   </div>
 </div>
 
@@ -47,7 +129,7 @@
     <div class="ui center aligned basic segment">
         <h2><i class="search icon"></i>A divider can segment content horizontally</h2>
         <div class="ui horizontal divider">注册 </div>
-        <img src="/img/grtwIwSmzYXflpG.png" alt="" style="width:120px;margin-right:1em;" />
+        <img src="/img/T1HHFgXXVeXXXXXXXX.png" alt="" style="width:120px;margin-right:1em;" />
         <div class="ui red labeled icon button">订阅会员 <i class="add icon"></i> </div>
     </div>
 </div>
@@ -58,8 +140,12 @@
     <div class="column">
         <div class="ui card">
             <div class="ui slide masked reveal image">
-                <img src="/image/banner/hero-personalV4.jpg" class="visible content">
-                <img src="/img/demo/s1.jpg" class="hidden content">
+                <div class="visible content">
+                    <img src="/image/banner/hero-personalV4.jpg">
+                </div>
+                <div class="hidden content">
+                    <img src="/img/demo/s1.jpg">
+                </div>
             </div>
 
             <div class="content">
@@ -77,8 +163,12 @@
     <div class="column">
         <div class="ui card">
             <div class="ui slide masked reveal image">
-                <img src="/image/banner/hero-personalV4.jpg" class="visible content">
-                <img src="/img/demo/s1.jpg" class="hidden content">
+                <div class="visible content">
+                    <img src="/image/banner/hero-personalV4.jpg">
+                </div>
+                <div class="hidden content">
+                    <img src="/img/demo/s1.jpg">
+                </div>
             </div>
 
             <div class="content">
@@ -96,8 +186,13 @@
     <div class="column">
         <div class="ui link cards">
             <div class="card">
-                <div class="image">
-                    <img src="/image/banner/hero-consumerV42.jpg">
+                <div class="ui slide masked reveal image">
+                    <div class="visible content">
+                        <img src="/image/banner/hero-consumerV42.jpg">
+                    </div>
+                    <div class="hidden content">
+                        <img src="/image/banner/hero-consumerV42.jpg">
+                    </div>
                 </div>
                 <div class="content">
                     <div class="header">Matt Giampietro</div>
@@ -121,8 +216,12 @@
         <div class="column">
             <div class="ui card">
                 <div class="ui slide masked reveal image">
-                    <img src="/image/banner/hero-personalV4.jpg" class="visible content">
-                    <img src="/img/demo/s1.jpg" class="hidden content">
+                    <div class="visible content">
+                        <img src="/image/banner/hero-personalV4.jpg">
+                    </div>
+                    <div class="hidden content">
+                        <img src="/img/demo/s1.jpg">
+                    </div>
                 </div>
                 <div class="content">
                     <a class="header">Team Fu &amp; Hess</a>
@@ -138,8 +237,12 @@
         <div class="column">
             <div class="ui card">
                 <div class="ui slide masked reveal image">
-                    <img src="/image/banner/hero-personalV4.jpg" class="visible content">
-                    <img src="/img/demo/s1.jpg" class="hidden content">
+                    <div class="visible content">
+                        <img src="/image/banner/hero-personalV4.jpg">
+                    </div>
+                    <div class="hidden content">
+                        <img src="/img/demo/s1.jpg">
+                    </div>
                 </div>
                 <div class="content">
                     <a class="header">Team Fu &amp; Hess</a>
@@ -156,8 +259,8 @@
 
 </div>
 
-<h2 id="category_head" class="ui horizontal divider header"><i class="bar image icon"></i> Our album category</h2>
-<div id="category" class="ui three column centered grid">
+<h2 id="link_head" class="ui horizontal divider header"><i class="bar image icon"></i> Our album category</h2>
+<div id="link" class="ui three column centered grid">
 
     <div class="column">
         <div class="ui link cards">
@@ -248,16 +351,45 @@ window.onload = function(){
         prevButton: '.swiper-button-prev',
         slidesPerView: 'auto',
         centeredSlides: true,
-        autoplay: 2500,
+        autoplay: 250000000,
         autoplayDisableOnInteraction: false,
         paginationClickable: true,
         spaceBetween: 20
     });
 }
 $(function(){
-    $('.special.cards .image').dimmer({
-        on: 'hover'
+    $('.swiper-slide').each(function(){
+        $(this).css({
+            "background-image":"url(" + $(this).children('img').attr('src') + ")",
+            "background-size":"100% auto"
+        });
     });
+
+    $('#latest_photo .card .image .content').each(function(){
+        $(this).children('img').css("visibility","hidden");
+        $(this).css({
+            "background-image":"url(" + $(this).children('img').attr('src') + ")",
+            "background-size":"100% auto"
+        });
+    });
+
+    $('.reveal > .content').each(function(){
+        $(this).children('img').css("visibility","hidden");
+        $(this).css({
+            "background-image":"url(" + $(this).children('img').attr('src') + ")",
+            "background-size":"100% auto"
+        });
+    });
+
+    $('#link .card .image').each(function(){
+        $(this).children('img').css("visibility","hidden");
+        $(this).css({
+            "background-image":"url(" + $(this).children('img').attr('src') + ")",
+            "background-size":"100% auto"
+        });
+    });
+
+
 });
 </script>
 @endsection

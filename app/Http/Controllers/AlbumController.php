@@ -22,6 +22,19 @@ class AlbumController extends Controller
         return view('admin.album.index',['albums' => $albums]);
     }
 
+    public function albums($id = 1)
+    {
+        $albums = Album::where('published_at','<',date("Y-m-d h:i:s"))
+        ->orderBy('id', 'desc')
+        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
+        return view('album.index',['albums' => $albums]);
+    }
+
+    public function album($id)
+    {
+        $album = Album::find($id);
+        return view('album.album',['album' => $album]);
+    }
 
     public function upload($id)
     {
