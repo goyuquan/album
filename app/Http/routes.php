@@ -7,6 +7,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'ArticleController@homepage');
 
 
+    Route::post('/album/img', 'AlbumController@img');
     Route::get('/albums/{id?}', 'AlbumController@albums');
     Route::get('/album/{id?}', 'AlbumController@album');
     Route::get('/articles/{id?}', 'ArticleController@index');

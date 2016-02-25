@@ -8,7 +8,6 @@ body {
     padding: 5em 0 0 0!important;
 }
 #order {
-    margin:3em 0 0 0!important;
     padding: 2em 0;
 }
 #order h2 {
@@ -56,12 +55,22 @@ body {
 	left: 0;
 	cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAApVBMVEUAAAAAAAAAAAAAAAAJCQkAAACampomJiYAAADp6ekAAAAAAADt7e0DAwPz8/Px8fHW1tYAAAAAAAAAAAAAAADZ2dnT09O8vLyIiIh/f39eXl4AAADOzs4AAAC+vr6cnJy4uLhubm5VVVVTU1Pq6uri4uKRkZEmJibo6OjBwcGcnJyFhYVwcHBhYWE7OzsAAADExMSpqamjo6OVlZV8fHwhISH19fXdUOd4AAAANnRSTlMAAR4EPg2zThv5JQb8Ov7+7zIIKRPx7Nmll3Q35wvbtNiKcW/7+LZd+eC1oZSGbRHjz8iKdVMz+8v0AAABgklEQVQ4y42V6XKCMBSFQxJCQHZQtirUtVq1e97/0TqKQ7N2cv7BfHMvdzsAQcilRRZhHGUFdREwyMlp15JV6ieJn65I29Hc0XEz6PVzxmnee3Cmhisx8Zkkn+BSCorgZsE0WmwgEtIGzZZpFTYBlx4FdcIMSupgiunAJmZGxQ10HmC5Dtk/Ctfl4wOxXEdaX/Y7riKcj4mJxD39wDK4ctWRe/Lc8yXOcx3gFB9cP71bSNprOADgnnvXUwBQN9dxKBv4aXYIuK2Wg2ehs60LKNFyz2LHCAVFZcGxqgBZyjXMe9NzLM1A9DI9ba8mjvkRwMlf/Ow+VPdbnWiCeXB4gF+xBuRT7w7uuHSvsZpaKOaITWSaie1Z4eW48HWstIcSZkESKo+wmkgmjlBZiioayegoLsW4Ziqprpm6uMONdIpPeXHVUxhwuaSHnXwKIFeO6/1yOKdcE3Fue67WBsBZSmzk6gAJJhWaTcrW9uyNVLXmk2jNp8maZbOHotlD3uytfx+/dM7Mf8Z6jgIAAAAASUVORK5CYII=') 20 20, move;
 }
+.cards .card {
+    cursor: pointer;
+}
+#loader {
+    padding:10em 0;
+    border: none;
+    font-size: 2em;
+    display: none;
+}
 </style>
 
 @endsection
 
 @section('content')
 
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <div id="order" class="inverted">
     <div class="ui center aligned basic segment">
@@ -75,49 +84,22 @@ body {
 <div class="ui grid">
   <div class="eleven wide column">
 
+      <h2 id="pic_id" name="{{ $album->id }}" class="ui header center aligned">
+          {{ $album->title}} <div class="sub header"><i class="wait icon"></i>更新时间 : {{ substr($album->published_at,0,10) }}</div>
+      </h2>
+
+
       <div class="ui raised segment">
           <div class="ui four stackable cards">
-
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
+              @if (count($imgs) > 0)
+                  @foreach ($imgs as $img)
+                  <div id="{{ $img->id }}" class="card">
+                      <div class="image">
+                          <img src="/uploads/thumbnails/{{$img->thumbnail}}">
+                      </div>
                   </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
-              <div class="card">
-                  <div class="image">
-                      <img src="/uploads/131946f355c4ffd9df6d9804eae9dd555b51fe59.jpeg">
-                  </div>
-              </div>
+                  @endforeach
+              @endif
           </div>
 
       </div>
@@ -133,7 +115,7 @@ body {
   <div class="image content">
     <div class="image text container">
         <div class="img_wrap">
-            <img src="/image/banner/hero-proV4.jpg" alt="" />
+            <!-- <img src="/image/banner/hero-proV4.jpg" alt="" /> -->
         </div>
 
       <div id="pageslider">
@@ -145,23 +127,27 @@ body {
           </a>
       </div>
 
-      <!-- <div class="ui segment">
-          <div class="ui active dimmer">
+      <div id="loader" class="ui segment hidden">
+          <div class="ui active inverted dimmer">
               <div class="ui text loader">Loading</div>
           </div>
           <p></p>
-      </div> -->
+      </div>
 
     </div>
   </div>
 </div>
+
 @endsection
 
 @section('script')
 
-<script type="text/javascript" src="/js/swiper.min.js"> </script>
 <script type="text/javascript">
 $(function(){
+    // var album_id = "album_id";
+    // var pic_id = "pic_id";
+    var album_id = $("#pic_id").attr("name");
+
     $('.image').each(function(){
         $(this).children('img').css("visibility","hidden");
         $(this).css({
@@ -170,11 +156,37 @@ $(function(){
         });
     });
 
-    $('.ui.fullscreen.modal')
-      .modal({
-          offset:600
-      })
-      .modal('show');
+    $(document).ajaxStart(function(){
+        $("#loader").show();
+    }).ajaxStop(function(){
+        $("#loader").hide();
     });
+
+    $(".cards .card").click(function(){
+
+        var pic_id = $(this).attr("id");
+        $('.ui.fullscreen.modal') .modal({ offset:600 }) .modal('show');
+
+
+        $.ajax({
+            type:"post",
+            url:"/album/img",
+            headers: { 'X-CSRF-TOKEN': $('input[name="_token"]').val() },
+            data:{
+                album:album_id,
+                pic:pic_id
+            },
+            success:function(data){
+                console.log(data);
+                $(".modal .container .img_wrap").append("<img src='/uploads/" + data + "'/>");
+            }
+        });
+
+    });
+
+
+});
+
+
 </script>
 @endsection

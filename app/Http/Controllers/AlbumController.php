@@ -33,7 +33,17 @@ class AlbumController extends Controller
     public function album($id)
     {
         $album = Album::find($id);
-        return view('album.album',['album' => $album]);
+        $imgs = $album->img;
+        return view('album.album',[
+            'album' => $album,
+            'imgs' => $imgs,
+        ]);
+    }
+
+    public function img(Request $request)
+    {
+        $url = Img::find($request->pic)->name;
+        return $url;
     }
 
     public function upload($id)
