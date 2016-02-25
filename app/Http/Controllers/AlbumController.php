@@ -26,7 +26,7 @@ class AlbumController extends Controller
     {
         $albums = Album::where('published_at','<',date("Y-m-d h:i:s"))
         ->orderBy('id', 'desc')
-        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
+        ->paginate($perPage = 2, $columns = ['*'], $pageName = 'page', $page = $id);
         return view('album.index',['albums' => $albums]);
     }
 

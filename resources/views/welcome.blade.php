@@ -120,7 +120,7 @@ img {
     <div class="label">图片 </div>
   </div>
   <div class="statistic">
-    <div class="value" style="color:#336699!important"><i class="record icon"></i> 55 </div>
+    <div class="value" style="color:#336699!important"><i class="film icon"></i> 55 </div>
     <div class="label">视频 </div>
   </div>
 </div>

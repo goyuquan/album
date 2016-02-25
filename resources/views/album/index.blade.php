@@ -20,7 +20,7 @@ body {
 .ui.items>.item>.image+.content div,
 .ui.items>.item>.image+.content a
  {
-    color:#babdc4;
+    color:#555;
 }
 .ui.raised.segment {
     margin:0 2em;
@@ -33,9 +33,13 @@ body {
 }
 .image2 {
     margin-left: 1em!important;
+    margin-right: 1.5em!important;
 }
 .labeled {
     font-size: 1em!important;
+}
+.statistic > .label {
+    margin: 1em 0 0 0!important;
 }
 </style>
 
@@ -54,7 +58,7 @@ body {
     <div class="label">图片 </div>
   </div>
   <div class="statistic">
-    <div class="value" style="color:#336699!important"><i class="record icon"></i> 55 </div>
+    <div class="value" style="color:#336699!important"><i class="film icon"></i> 55 </div>
     <div class="label">视频 </div>
   </div>
 </div>
@@ -71,165 +75,47 @@ body {
 <div class="ui grid">
   <div class="eleven wide column">
 
-      <div class="ui raised segment">
-          <div class="ui items">
-              <div class="item">
-                  <div class="ui medium image">
-                      <img src="/image/banner/hero-personalV4.jpg">
-                  </div>
-                  <div class="ui medium image image2">
-                      <img src="/img/demo/s1.jpg">
-                  </div>
-                  <div class="content">
-                      <a class="header">标题</a>
-                      <div class="meta">
-                          <span>Description</span>
+      @if (count($albums) > 0)
+          @foreach ($albums as $album)
+          <div class="ui raised segment">
+              <div class="ui items">
+                  <div class="item">
+                      <a href="/album/{{ $album->id }}">
+                          <div class="ui medium image">
+                              <img src="/uploads/thumbnails/{{ $album->thumbnail }}">
+                          </div>
+                      </a>
+                      <a href="/album/{{ $album->id }}">
+                          <div class="ui medium image image2">
+                              <img src="/uploads/thumbnails/{{ $album->thumbnail2 }}">
+                          </div>
+                      </a>
+                      <div class="content">
+                          <a class="header ui large">{{ $album->title }}</a>
+                            <div class="ui divider"></div>
+                          <div class="meta">
+                              <span><i class="wait icon"></i>更新时间 : {{ substr($album->published_at,0,10) }}</span>
+                          </div>
+                          <div class="description">
+                              <p>description : {{ $album->content }}</p>
+                          </div>
+                          <div class="extra">
+                              <div class="ui label"><i class="photo icon"></i> {{ $album->img->count() }} </div>
+                          </div>
                       </div>
-                      <div class="description">
-                          <p></p>
-                      </div>
-                      <div class="extra">Additional Details </div>
                   </div>
               </div>
           </div>
-      </div>
+          @endforeach
+      @endif
 
-      <div class="ui raised segment">
-          <div class="ui items">
-              <div class="item">
-                  <div class="ui medium image">
-                      <img src="/image/banner/hero-personalV4.jpg">
-                  </div>
-                  <div class="ui medium image image2">
-                      <img src="/img/demo/s1.jpg">
-                  </div>
-                  <div class="content">
-                      <a class="header">标题</a>
-                      <div class="meta">
-                          <span>Description</span>
-                      </div>
-                      <div class="description">
-                          <p></p>
-                      </div>
-                      <div class="extra">Additional Details </div>
-                  </div>
+      <div class="dt-row dt-bottom-row">
+          <div class="row text-center">
+              <div class="dataTables_paginate paging_bootstrap_full" style="text-align: center;">
+                  {{ $albums->links() }}
               </div>
           </div>
       </div>
-
-      <div class="ui raised segment">
-          <div class="ui items">
-              <div class="item">
-                  <div class="ui medium image">
-                      <img src="/image/banner/hero-personalV4.jpg">
-                  </div>
-                  <div class="ui medium image image2">
-                      <img src="/img/demo/s1.jpg">
-                  </div>
-                  <div class="content">
-                      <a class="header">标题</a>
-                      <div class="meta">
-                          <span>Description</span>
-                      </div>
-                      <div class="description">
-                          <p></p>
-                      </div>
-                      <div class="extra">Additional Details </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="ui raised segment">
-          <div class="ui items">
-              <div class="item">
-                  <div class="ui medium image">
-                      <img src="/image/banner/hero-personalV4.jpg">
-                  </div>
-                  <div class="ui medium image image2">
-                      <img src="/img/demo/s1.jpg">
-                  </div>
-                  <div class="content">
-                      <a class="header">标题</a>
-                      <div class="meta">
-                          <span>Description</span>
-                      </div>
-                      <div class="description">
-                          <p></p>
-                      </div>
-                      <div class="extra">Additional Details </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="ui raised segment">
-          <div class="ui items">
-              <div class="item">
-                  <div class="ui medium image">
-                      <img src="/image/banner/hero-personalV4.jpg">
-                  </div>
-                  <div class="ui medium image image2">
-                      <img src="/img/demo/s1.jpg">
-                  </div>
-                  <div class="content">
-                      <a class="header">标题</a>
-                      <div class="meta">
-                          <span>Description</span>
-                      </div>
-                      <div class="description">
-                          <p></p>
-                      </div>
-                      <div class="extra">Additional Details </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="ui raised segment">
-          <div class="ui items">
-              <div class="item">
-                  <div class="ui medium image">
-                      <img src="/image/banner/hero-personalV4.jpg">
-                  </div>
-                  <div class="ui medium image image2">
-                      <img src="/img/demo/s1.jpg">
-                  </div>
-                  <div class="content">
-                      <a class="header">标题</a>
-                      <div class="meta">
-                          <span>Description</span>
-                      </div>
-                      <div class="description">
-                          <p></p>
-                      </div>
-                      <div class="extra">Additional Details </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-
-
-      <nav style="text-align: center;">
-          <ul class="pagination">
-              <li>
-                  <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                  </a>
-              </li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li>
-                  <a href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                  </a>
-              </li>
-          </ul>
-      </nav>
 
   </div>
   <div class="five wide column">

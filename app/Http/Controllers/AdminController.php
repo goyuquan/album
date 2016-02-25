@@ -37,7 +37,7 @@ class AdminController extends Controller
                 $fileName = $file_pre.'.'.$file_suffix;//上传文件名
 
                 Image::make($request->file('thumbnail_file'))//生成缩略图
-                                    ->resize(100, null, function ($constraint) {
+                                    ->resize(300, null, function ($constraint) {
                                         $constraint->aspectRatio();
                                     })
                                     ->save('uploads/thumbnails/'.$fileName);
@@ -82,7 +82,7 @@ class AdminController extends Controller
                 $fileName = $file_pre.'.'.$file_suffix;//上传文件名
 
                 Image::make($request->file('thumbnail_file2'))//生成缩略图
-                                    ->resize(100, null, function ($constraint) {
+                                    ->resize(300, null, function ($constraint) {
                                         $constraint->aspectRatio();
                                     })
                                     ->save('uploads/thumbnails/'.$fileName);

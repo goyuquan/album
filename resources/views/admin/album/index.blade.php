@@ -96,7 +96,7 @@
                                 <td><h4><a href="/album/{{ $album->id }}"> {{str_limit($album->title,50)}} </a><small></small></h4></td>
                                 <td class="text-center">
                                     @if($album->thumbnail)
-                                        <img src="/uploads/thumbnails/{{ $album->thumbnail }}" alt="" />
+                                        <img src="/uploads/thumbnails/{{ $album->thumbnail }}" style="max-width:160px;" />
                                     @else
                                         <i class="fa fa-photo fa-2x text-muted"></i>
                                     @endif
