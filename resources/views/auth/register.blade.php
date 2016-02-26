@@ -127,7 +127,7 @@
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-                                            <input type="password" class="form-control" name="password" placeholder="密码" id="password">
+                                            <input id="password" type="password" class="form-control" name="password" placeholder="密码">
                                             @if ($errors->has('password'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -147,6 +147,13 @@
                                             @endif
 
 											<b class="tooltip tooltip-bottom-right">不要忘记密码</b> </label>
+									</section>
+
+									<section>
+										<label class="input"> <i class="icon-append fa fa-lock"></i>
+											<input type="hidden" id="distinguished" name="distinguished" value="abcedfg">
+                                            <input type="text" class="form-control" name="distinguish" placeholder="机器人识别">
+											<b class="tooltip tooltip-bottom-right">填写:abcedfg</b> </label>
 									</section>
 								</fieldset>
 
@@ -359,18 +366,18 @@
 							minlength : 3,
 							maxlength : 20
 						},
-						passwordConfirm : {
+						password_confirmation : {
 							required : true,
 							minlength : 3,
 							maxlength : 20,
 							equalTo : '#password'
 						},
-						terms : {
+						distinguish : {
+							equalTo : '#distinguished',
 							required : true
 						}
 					},
 
-					// Messages for form validation
 					messages : {
 						name : {
 							required : '请输入用户名'
@@ -382,15 +389,12 @@
 						password : {
 							required : '请输入密码'
 						},
-						passwordConfirm : {
+						password_confirmation : {
 							required : '请再输入一次密码',
 							equalTo : '两次输入密码不一致'
 						},
-						gender : {
-							required : 'Please select your gender'
-						},
-						terms : {
-							required : '同意注册条款'
+						distinguish : {
+							required : '输入abcedfg'
 						}
 					},
 

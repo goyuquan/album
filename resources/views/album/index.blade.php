@@ -90,7 +90,7 @@ body {
                           </div>
                       </a>
                       <div class="content">
-                          <a class="header ui large">{{ $album->title }}</a>
+                          <a href="/album/{{ $album->id }}" class="header ui large">{{ $album->title }}</a>
                             <div class="ui divider"></div>
                           <div class="meta">
                               <span><i class="wait icon"></i>更新时间 : {{ substr($album->published_at,0,10) }}</span>
