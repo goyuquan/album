@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/admin/display', 'DisplayController@index');
         Route::post('/admin/display/store', 'DisplayController@store');
+        Route::get('/admin/display/banner', 'DisplayController@banner');
 
         Route::get('/admin/album/{id?}/show', 'AlbumController@show');
         Route::get('/admin/album/create', 'AlbumController@create');

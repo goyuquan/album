@@ -69,9 +69,15 @@
         </ul>
     </li>
     <li id="aside_display">
-        <a href="/admin/display"><i class="fa fa-lg fa-fw fa-table"></i>
-            <span class="menu-item-parent">展示位置</span>
-        </a>
+        <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-video-camera"></i> <span class="menu-item-parent">展示位置管理</span></a>
+        <ul id="aside_display_">
+            <li id="aside_display_manage">
+                <a href="/admin/display"> 展示位置 </a>
+            </li>
+            <li id="aside_display_banner">
+                <a href="/admin/display/banner"> 首页banner </a>
+            </li>
+        </ul>
     </li>
     <li id="aside_user">
         <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">用户管理</span></a>

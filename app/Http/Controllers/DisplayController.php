@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Display;
+use App\Album;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -46,5 +47,14 @@ class DisplayController extends Controller
 
         return redirect('/admin/display');
     }
+
+    public function banner()
+    {
+        $banners = Album::where("display_id",2)->get();
+        return view('admin.displays.banner', [
+            "banners" => $banners
+        ]);
+    }
+
 
 }

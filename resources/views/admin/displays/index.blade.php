@@ -262,7 +262,9 @@
 <script type="text/javascript">
 $(function(){
 
-    $("#aside_display").addClass("active");//导航菜单样式
+    $("#aside_display").addClass("open");
+    $("#aside_display_").show();
+    $("#aside_display_manage").addClass("active");
 
 
     $("#parent_select ul a:not('.parent-item')").click(function(){
