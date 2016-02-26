@@ -118,6 +118,7 @@ body {
             <!-- <img src="/image/banner/hero-proV4.jpg" alt="" /> -->
         </div>
 
+
       <div id="pageslider">
           <a href="#" class="ws_next">
               <span> <i></i> <b></b> </span>
@@ -144,8 +145,7 @@ body {
 
 <script type="text/javascript">
 $(function(){
-    // var album_id = "album_id";
-    // var pic_id = "pic_id";
+
     var album_id = $("#pic_id").attr("name");
 
     $('.image').each(function(){
@@ -158,15 +158,14 @@ $(function(){
 
     $(document).ajaxStart(function(){
         $("#loader").show();
+        $(".modal .container .img_wrap img").remove();
     }).ajaxStop(function(){
         $("#loader").hide();
     });
 
     $(".cards .card").click(function(){
-
-        var pic_id = $(this).attr("id");
+        page_num = $(this).index() + 1;
         $('.ui.fullscreen.modal') .modal({ offset:600 }) .modal('show');
-
 
         $.ajax({
             type:"post",
@@ -174,14 +173,57 @@ $(function(){
             headers: { 'X-CSRF-TOKEN': $('input[name="_token"]').val() },
             data:{
                 album:album_id,
-                pic:pic_id
+                pagenum:page_num
             },
             success:function(data){
-                console.log(data);
-                $(".modal .container .img_wrap").append("<img src='/uploads/" + data + "'/>");
+                console.log("pagenum"+page_num);
+                console.log(data.url_next);
+                if (data.url_prev) {
+                        $(".ws_prev").show();
+                    } else {
+                        $(".ws_prev").hide();
+                    }
+                if (data.url_next) {
+                        $(".ws_next").show();
+                    } else {
+                        $(".ws_next").hide();
+                    }
+                $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
+                $(".ws_prev").attr("name",data.url_prev);
+                $(".ws_next").attr("name",data.url_next);
             }
         });
+    });
 
+
+    $(".ws_prev,.ws_next").click(function(){
+        page_num = $(this).attr("name");
+        $.ajax({
+            type:"post",
+            url:"/album/img",
+            headers: { 'X-CSRF-TOKEN': $('input[name="_token"]').val() },
+            data:{
+                album:album_id,
+                pagenum:page_num
+            },
+            success:function(data){
+                if (data.url_prev) {
+                        $(".ws_prev").show();
+                    } else {
+                        $(".ws_prev").hide();
+                    }
+                if (data.url_next) {
+                        $(".ws_next").show();
+                    } else {
+                        $(".ws_next").hide();
+                    }
+                console.log("pagenum"+page_num);
+                console.log(data.url_next);
+                $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
+                $(".ws_prev").attr("name",data.url_prev);
+                $(".ws_next").attr("name",data.url_next);
+            }
+        });
     });
 
 

@@ -33,7 +33,7 @@ class AlbumController extends Controller
     public function album($id)
     {
         $album = Album::find($id);
-        $imgs = $album->img;
+        $imgs = $album->img()->orderBy('id')->get();
         return view('album.album',[
             'album' => $album,
             'imgs' => $imgs,
@@ -42,8 +42,15 @@ class AlbumController extends Controller
 
     public function img(Request $request)
     {
-        $url = Img::find($request->pic)->name;
-        return $url;
+        $url = Img::where('album_id',$request->album)
+        ->orderBy('id')
+        ->paginate($perPage = 1, $columns = ['*'], $pageName = 'page', $page = $request->pagenum);
+
+        return [
+            "url" => $url[0]->name,
+            "url_prev" => $url->previousPageUrl(),
+            "url_next" => $url->nextPageUrl()
+        ];
     }
 
     public function upload($id)
