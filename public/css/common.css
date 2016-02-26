@@ -16,3 +16,6 @@ hr {margin: 10px 0 10px;!important}
     background:rgba(255,255,255,0.8);
     height: 4em;
 }
+#user_pop {
+    padding: 0!important;
+}

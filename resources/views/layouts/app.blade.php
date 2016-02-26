@@ -24,5 +24,19 @@
     <script src="/js/semantic.min.js"></script>
 
     @yield('script')
+    <script type="text/javascript">
+
+    $(function(){
+
+          $('#user').popup({
+            popup : $('#user_pop'),
+            inline   : true,
+            hoverable: true,
+            position : 'bottom right'
+          });
+
+    });
+
+    </script>
 </body>
 </html>

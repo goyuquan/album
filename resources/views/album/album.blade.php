@@ -31,12 +31,14 @@ body {
     margin-left: 1em!important;
 }
 .modal .image {
+    /*position: relative!important;*/
     margin: 0 auto!important;
 }
 .modal .image img{
     max-width: 100%!important;
 }
-
+#pageslider {
+}
 #pageslider a.ws_next,
 #pageslider a.ws_prev {
 	position:absolute;
@@ -115,18 +117,17 @@ body {
   <div class="image content">
     <div class="image text container">
         <div class="img_wrap">
-            <!-- <img src="/image/banner/hero-proV4.jpg" alt="" /> -->
+            <div id="pageslider">
+                <a href="#" class="ws_next">
+                    <span> <i></i> <b></b> </span>
+                </a>
+                <a href="#" class="ws_prev">
+                    <span> <i></i> <b></b> </span>
+                </a>
+            </div>
         </div>
 
 
-      <div id="pageslider">
-          <a href="#" class="ws_next">
-              <span> <i></i> <b></b> </span>
-          </a>
-          <a href="#" class="ws_prev">
-              <span> <i></i> <b></b> </span>
-          </a>
-      </div>
 
       <div id="loader" class="ui segment hidden">
           <div class="ui active inverted dimmer">
@@ -176,8 +177,6 @@ $(function(){
                 pagenum:page_num
             },
             success:function(data){
-                console.log("pagenum"+page_num);
-                console.log(data.url_next);
                 if (data.url_prev) {
                         $(".ws_prev").show();
                     } else {
@@ -217,8 +216,6 @@ $(function(){
                     } else {
                         $(".ws_next").hide();
                     }
-                console.log("pagenum"+page_num);
-                console.log(data.url_next);
                 $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
                 $(".ws_prev").attr("name",data.url_prev);
                 $(".ws_next").attr("name",data.url_next);
