@@ -7,9 +7,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'ArticleController@homepage');
 
 
-    Route::post('/album/img', 'AlbumController@img');
     Route::get('/albums/{id?}', 'AlbumController@albums');
-    Route::get('/album/{id?}', 'AlbumController@album');
     Route::get('/articles/{id?}', 'ArticleController@index');
     Route::get('/article/{article}', 'ArticleController@show' );
 
@@ -18,6 +16,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin','AdminController@index');
         Route::post('/admin/thumbnail','AdminController@thumbnail');
         Route::post('/admin/thumbnail2','AdminController@thumbnail2');
+
+        Route::get('/album/{id?}', 'AlbumController@album');
+        Route::post('/album/img', 'AlbumController@img');
 
         Route::get('/admin/articles/{id?}', 'ArticleController@article_list');
         Route::get('/admin/article/create', 'ArticleController@create');
@@ -28,7 +29,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/admin/display', 'DisplayController@index');
         Route::post('/admin/display/store', 'DisplayController@store');
-        Route::get('/admin/display/banner', 'DisplayController@banner');
+        Route::get('/admin/display/banner/{id?}', 'DisplayController@banner');
 
         Route::get('/admin/album/{id?}/show', 'AlbumController@show');
         Route::get('/admin/album/create', 'AlbumController@create');

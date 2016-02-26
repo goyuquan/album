@@ -26,7 +26,7 @@ class AlbumController extends Controller
     {
         $albums = Album::where('published_at','<',date("Y-m-d h:i:s"))
         ->orderBy('id', 'desc')
-        ->paginate($perPage = 2, $columns = ['*'], $pageName = 'page', $page = $id);
+        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
         return view('album.index',['albums' => $albums]);
     }
 
@@ -139,8 +139,8 @@ class AlbumController extends Controller
 
         $album = Album::find($id);
         $album->title = $request->title;
-        $album->content = $request->display;
-        $album->display_id = $request->content;
+        $album->content = $request->content;
+        $album->display_id = $request->display;
         $album->thumbnail = $request->thumbnail;
         $album->thumbnail2 = $request->thumbnail2;
         $album->free = $request->free;

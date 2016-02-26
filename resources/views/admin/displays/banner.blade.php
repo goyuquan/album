@@ -97,6 +97,14 @@
                         </tbody>
                     </table>
 
+                    <div class="dt-row dt-bottom-row">
+                        <div class="row text-center">
+                            <div class="dataTables_paginate paging_bootstrap_full">
+                                {{ $banners->links() }}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             @endif

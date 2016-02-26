@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title',"$album->title")
+@section('description',"$album->title")
+@section('keywords',"$album->title")
+
 @section('style')
 
 

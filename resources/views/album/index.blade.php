@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title',"相册列表")
+@section('description',"abc")
+@section('keywords',"keywords")
+
 @section('style')
 <link rel="stylesheet" href="/css/bootstrap-pagination.min.css" >
 <style media="screen">

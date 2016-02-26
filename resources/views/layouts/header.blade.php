@@ -15,7 +15,9 @@
       <a href="{{ url('/register') }}" class="item">注册</a>
       @else
       <span id="user" class="item" style="cursor:default">
-          {{ Auth::user()->name }}
+          <a class="ui blue image label">
+                {{ Auth::user()->name }}
+          </a>
       </span>
       <a href="{{ url('/logout') }}" class="item"><i class="fa fa-btn fa-sign-out"></i>退出</a>
       @endif

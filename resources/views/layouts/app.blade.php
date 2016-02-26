@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title')_sitetitle</title>
-
+    <title>@yield('title')sitetitle</title>
+    <meta name="description" content="@yield('description')_Laravel - The PHP framework for web artisans.">
+	<meta name="keywords" content="@yield('keywords')_laravel, php, framework, web, artisans, taylor otwell">
     <link rel="stylesheet" href="/css/semantic.min.css">
     <link rel="stylesheet" href="/css/common.css">
 

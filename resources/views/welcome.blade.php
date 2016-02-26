@@ -1,99 +1,151 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('style')
+    <title>sitetitle</title>
+    <meta name="description" content="Laravel - The PHP framework for web artisans.">
+	<meta name="keywords" content="laravel, php, framework, web, artisans, taylor otwell">
+    <link rel="stylesheet" href="/css/semantic.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/swiper.min.css" >
+    <style media="screen">
+    /*homepage.css*/
 
-<link rel="stylesheet" href="/css/swiper.min.css" >
+    .swiper-container {
+        width: 100%;
+        height: 600px;
+        margin: 20px auto 50px;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        width: auto;
+        height: 600px;
 
-<style media="screen">
-/*homepage.css*/
-
-.swiper-container {
-    width: 100%;
-    height: 600px;
-    margin: 20px auto 50px;
-}
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    width: auto;
-    height: 600px;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-.swiper-slide img {
-    height: 100%;
-    width: auto;
-    visibility: hidden;
-}
-.swiper-pagination-bullet {
-    background: #fff;
-}
-.ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
-    top:-16px;
-}
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-slide img {
+        height: 100%;
+        width: auto;
+        visibility: hidden;
+    }
+    .swiper-pagination-bullet {
+        background: #fff;
+    }
+    .ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
+        top:-16px;
+    }
 
 
 
 
-#latest_photo_head,#latest_video_head {
-    margin: 2em 0 1em 0!important;
-}
-#latest_photo,#latest_video {
-    padding: 0 2em 3em!important;
-}
-#link_head {
-    margin: 2em 0 1em 0!important;
-}
-#link {
-    padding: 0 2em 0em!important;
-}
-#order {
-    margin:3em 0 0 0!important;
-    padding: 2em 0;
-}
-#order h2 {
-    color:#989ba2!important;
-}
-img {
-    width: 100%;
-}
-.card {
-    width: 100%!important;
-    background: #efefef;
-}
-.divider {
-    color:#555!important;
-    margin: 1em 0!important;
-}
-.inverted {
-    width:100%;
-    padding: 1px 0 0 0;
-    background:#fff;
-}
-.statistics div {
-    color:#666!important;
-}
-.statistic > .label {
-    margin: 1em 0 0 0!important;
-}
+    #latest_photo_head,#latest_video_head {
+        margin: 2em 0 1em 0!important;
+    }
+    #latest_photo,#latest_video {
+        padding: 0 2em 3em!important;
+    }
+    #link_head {
+        margin: 2em 0 1em 0!important;
+    }
+    #link {
+        padding: 0 2em 0em!important;
+    }
+    #order {
+        margin:3em 0 0 0!important;
+        padding: 2em 0;
+    }
+    #order h2 {
+        color:#989ba2!important;
+    }
+    img {
+        width: 100%;
+    }
+    .card {
+        width: 100%!important;
+        background: #efefef;
+    }
+    .divider {
+        color:#555!important;
+        margin: 1em 0!important;
+    }
+    .inverted {
+        width:100%;
+        padding: 1px 0 0 0;
+        background:#fff;
+    }
+    .statistics div {
+        color:#666!important;
+    }
+    .statistic > .label {
+        margin: 1em 0 0 0!important;
+    }
 
-</style>
-@endsection
+    </style>
 
-@section('content')
+</head>
+<body>
+
+
+    <div class="ui fixed menu">
+      <div class="ui container">
+        <a href="{{ url('/') }}" class="header item">
+
+          welcome logo
+        </a>
+
+        <div class="right menu">
+        <a href="{{ url('/') }}" class="item">首页</a>
+        <a href="/albums/" class="item">相册</a>
+        <a href="/videos/" class="item">视频</a>
+        <a href="#" class="item">会员价格表</a>
+          @if (Auth::guest())
+          <a href="{{ url('/login') }}" class="item">登陆</a>
+          <a href="{{ url('/register') }}" class="item">注册</a>
+          @else
+          <span id="user" class="item" style="cursor:default">
+              <a class="ui blue image label">
+                    {{ Auth::user()->name }}
+              </a>
+          </span>
+          <a href="{{ url('/logout') }}" class="item"><i class="fa fa-btn fa-sign-out"></i>退出</a>
+          @endif
+
+          @if ( Auth::user() && Auth::user()->member)
+              <div class="ui card special popup" id="user_pop">
+                  <div class="content">
+                      <div class="header">会员时间</div>
+                      <div class="meta">好友</div>
+                      <div class="description">到期时间:{{ "20".substr(date('y-m-d h:i:s',Auth::user()->member),0,8) }} </div>
+                      <div class="description">{{ sprintf("%.1f",(Auth::user()->member - time())/86400) }}&nbsp;天 </div>
+                      <div class="extra content">
+                          <a><i class="clock icon"></i>  Members </a>
+                      </div>
+                  </div>
+              </div>
+          @endif
+
+        </div>
+
+      </div>
+    </div>
+
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -338,10 +390,29 @@ img {
     </div>
 </div>
 <br>
-@endsection
+<div id="footer" class="ui container">
+    <div class="ui one column grid">
+        <div class="column">
+            <a href="#">dsfadsfdsaf</a>
+            <a href="#">dsfadsfdsaf</a>
+            <a href="#">dsfadsfdsaf</a>
+            <a href="#">dsfadsfdsaf</a>
+        </div>
+    </div>
+</div>
+<hr>
 
-@section('script')
+<div id="copyright" class="ui container">
+    <div class="ui one column grid">
+        <div class="column">
+            版权所有©2008-2015铁道部信息技术中心  中国铁道科学研究院
+            京ICP备10009636号
+        </div>
+    </div>
+</div>
 
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/semantic.min.js"></script>
 <script type="text/javascript" src="/js/swiper.min.js"> </script>
 <script type="text/javascript">
 window.onload = function(){
@@ -358,6 +429,14 @@ window.onload = function(){
     });
 }
 $(function(){
+
+    $('#user').popup({
+      popup : $('#user_pop'),
+      inline   : true,
+      hoverable: true,
+      position : 'bottom right'
+    });
+
     $('.swiper-slide').each(function(){
         $(this).css({
             "background-image":"url(" + $(this).children('img').attr('src') + ")",
@@ -391,5 +470,7 @@ $(function(){
 
 
 });
+
 </script>
-@endsection
+</body>
+</html>

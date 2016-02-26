@@ -75,7 +75,7 @@
                 <a href="/admin/display"> 展示位置 </a>
             </li>
             <li id="aside_display_banner">
-                <a href="/admin/display/banner"> 首页banner </a>
+                <a href="/admin/display/banner/"> 首页banner </a>
             </li>
         </ul>
     </li>
