@@ -8,23 +8,26 @@
     <title>sitetitle</title>
     <meta name="description" content="Laravel - The PHP framework for web artisans.">
 	<meta name="keywords" content="laravel, php, framework, web, artisans, taylor otwell">
-    <link rel="stylesheet" href="/css/semantic.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css">
+    <!-- <link rel="stylesheet" href="/css/semantic.min.css"> -->
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/swiper.min.css" >
-    <style media="screen">
+    <style>
     /*homepage.css*/
-
+    #menu {
+        margin-bottom: 0;
+    }
     .swiper-container {
         width: 100%;
-        height: 600px;
-        margin: 20px auto 50px;
+        height: 500px;
+        margin: 0 auto 50px;
     }
     .swiper-slide {
         text-align: center;
         font-size: 18px;
         background: #fff;
         width: auto;
-        height: 600px;
+        height: 500px;
 
         /* Center slide text vertically */
         display: -webkit-box;
@@ -102,50 +105,40 @@
 </head>
 <body>
 
+<div id="menu" class="ui stackable menu">
+  <div class="ui container">
+    <a href="{{ url('/') }}" class="header item"> welcome logo </a>
+    <a href="{{ url('/') }}" class="item">首页</a>
+    <a href="/albums/" class="item">相册</a>
+    <a href="/videos/" class="item">视频</a>
+    <a href="#" class="item">会员价格表</a>
+      @if (Auth::guest())
+      <a href="{{ url('/login') }}" class="item">登陆</a>
+      <a href="{{ url('/register') }}" class="item">注册</a>
+      @else
+      <span id="user" class="item" style="cursor:default">
+          <a class="ui blue image label">
+                {{ Auth::user()->name }}
+          </a>
+      </span>
+      <a href="{{ url('/logout') }}" class="item"><i class="fa fa-btn fa-sign-out"></i>退出</a>
+      @endif
 
-    <div class="ui fixed menu">
-      <div class="ui container">
-        <a href="{{ url('/') }}" class="header item">
-
-          welcome logo
-        </a>
-
-        <div class="right menu">
-        <a href="{{ url('/') }}" class="item">首页</a>
-        <a href="/albums/" class="item">相册</a>
-        <a href="/videos/" class="item">视频</a>
-        <a href="#" class="item">会员价格表</a>
-          @if (Auth::guest())
-          <a href="{{ url('/login') }}" class="item">登陆</a>
-          <a href="{{ url('/register') }}" class="item">注册</a>
-          @else
-          <span id="user" class="item" style="cursor:default">
-              <a class="ui blue image label">
-                    {{ Auth::user()->name }}
-              </a>
-          </span>
-          <a href="{{ url('/logout') }}" class="item"><i class="fa fa-btn fa-sign-out"></i>退出</a>
-          @endif
-
-          @if ( Auth::user() && Auth::user()->member)
-              <div class="ui card special popup" id="user_pop">
-                  <div class="content">
-                      <div class="header">会员时间</div>
-                      <div class="meta">好友</div>
-                      <div class="description">到期时间:{{ "20".substr(date('y-m-d h:i:s',Auth::user()->member),0,8) }} </div>
-                      <div class="description">{{ sprintf("%.1f",(Auth::user()->member - time())/86400) }}&nbsp;天 </div>
-                      <div class="extra content">
-                          <a><i class="clock icon"></i>  Members </a>
-                      </div>
+      @if ( Auth::user() && Auth::user()->member)
+          <div class="ui card special popup" id="user_pop">
+              <div class="content">
+                  <div class="header">会员时间</div>
+                  <div class="meta">好友</div>
+                  <div class="description">到期时间:{{ "20".substr(date('y-m-d h:i:s',Auth::user()->member),0,8) }} </div>
+                  <div class="description">{{ sprintf("%.1f",(Auth::user()->member - time())/86400) }}&nbsp;天 </div>
+                  <div class="extra content">
+                      <a><i class="clock icon"></i>  Members </a>
                   </div>
               </div>
-          @endif
-
-        </div>
-
-      </div>
+          </div>
+      @endif
     </div>
-
+</div>
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -188,8 +181,8 @@
 
 
 <h2 id="latest_photo_head" class="ui horizontal divider header"><i class="file image outline icon"></i> Our Latsed album </h2>
-<div id="latest_photo" class="ui three column grid">
-    <div class="column">
+<div id="latest_photo" class="ui grid">
+    <div class="four wide computer eight wide tablet sixteen wide mobile column">
         <div class="ui card">
             <div class="ui slide masked reveal image">
                 <div class="visible content">
@@ -212,7 +205,7 @@
         </div>
     </div>
 
-    <div class="column">
+    <div class="four wide computer eight wide tablet sixteen wide mobile column">
         <div class="ui card">
             <div class="ui slide masked reveal image">
                 <div class="visible content">
@@ -235,7 +228,7 @@
         </div>
     </div>
 
-    <div class="column">
+    <div class="four wide computer eight wide tablet sixteen wide mobile column">
         <div class="ui link cards">
             <div class="card">
                 <div class="ui slide masked reveal image">
@@ -260,12 +253,39 @@
             </div>
         </div>
     </div>
+
+    <div class="four wide computer eight wide tablet sixteen wide mobile column">
+        <div class="ui link cards">
+            <div class="card">
+                <div class="ui slide masked reveal image">
+                    <div class="visible content">
+                        <img src="/image/banner/hero-consumerV42.jpg">
+                    </div>
+                    <div class="hidden content">
+                        <img src="/image/banner/hero-consumerV42.jpg">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="header">Matt Giampietro</div>
+                    <div class="meta">
+                        <a>好友</a>
+                    </div>
+                    <div class="description">Matthew is an interior designer living in New York. </div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated">2013年加入 </span>
+                    <span><i class="user icon"></i> 75 Friends </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="inverted">
     <h2 id="latest_video_head" class="ui horizontal divider header"><i class="bar photo icon"></i> Our Latsed VIDEO </h2>
-    <div id="latest_video" class="ui two column grid">
-        <div class="column">
+    <div id="latest_video" class="ui grid">
+        <div class="eight wide computer eight wide tablet sixteen wide mobile column">
             <div class="ui card">
                 <div class="ui slide masked reveal image">
                     <div class="visible content">
@@ -286,7 +306,7 @@
                 </div>
             </div>
         </div>
-        <div class="column">
+        <div class="eight wide computer eight wide tablet sixteen wide mobile column">
             <div class="ui card">
                 <div class="ui slide masked reveal image">
                     <div class="visible content">
@@ -312,7 +332,7 @@
 </div>
 
 <h2 id="link_head" class="ui horizontal divider header"><i class="bar image icon"></i> Our album category</h2>
-<div id="link" class="ui three column centered grid">
+<div id="link" class="ui three column stackable grid">
 
     <div class="column">
         <div class="ui link cards">
@@ -411,9 +431,9 @@
     </div>
 </div>
 
-<script src="/js/jquery-2.1.4.min.js"></script>
-<script src="/js/semantic.min.js"></script>
-<script type="text/javascript" src="/js/swiper.min.js"> </script>
+<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.3.1/js/swiper.min.js"> </script>
 <script type="text/javascript">
 window.onload = function(){
     var swiper = new Swiper('.swiper-container', {

@@ -2,6 +2,9 @@
 body { background: #f3f3f3; }
 .inline_block { display: inline-block; }
 hr {margin: 10px 0 10px;!important}
+#menu .item:first-child {
+    margin-right: 2em!important;
+}
 #footer {
     text-align:center;
 }

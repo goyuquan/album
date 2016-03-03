@@ -7,10 +7,7 @@
 @section('style')
 
 
-<style media="screen">
-body {
-    padding: 5em 0 0 0!important;
-}
+<style>
 #order {
     padding: 2em 0;
 }
@@ -76,6 +73,15 @@ body {
 
 @section('content')
 
+<div class="ui large breadcrumb">
+  <a href="{{url('/')}}" class="section">首页</a>
+  <i class="right chevron icon divider"></i>
+  <a href="/albums/" class="section">图片</a>
+  <i class="right chevron icon divider"></i>
+  <div class="active section">标题</div>
+  <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
+</div>
+
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <div id="order" class="inverted">
@@ -88,7 +94,7 @@ body {
 </div>
 
 <div class="ui grid">
-  <div class="eleven wide column">
+  <div class="eleven wide computer sixteen wide tablet sixteen wide mobile column">
 
       <h2 id="pic_id" name="{{ $album->id }}" class="ui header center aligned">
           {{ $album->title}} <div class="sub header"><i class="wait icon"></i>更新时间 : {{ substr($album->published_at,0,10) }}</div>
@@ -110,17 +116,18 @@ body {
 
       </div>
   </div>
-  <div class="five wide column">
+  <div class="five wide computer sixteen wide tablet sixteen wide mobile column">
     <div class="ui segment">Content</div>
   </div>
 </div>
 
 
 <div class="ui fullscreen modal">
-  <i class="close icon"></i>
+  <i class="close icon" style="z-index:90;"></i>
   <div class="image content">
     <div class="image text container">
         <div class="img_wrap">
+            <img id="img" src=""/>
             <div id="pageslider">
                 <a href="#" class="ws_next">
                     <span> <i></i> <b></b> </span>
@@ -149,6 +156,9 @@ body {
 @section('script')
 
 <script type="text/javascript">
+function adwrap(){
+    // $(".modals").css("overflow-y","scroll");
+}
 $(function(){
 
     var album_id = $("#pic_id").attr("name");
@@ -163,7 +173,8 @@ $(function(){
 
     $(document).ajaxStart(function(){
         $("#loader").show();
-        $(".modal .container .img_wrap img").remove();
+        // $(".modal .container .img_wrap img").remove();
+        $("#img").attr("src","");
     }).ajaxStop(function(){
         $("#loader").hide();
     });
@@ -191,9 +202,12 @@ $(function(){
                     } else {
                         $(".ws_next").hide();
                     }
-                $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
+                $("#img").attr("src","/uploads/" + data.url);
+                // $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
                 $(".ws_prev").attr("name",data.url_prev);
                 $(".ws_next").attr("name",data.url_next);
+
+
             }
         });
     });
@@ -220,7 +234,8 @@ $(function(){
                     } else {
                         $(".ws_next").hide();
                     }
-                $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
+                    $("#img").attr("src","/uploads/" + data.url);
+                // $(".modal .container .img_wrap").append("<img src='/uploads/" + data.url + "'/>");
                 $(".ws_prev").attr("name",data.url_prev);
                 $(".ws_next").attr("name",data.url_next);
             }

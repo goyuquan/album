@@ -7,9 +7,6 @@
 @section('style')
 <link rel="stylesheet" href="/css/bootstrap-pagination.min.css" >
 <style media="screen">
-body {
-    padding: 5em 0 0 0!important;
-}
 #order {
     padding: 2em 0;
 }
@@ -35,8 +32,6 @@ body {
     margin-top: 0!important;
 }
 .image2 {
-    margin-left: 1em!important;
-    margin-right: 1.5em!important;
 }
 .labeled {
     font-size: 1em!important;
@@ -49,21 +44,11 @@ body {
 @endsection
 
 @section('content')
-
-
-<div class="ui three statistics">
-  <div class="statistic">
-    <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> 22 </div>
-    <div class="label">相册数量 </div>
-  </div>
-  <div class="statistic">
-    <div class="value" style="color:#339933!important"><i class="photo icon"></i> 1700 </div>
-    <div class="label">图片 </div>
-  </div>
-  <div class="statistic">
-    <div class="value" style="color:#336699!important"><i class="film icon"></i> 55 </div>
-    <div class="label">视频 </div>
-  </div>
+<div class="ui large breadcrumb">
+  <a href="{{ url('/') }}" class="section">首页</a>
+  <i class="right chevron icon divider"></i>
+  <div class="active section">图片</div>
+  <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
 </div>
 
 <div id="order" class="inverted">
@@ -76,24 +61,24 @@ body {
 </div>
 
 <div class="ui grid">
-  <div class="eleven wide column">
+  <div class="eleven wide computer sixteen wide tablet sixteen wide mobile column">
 
       @if (count($albums) > 0)
           @foreach ($albums as $album)
           <div class="ui raised segment">
               <div class="ui items">
-                  <div class="item">
-                      <a href="/album/{{ $album->id }}">
+                  <div class="item ui grid">
+                      <a href="/album/{{ $album->id }}" class="five wide computer eight wide tablet sixteen wide mobile column">
                           <div class="ui medium image">
                               <img src="/uploads/thumbnails/{{ $album->thumbnail }}">
                           </div>
                       </a>
-                      <a href="/album/{{ $album->id }}">
+                      <a href="/album/{{ $album->id }}" class="five wide computer eight wide tablet sixteen wide mobile column">
                           <div class="ui medium image image2">
                               <img src="/uploads/thumbnails/{{ $album->thumbnail2 }}">
                           </div>
                       </a>
-                      <div class="content">
+                      <div class="content six wide computer sixteen wide tablet sixteen wide mobile column">
                           <a href="/album/{{ $album->id }}" class="header ui large">{{ $album->title }}</a>
                             <div class="ui divider"></div>
                           <div class="meta">
@@ -121,7 +106,7 @@ body {
       </div>
 
   </div>
-  <div class="five wide column">
+  <div class="five wide computer sixteen wide tablet sixteen wide mobile column">
     <div class="ui segment">Content</div>
   </div>
 </div>

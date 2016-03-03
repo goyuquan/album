@@ -1,11 +1,9 @@
-<div class="ui fixed menu">
+<div id="menu" class="ui stackable menu">
   <div class="ui container">
     <a href="{{ url('/') }}" class="header item">
-
       welcome logo
     </a>
 
-    <div class="right menu">
     <a href="{{ url('/') }}" class="item">首页</a>
     <a href="/albums/" class="item">相册</a>
     <a href="/videos/" class="item">视频</a>
@@ -37,6 +35,4 @@
       @endif
 
     </div>
-
-  </div>
 </div>
