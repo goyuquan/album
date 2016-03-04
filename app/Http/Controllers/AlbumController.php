@@ -40,6 +40,18 @@ class AlbumController extends Controller
         ]);
     }
 
+    public function page($albums,$page)
+    {
+        $album = $albums;
+        $album_title = Album::find($albums)->title;
+        $page_num = $page;
+        return view('album.page',[
+            'album' => $album,
+            'album_title' => $album_title,
+            'page' => $page_num,
+        ]);
+    }
+
     public function img(Request $request)
     {
         $url = Img::where('album_id',$request->album)

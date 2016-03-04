@@ -1,43 +1,12 @@
 @extends('layouts.app')
 
-@section('title',"$album->title")
-@section('description',"$album->title")
-@section('keywords',"$album->title")
+@section('title',"$album_title")
+@section('description',"$album_title")
+@section('keywords',"$album_title")
 
 @section('style')
 
-
 <style>
-#order {
-    padding: 2em 0;
-}
-#order h2 {
-    color:#989ba2!important;
-}
-.ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
-    top:-16px;
-}
-
-
-.ui.raised.segment {
-    margin:0 2em;
-}
-.eleven > .segment {
-    margin-top: 1.5em!important;
-}
-.eleven > .segment:first-child {
-    margin-top: 0!important;
-}
-.image2 {
-    margin-left: 1em!important;
-}
-.modal .image {
-    /*position: relative!important;*/
-    margin: 0 auto!important;
-}
-.modal .image img{
-    max-width: 100%!important;
-}
 #pageslider {
 }
 #pageslider a.ws_next,
@@ -64,7 +33,7 @@
 #loader {
     padding:10em 0;
     border: none;
-    font-size: 2em;
+    font-size: 3em;
     display: none;
 }
 </style>
@@ -78,78 +47,87 @@
     <i class="right chevron icon divider"></i>
     <a href="/albums/" class="section">图片</a>
     <i class="right chevron icon divider"></i>
-    <div class="active section">标题</div>
+    <div class="active section">{{$album_title}}</div>
     <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
 </div>
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-<div id="order" class="inverted">
-    <div class="ui center aligned basic segment">
-        <h2><i class="search icon"></i>A divider can segment content horizontally</h2>
-        <div class="ui horizontal divider">注册 </div>
-        <img src="/img/T1HHFgXXVeXXXXXXXX.png" alt="" style="width:120px;margin-right:1em;" />
-        <div class="ui red labeled icon button">订阅会员 <i class="add icon"></i> </div>
-    </div>
-</div>
+<div class="ui hidden divider"></div>
 
-<div class="ui grid">
-    <div class="eleven wide computer sixteen wide tablet sixteen wide mobile column">
-
-        <h2 class="ui header center aligned">
-            {{ $album->title}} <div class="sub header"><i class="wait icon"></i>更新时间 : {{ substr($album->published_at,0,10) }}</div>
-        </h2>
-
-
-        <div class="ui raised segment">
-            <div class="ui four stackable cards">
-                @if (count($imgs) > 0)
-                @foreach ($imgs as $img)
-                <div class="card">
-                    <a href="/album/{{ $album->id }}/page/">
-                        <div class="image">
-                            <img src="/uploads/thumbnails/{{ $img->thumbnail }}">
-                        </div>
-                    </a>
-                </div>
-                @endforeach
-                @endif
-            </div>
-
+<div class="image" style="position:relative;">
+    <div class="img_wrap">
+        <div id="img_box" class="ui compact segment" style="margin:0 auto;">
+            <img id="img" name="{{ $album }}" title="{{ $page }}" class="ui fluid2 centered image" src="">
+        </div>
+        <div id="pageslider">
+            <a href="#" class="ws_next">
+                <span> <i></i> <b></b> </span>
+            </a>
+            <a href="#" class="ws_prev">
+                <span> <i></i> <b></b> </span>
+            </a>
         </div>
     </div>
-    <div class="five wide computer sixteen wide tablet sixteen wide mobile column">
-        <div class="ui segment">Content</div>
+
+    <div id="loader" class="ui segment hidden">
+        <div class="ui active inverted dimmer">
+            <div class="ui text loader">Loading</div>
+        </div>
+        <p></p>
     </div>
-</div>
 
 </div>
 
+<div class="ui hidden divider"></div>
 @endsection
 
 @section('script')
 
 <script type="text/javascript">
-
 $(function(){
 
-    $(".card").each(function(){
-        var old_href = $(this).find("a").attr("href");
-        var car_index = $(this).index() + 1;
-        $(this).find("a").attr("href",old_href + car_index);
-    });
+    var album = $("#img").attr("name");
+    var page = $("#img").attr("title");
 
-    $('.image').each(function(){
-        $(this).children('img').css("visibility","hidden");
-        $(this).css({
-            "background-image":"url(" + $(this).children('img').attr('src') + ")",
+    $(document).ajaxStart(function(){
+        $("#loader").show();
+        $(".modal .container .img_wrap img").remove();
+    }).ajaxStop(function(){
+        $("#loader").hide();
+        $('#img_box').children('img').css("visibility","hidden");
+        $('#img_box').css({
+            "background":"url(" + $('#img_box').children('img').attr('src') + ") no-repeat",
             "background-size":"100% auto"
         });
     });
 
+    $.ajax({
+        type:"post",
+        url:"/album/img",
+        headers: { 'X-CSRF-TOKEN': $('input[name="_token"]').val() },
+        data:{
+            album:album,
+            pagenum:page
+        },
+        success:function(data){
+            if (data.url_prev) {
+                $(".ws_prev").show();
+            } else {
+                $(".ws_prev").hide();
+            }
+            if (data.url_next) {
+                $(".ws_next").show();
+            } else {
+                $(".ws_next").hide();
+            }
+            $("#img").attr("src","/uploads/" + data.url);
+            $(".ws_prev").attr("href","/album/" + album + "/page/" + data.url_prev);
+            $(".ws_next").attr("href","/album/" + album + "/page/" + data.url_next);
+
+        }
+    });
 
 });
-
-
 </script>
 @endsection
