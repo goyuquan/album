@@ -25,11 +25,6 @@ class ArticleController extends Controller
         $this->articles = $articles;
     }
 
-    public function homepage()
-    {
-        return view('welcome');
-    }
-
     public function index($id = 1)
     {
         return view('articles.index', [
@@ -60,8 +55,6 @@ class ArticleController extends Controller
 
         return view('articles.show',['article'=>$article]);
     }
-
-
 
 
     public function create()

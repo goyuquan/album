@@ -4,14 +4,18 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::auth();
 
-    Route::get('/', 'ArticleController@homepage');
+    Route::get('/', 'HomeController@homepage');
 
 
     Route::get('/albums/{id?}', 'AlbumController@albums');
-    Route::get('/articles/{id?}', 'ArticleController@index');
-    Route::get('/article/{article}', 'ArticleController@show' );
+    Route::get('/videoss/page/{id?}', 'VideoController@page');
+    Route::get('/videoss/{id?}', 'VideoController@videos');
     Route::get('/album/{id?}', 'AlbumController@album');
     Route::post('/album/img', 'AlbumController@img');
+
+
+    Route::get('/articles/{id?}', 'ArticleController@index');
+    Route::get('/article/{article}', 'ArticleController@show' );
 
     Route::group(['middleware' => ['auth','authuser']], function () {
 

@@ -6,7 +6,7 @@
 
     <a href="{{ url('/') }}" class="item">首页</a>
     <a href="/albums/" class="item">相册</a>
-    <a href="/videos/" class="item">视频</a>
+    <a href="/videoss/" class="item">视频</a>
     <a href="#" class="item">会员价格表</a>
       @if (Auth::guest())
       <a href="{{ url('/login') }}" class="item">登陆</a>

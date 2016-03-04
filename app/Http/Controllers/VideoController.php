@@ -23,6 +23,21 @@ class VideoController extends Controller
     }
 
 
+    public function videos($id = 1)
+    {
+        $videos = Video::orderBy('id', 'desc')
+        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
+        return view('video.index',['videos' => $videos]);
+    }
+
+
+    public function page($id)
+    {
+        $video = Video::find($id);
+        return view('video.page',['video' => $video]);
+    }
+
+
     public function create()
     {
         $displays = $displayss = Display::all();

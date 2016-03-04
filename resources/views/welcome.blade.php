@@ -9,7 +9,6 @@
     <meta name="description" content="Laravel - The PHP framework for web artisans.">
 	<meta name="keywords" content="laravel, php, framework, web, artisans, taylor otwell">
     <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css">
-    <!-- <link rel="stylesheet" href="/css/semantic.min.css"> -->
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/swiper.min.css" >
     <style>
@@ -110,7 +109,7 @@
     <a href="{{ url('/') }}" class="header item"> welcome logo </a>
     <a href="{{ url('/') }}" class="item">首页</a>
     <a href="/albums/" class="item">相册</a>
-    <a href="/videos/" class="item">视频</a>
+    <a href="/videoss/" class="item">视频</a>
     <a href="#" class="item">会员价格表</a>
       @if (Auth::guest())
       <a href="{{ url('/login') }}" class="item">登陆</a>
