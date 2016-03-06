@@ -94,12 +94,12 @@ img {
 
 @section('content')
 
+@if (count($banners) > 0)
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide"> <img src="/image/banner/hero-personalV4.jpg" alt=""/> </div>
-        <div class="swiper-slide"> <img src="/image/banner/hero-consumerV42.jpg" alt="" /> </div>
-        <div class="swiper-slide"> <img src="/image/banner/hero-proV4.jpg" alt="" /> </div>
-        <div class="swiper-slide"> <img src="/image/banner/hero-protectV4.jpg" alt="" /> </div>
+        @foreach ( $banners as $banner)
+        <div class="swiper-slide"> <img src="/uploads/{{$banner->thumbnail}}" alt=""/> </div>
+        @endforeach
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -107,19 +107,19 @@ img {
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
 </div>
-
+@endif
 
 <div class="ui three statistics">
   <div class="statistic">
-    <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> 22 </div>
+    <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> {{ $album }} </div>
     <div class="label">相册数量 </div>
   </div>
   <div class="statistic">
-    <div class="value" style="color:#339933!important"><i class="photo icon"></i> 1700 </div>
+    <div class="value" style="color:#339933!important"><i class="photo icon"></i> {{ $img }} </div>
     <div class="label">图片 </div>
   </div>
   <div class="statistic">
-    <div class="value" style="color:#336699!important"><i class="film icon"></i> 55 </div>
+    <div class="value" style="color:#336699!important"><i class="film icon"></i> {{ $video }} </div>
     <div class="label">视频 </div>
   </div>
 </div>

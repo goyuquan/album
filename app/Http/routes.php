@@ -12,6 +12,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/videoss/{id?}', 'VideoController@videos');
     Route::get('/album/{id?}', 'AlbumController@album');
     Route::post('/album/img', 'AlbumController@img');
+    Route::get('/price', 'PageController@price');
 
 
     Route::get('/articles/{id?}', 'ArticleController@index');
@@ -19,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => ['auth','authuser']], function () {
 
-        Route::get('/pay','PageController@pay');
+        Route::get('/pay/{price}','PageController@pay');
         Route::get('/admin','AdminController@index');
         Route::post('/admin/thumbnail','AdminController@thumbnail');
         Route::post('/admin/thumbnail2','AdminController@thumbnail2');

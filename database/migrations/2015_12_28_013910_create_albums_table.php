@@ -16,7 +16,7 @@ class CreateAlbumsTable extends Migration
             $table->string('thumbnail',100);
             $table->string('thumbnail2',100);
             $table->text('content');
-            $table->bit('free')->nullable();
+            $table->integer('free')->nullable();
             $table->timestamps();
             $table->timestamp('published_at');
         });

@@ -17,7 +17,7 @@ class CreateVideosTable extends Migration
             $table->string('thumbnail2',100);
             $table->string('video',100);
             $table->text('content');
-            $table->tinyInt('free')->nullable();
+            $table->integer('free')->nullable();
             $table->timestamps();
             $table->timestamp('published_at');
         });
