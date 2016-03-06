@@ -29,6 +29,7 @@ $(function(){
                 contentType: false,
                 data: fd,
                 success: function(data) {
+                    console.log(data);
                     $("input[name='video']").val(data);
                     $('#video_upload').addClass('disabled');
                     $('#video_file').closest('.input-file').addClass('state-disabled');

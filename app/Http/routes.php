@@ -4,7 +4,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::auth();
 
-    Route::get('/', 'HomeController@homepage');
+    Route::get('/', 'PageController@homepage');
 
 
     Route::get('/albums/{id?}', 'AlbumController@albums');
@@ -19,6 +19,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => ['auth','authuser']], function () {
 
+        Route::get('/pay','PageController@pay');
         Route::get('/admin','AdminController@index');
         Route::post('/admin/thumbnail','AdminController@thumbnail');
         Route::post('/admin/thumbnail2','AdminController@thumbnail2');

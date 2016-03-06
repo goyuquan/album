@@ -5,11 +5,15 @@
 @section('keywords',$video->title)
 
 @section('style')
-
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/5.8.0/alt/video-js-cdn.min.css">
 
 <style>
-
+#my-video {
+    width:100%;
+}
+#video_wrap {
+    margin: 3em auto;
+}
 </style>
 
 @endsection
@@ -26,32 +30,33 @@
 </div>
 
 <div class="ui grid">
-    <div class="eleven wide computer sixteen wide tablet sixteen wide mobile column">
 
-        <div class="ui hidden divider"></div>
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-        poster="/uploads/6cfc32300542055c1bec84cd594c8d4830161b9d.jpeg" data-setup="{}">
-        <source src="/videos/4994ef4043ae7e5e597031795fc1defea2b9958c.mp4" type='video/mp4'>
-        <!-- <source src="MY_VIDEO.webm" type='video/webm'>
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-        </video> -->
-        <div class="ui hidden divider"></div>
+    <div class="twelve wide computer sixteen wide tablet sixteen wide mobile column">
+        <div id="video_wrap" class="ui raised segment">
+
+            <h2 class="ui header">
+                 <i class="video icon"></i>
+                <div class="content">{{ $video->title }}
+                    <div class="sub header">发布时间 : {{ substr($video->published_at,0,10) }}</div>
+                </div>
+            </h2>
+
+            <video id="my-video" class="video-js" controls preload="auto" width="800" height="480"
+            poster="/uploads/{{ $video->thumbnail }}"
+            data-setup="{}">
+            <source src="/videos/{{ $video->video }}" type='video/mp4'>
+
+            </video>
+        </div>
     </div>
-    <div class="five wide computer sixteen wide tablet sixteen wide mobile column">
-        <div class="ui segment">Content</div>
+    <div class="four wide computer sixteen wide tablet sixteen wide mobile column">
+        <div class="ui segment"><a href="{{ url('/') }}">紧身裤</a></div>
     </div>
 </div>
 
 @endsection
 
 @section('script')
-<script src="//cdn.bootcss.com/video.js/5.8.0/video.min.js"> </script>
-<script src="//cdn.bootcss.com/video.js/5.8.0/lang/zh-CN.js"> </script>
-
-<script type="text/javascript">
-
-</script>
+<script src="//cdn.bootcss.com/video.js/5.8.0/video.min.js"></script>
+<script src="//cdn.bootcss.com/video.js/5.8.0/lang/zh-CN.js"></script>
 @endsection

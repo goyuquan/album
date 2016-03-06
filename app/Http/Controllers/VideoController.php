@@ -164,6 +164,7 @@ class VideoController extends Controller
 
                 $request->file('file')->move($destinationPath, $fileName);
 
+                // return $request->file('file')->getClientOriginalName();
                 Session()->flash('video',$fileName);
 
                 return $fileName;

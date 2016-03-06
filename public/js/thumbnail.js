@@ -29,6 +29,7 @@ $(function(){
                 contentType: false,
                 data: fd,
                 success: function(data) {
+                    console.log(data);
                     $("input[name='thumbnail']").val(data);
                     $('#img_upload').addClass('disabled');
                     $('#file').closest('.input-file').addClass('state-disabled');

@@ -134,24 +134,24 @@
                                                     </a>
                                                     <ul class="dropdown-menu multi-level" role="menu">
                                                         @foreach ( $displays as $display )
-                                                            @if ( $display->parent_id === 1 )
+                                                        @if ( $display->parent_id === 1 )
+                                                        <li>
+                                                            <a href="javascript:void(0);" class="item" name="{{$display->id}}">{{ $display->name }}</a>
+                                                            @if ( !App\Display::where('parent_id',$display->id)->get()->isEmpty() )
+                                                            <ul class="dropdown-menu">
+                                                                @foreach ( $displayss as $display_ )
+                                                                @if ($display_->parent_id === $display->id)
                                                                 <li>
-                                                                    <a href="javascript:void(0);" class="item" name="{{$display->id}}">{{ $display->name }}</a>
-                                                                    @if ( !App\Display::where('parent_id',$display->id)->get()->isEmpty() )
-                                                                        <ul class="dropdown-menu">
-                                                                        @foreach ( $displayss as $display_ )
-                                                                            @if ($display_->parent_id === $display->id)
-                                                                                <li>
-                                                                                    <a href="javascript:void(0);" class="item" name="{{$display_->id}}">
-                                                                                        {{$display_->name}}
-                                                                                    </a>
-                                                                                </li>
-                                                                            @endif
-                                                                        @endforeach
-                                                                        </ul>
-                                                                    @endif
+                                                                    <a href="javascript:void(0);" class="item" name="{{$display_->id}}">
+                                                                        {{$display_->name}}
+                                                                    </a>
                                                                 </li>
+                                                                @endif
+                                                                @endforeach
+                                                            </ul>
                                                             @endif
+                                                        </li>
+                                                        @endif
                                                         @endforeach
 
                                                     </ul>
@@ -192,24 +192,13 @@
                                         </button>
                                     </footer>
                                 </form>
-
                             </div>
-                            <!-- end widget content -->
-
                         </div>
-                        <!-- end widget div -->
-
                     </div>
-                    <!-- end widget -->
-
                 </article>
-                <!-- END COL -->
-
             </div>
-
-
-            </article>
-        </div>
+        </article>
+    </div>
 </div>
 <!-- END MAIN PANEL -->
 
@@ -244,28 +233,28 @@ $(function(){
 
     //表单验证
     var $video_form = $("#video_form").validate({
-		rules : {
-			title : {
-				required : true,
-				minlength : 2,
-				maxlength : 200
-			}
-		},
+        rules : {
+            title : {
+                required : true,
+                minlength : 2,
+                maxlength : 200
+            }
+        },
 
-		// Messages for form validation
-		messages : {
-			title : {
-				required : '请输入标题',
+        // Messages for form validation
+        messages : {
+            title : {
+                required : '请输入标题',
                 minlength : '不能小于2位',
                 maxlength : '不能大于200位',
-			}
-		},
+            }
+        },
 
-		// Do not change code below
-		errorPlacement : function(error, element) {
-			error.insertAfter(element.parent());
-		}
-	});
+        // Do not change code below
+        errorPlacement : function(error, element) {
+            error.insertAfter(element.parent());
+        }
+    });
 
 });
 
