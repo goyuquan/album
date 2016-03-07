@@ -47,46 +47,15 @@
 .ui.labeled.icon.button, .ui.labeled.icon.buttons .button {
     top:-16px;
 }
-#latest_photo_head,#latest_video_head {
-    margin: 2em 0 1em 0!important;
-}
-#latest_photo,#latest_video {
-    padding: 0 2em 3em!important;
-}
-#link_head {
-    margin: 2em 0 1em 0!important;
-}
-#link {
-    padding: 0 2em 0em!important;
-}
-#order {
-    margin:3em 0 0 0!important;
-    padding: 2em 0;
-}
 #order h2 {
-    color:#989ba2!important;
+    color:#1e70bf!important;
 }
 img {
     width: 100%;
 }
-.card {
-    width: 100%!important;
-    background: #efefef;
-}
 .divider {
     color:#555!important;
     margin: 1em 0!important;
-}
-.inverted {
-    width:100%;
-    padding: 1px 0 0 0;
-    background:#fff;
-}
-.statistics div {
-    color:#666!important;
-}
-.statistic > .label {
-    margin: 1em 0 0 0!important;
 }
 </style>
 
@@ -109,261 +78,275 @@ img {
 </div>
 @endif
 
-<div class="ui three statistics">
-  <div class="statistic">
-    <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> {{ $album }} </div>
-    <div class="label">相册数量 </div>
-  </div>
-  <div class="statistic">
-    <div class="value" style="color:#339933!important"><i class="photo icon"></i> {{ $img }} </div>
-    <div class="label">图片 </div>
-  </div>
-  <div class="statistic">
-    <div class="value" style="color:#336699!important"><i class="film icon"></i> {{ $video }} </div>
-    <div class="label">视频 </div>
-  </div>
-</div>
 
-<div id="order" class="inverted">
-    <div class="ui center aligned basic segment">
-        <h2><i class="search icon"></i>A divider can segment content horizontally</h2>
-        <div class="ui horizontal divider">注册 </div>
-        <img src="/img/T1HHFgXXVeXXXXXXXX.png" alt="" style="width:120px;margin-right:1em;" />
-        <div class="ui red labeled icon button">订阅会员 <i class="add icon"></i> </div>
-    </div>
-</div>
+<div class="ui container">
 
+    <!-- <div class="ui three statistics raised segment">
+        <div class="statistic">
+            <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> {{ $album }} </div>
+            <div class="label">相册数量 </div>
+        </div>
+        <div class="statistic">
+            <div class="value" style="color:#339933!important"><i class="fa fa-camera"></i> {{ $img }} </div>
+            <div class="label">图片 </div>
+        </div>
+        <div class="statistic">
+            <div class="value" style="color:#336699!important"><i class="film icon"></i> {{ $video }} </div>
+            <div class="label">视频 </div>
+        </div>
+    </div> -->
 
-<h2 id="latest_photo_head" class="ui horizontal divider header"><i class="file image outline icon"></i> Our Latsed album </h2>
-<div id="latest_photo" class="ui grid">
-    <div class="four wide computer eight wide tablet sixteen wide mobile column">
-        <div class="ui card">
-            <div class="ui slide masked reveal image">
-                <div class="visible content">
-                    <img src="/image/banner/hero-personalV4.jpg">
-                </div>
-                <div class="hidden content">
-                    <img src="/img/demo/s1.jpg">
-                </div>
-            </div>
-
-            <div class="content">
-                <a class="header">Team Fu &amp; Hess</a>
-                <div class="meta">
-                    <span class="date">Create in Sep 2014</span>
-                </div>
-            </div>
-            <div class="extra content">
-                <a><i class="users icon"></i> 2 Members </a>
-            </div>
+    <div id="order">
+        <div class="ui center aligned basic segment">
+            <h2 class="ui dividing header"><i class="users icon"></i>成为网站VIP会员浏览全部图片和视频</h2>
+            <a href="/price">
+                <img src="/img/T1HHFgXXVeXXXXXXXX.png" alt="" style="width:120px;margin-right:1em;" />
+            </a>
+            <a href="/price" class="ui green labeled icon button">加入VIP会员<i class="user icon"></i></a>
         </div>
     </div>
 
-    <div class="four wide computer eight wide tablet sixteen wide mobile column">
-        <div class="ui card">
-            <div class="ui slide masked reveal image">
-                <div class="visible content">
-                    <img src="/image/banner/hero-personalV4.jpg">
-                </div>
-                <div class="hidden content">
-                    <img src="/img/demo/s1.jpg">
-                </div>
-            </div>
-
-            <div class="content">
-                <a class="header">Team Fu &amp; Hess</a>
-                <div class="meta">
-                    <span class="date">Create in Sep 2014</span>
-                </div>
-            </div>
-            <div class="extra content">
-                <a><i class="users icon"></i> 2 Members </a>
-            </div>
+    @if ( count($album_latsed) > 0 )
+    <div class="ui grid raised segment">
+        <div class="ui sixteen wide column">
+            <h2 class="ui dividing header">
+                <a href="/albums/"><i class="fa fa-photo"></i>&nbsp;
+                    <div class="content"> 最新图片&nbsp;
+                        <div class="ui red mini label">new</div>
+                    </div>
+                </a>
+            </h2>
         </div>
-    </div>
-
-    <div class="four wide computer eight wide tablet sixteen wide mobile column">
-        <div class="ui link cards">
-            <div class="card">
-                <div class="ui slide masked reveal image">
-                    <div class="visible content">
-                        <img src="/image/banner/hero-consumerV42.jpg">
-                    </div>
-                    <div class="hidden content">
-                        <img src="/image/banner/hero-consumerV42.jpg">
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="header">Matt Giampietro</div>
-                    <div class="meta">
-                        <a>好友</a>
-                    </div>
-                    <div class="description">Matthew is an interior designer living in New York. </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">2013年加入 </span>
-                    <span><i class="user icon"></i> 75 Friends </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="four wide computer eight wide tablet sixteen wide mobile column">
-        <div class="ui link cards">
-            <div class="card">
-                <div class="ui slide masked reveal image">
-                    <div class="visible content">
-                        <img src="/image/banner/hero-consumerV42.jpg">
-                    </div>
-                    <div class="hidden content">
-                        <img src="/image/banner/hero-consumerV42.jpg">
-                    </div>
-                </div>
-                <div class="content">
-                    <div class="header">Matt Giampietro</div>
-                    <div class="meta">
-                        <a>好友</a>
-                    </div>
-                    <div class="description">Matthew is an interior designer living in New York. </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">2013年加入 </span>
-                    <span><i class="user icon"></i> 75 Friends </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="inverted">
-    <h2 id="latest_video_head" class="ui horizontal divider header"><i class="bar photo icon"></i> Our Latsed VIDEO </h2>
-    <div id="latest_video" class="ui grid">
-        <div class="eight wide computer eight wide tablet sixteen wide mobile column">
+        @foreach ( $album_latsed as $album )
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
             <div class="ui card">
-                <div class="ui slide masked reveal image">
-                    <div class="visible content">
-                        <img src="/image/banner/hero-personalV4.jpg">
+                <a href="/album/{{ $album->id }}">
+                    <div class="ui slide masked reveal image">
+                        <div class="visible content">
+                            <img src="/uploads/thumbnails/{{ $album->thumbnail }}">
+                        </div>
+                        <div class="hidden content">
+                            <img src="/uploads/thumbnails/{{ $album->thumbnail2 }}">
+                        </div>
                     </div>
-                    <div class="hidden content">
-                        <img src="/img/demo/s1.jpg">
-                    </div>
-                </div>
+                </a>
+
                 <div class="content">
-                    <a class="header">Team Fu &amp; Hess</a>
+                    <a href="/album/{{ $album->id }}" class="header">{{ $album->title }}</a>
                     <div class="meta">
-                        <span class="date">Create in Sep 2014</span>
+                        <span class="date">{{ substr($album->published_at,0,10) }}</span>
                     </div>
                 </div>
                 <div class="extra content">
-                    <a><i class="users icon"></i> 2 Members </a>
+                    <a><i class="fa fa-photo"></i> {{ $album->img->count() }} </a>
                 </div>
             </div>
         </div>
-        <div class="eight wide computer eight wide tablet sixteen wide mobile column">
+        @endforeach
+        <a href="/albums/" class="fluid ui blue button"><i class="fa fa-photo"></i>&nbsp;查看所有图片</a>
+    </div>
+    @endif
+
+
+    @if ( count($video_latsed) > 0 )
+    <div class="ui grid raised segment">
+        <div class="ui sixteen wide column">
+            <h2 class="ui dividing header">
+                <a href="/videoss/"><i class="fa fa-video-camera"></i>&nbsp;
+                    <div class="content"> 最新视频&nbsp;
+                        <div class="ui red mini label">new</div>
+                    </div>
+                </a>
+            </h2>
+        </div>
+        @foreach ( $video_latsed as $video )
+        <div class="four wide computer eight wide tablet sixteen wide mobile column">
             <div class="ui card">
-                <div class="ui slide masked reveal image">
-                    <div class="visible content">
-                        <img src="/image/banner/hero-personalV4.jpg">
+                <a href="/videoss/page/{{ $video->id }}">
+                    <div class="ui slide masked reveal image">
+                        <div class="visible content">
+                            <img src="/uploads/thumbnails/{{ $video->thumbnail }}">
+                        </div>
+                        <div class="hidden content">
+                            <img src="/uploads/thumbnails/{{ $video->thumbnail2 }}">
+                        </div>
                     </div>
-                    <div class="hidden content">
-                        <img src="/img/demo/s1.jpg">
-                    </div>
-                </div>
+                </a>
+
                 <div class="content">
-                    <a class="header">Team Fu &amp; Hess</a>
+                    <a href="/videoss/page/{{ $video->id }}" class="header">{{ $video->title }}</a>
                     <div class="meta">
-                        <span class="date">Create in Sep 2014</span>
+                        <span class="date">{{ substr($video->published_at,0,10) }}</span>
                     </div>
                 </div>
-                <div class="extra content">
-                    <a><i class="users icon"></i> 2 Members </a>
+            </div>
+        </div>
+        @endforeach
+        <a href="/videoss/" class="fluid ui blue button"><i class="fa fa-video-camera"></i>&nbsp;查看所有视频</a>
+    </div>
+    @endif
+
+    <div class="ui four column stackable centered grid raised segment">
+        <div class="ui sixteen wide column">
+            <h2 class="ui dividing header">
+                <i class="fa fa-video-camera"></i>&nbsp;
+                <div class="content"> 其他网站&nbsp;
+                    <div class="ui red mini label">new</div>
+                </div>
+            </h2>
+        </div>
+
+        <div class="column">
+            <div class="ui special cards">
+                <div class="card">
+                    <div class="blurring dimmable image">
+                        <div class="ui inverted dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui primary button">即将上线</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="/image/gaochasiwa2.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">预计上线时间</a>
+                        <div class="meta">
+                            <span class="date">预计上线时间：2016/5/1</span>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="photo icon"></i>
+                            专辑类型：
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui special cards">
+                <div class="card">
+                    <div class="blurring dimmable image">
+                        <div class="ui inverted dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui primary button">即将上线</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="/image/jinshenku2.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">预计上线时间</a>
+                        <div class="meta">
+                            <span class="date">预计上线时间：2016/4/1</span>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="photo icon"></i>
+                            预计上线时间
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui special cards">
+                <div class="card">
+                    <div class="blurring dimmable image">
+                        <div class="ui inverted dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui primary button">即将上线</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="/image/liantijinshenyi.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">预计上线时间</a>
+                        <div class="meta">
+                            <span class="date">预计上线时间：2016/4/15</span>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="photo icon"></i>
+                            专辑类型：预计上线时间
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui special cards">
+                <div class="card">
+                    <div class="blurring dimmable image">
+                        <div class="ui inverted dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui primary button">即将上线</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="/image/liantijinshenku.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">预计上线时间</a>
+                        <div class="meta">
+                            <span class="date">预计上线时间：2016/5/15</span>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="photo icon"></i>
+                            专辑类型：预计上线时间
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui special cards">
+                <div class="card">
+                    <div class="blurring dimmable image">
+                        <div class="ui inverted dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui primary button">即将上线</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="/image/gaochajinshen.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">预计上线时间</a>
+                        <div class="meta">
+                            <span class="date">预计上线时间：2016/6/1</span>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="photo icon"></i>
+                            专辑类型：预计上线时间
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div id="order">
+        <div class="ui center aligned basic segment">
+            <h2 class="ui dividing header"><i class="users icon"></i>成为网站VIP会员浏览全部图片和视频</h2>
+            <a href="/price">
+                <img src="/img/T1HHFgXXVeXXXXXXXX.png" alt="" style="width:120px;margin-right:1em;" />
+            </a>
+            <a href="/price" class="ui green labeled icon button">加入VIP会员<i class="user icon"></i></a>
+        </div>
+    </div>
 </div>
-
-<h2 id="link_head" class="ui horizontal divider header"><i class="bar image icon"></i> Our album category</h2>
-<div id="link" class="ui three column stackable grid">
-
-    <div class="column">
-        <div class="ui link cards">
-            <div class="card">
-                <div class="image">
-                    <img src="/image/banner/hero-personalV4.jpg">
-                </div>
-                <div class="content">
-                    <div class="header">Matt Giampietro</div>
-                    <div class="meta">
-                        <a>好友</a>
-                    </div>
-                    <div class="description">Matthew is an interior designer living in New York. </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">2013年加入 </span>
-                    <span><i class="user icon"></i> 75 Friends </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui link cards">
-            <div class="card">
-                <div class="image">
-                    <img src="/image/banner/hero-personalV4.jpg">
-                </div>
-                <div class="content">
-                    <div class="header">Matt Giampietro</div>
-                    <div class="meta">
-                        <a>好友</a>
-                    </div>
-                    <div class="description">Matthew is an interior designer living in New York. </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">2013年加入 </span>
-                    <span><i class="user icon"></i> 75 Friends </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui link cards">
-            <div class="card">
-                <div class="image">
-                    <img src="/image/banner/hero-personalV4.jpg">
-                </div>
-                <div class="content">
-                    <div class="header">Matt Giampietro</div>
-                    <div class="meta">
-                        <a>好友</a>
-                    </div>
-                    <div class="description">Matthew is an interior designer living in New York. </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">2013年加入 </span>
-                    <span><i class="user icon"></i> 75 Friends </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="four column centered row">
-        <div class="column"></div>
-        <div class="column"></div>
-    </div>
-</div>
-
-<div id="order" class="inverted">
-    <div class="ui center aligned basic segment">
-        <h2><i class="search icon"></i>A divider can segment content horizontally</h2>
-        <div class="ui horizontal divider">注册 </div>
-        <img src="/img/T1HHFgXXVeXXXXXXXX.png" alt="" style="width:120px;margin-right:1em;" />
-        <div class="ui red labeled icon button">订阅会员 <i class="add icon"></i> </div>
-    </div>
-</div>
-
 
 @endsection
 

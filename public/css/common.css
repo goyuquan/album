@@ -1,19 +1,33 @@
 /*common.css*/
-body { background: #f3f3f3; }
-.inline_block { display: inline-block; }
-hr {margin: 10px 0 10px;!important}
+body {
+    background: #f3f3f3;
+    font-family: "Microsoft YaHei"!important;
+}
+.inline_block {
+    display: inline-block;
+}
+hr {
+    margin: 10px 0 10px!important;
+}
 #menu .item:first-child {
     margin-right: 2em!important;
 }
 #footer {
     text-align:center;
+    padding-top: 2em;
+    border-top: 1px solid #0a50ae;
+    background: #1e70bf!important;
 }
 #footer a {
+    color:#fff!important;
     margin: 0 1em;
+}
+#footer a:hover {
+    text-decoration: underline;
 }
 #copyright {
     text-align:center;
-    color:#989ba2;
+    color:#f3f3f3;
 }
 .fixed.menu {
     background:rgba(255,255,255,0.8);
@@ -24,4 +38,7 @@ hr {margin: 10px 0 10px;!important}
 }
 .text_center {
     text-align: center;
+}
+.block {
+    display: block!important;
 }

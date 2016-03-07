@@ -9,6 +9,7 @@
     <meta name="description" content="@yield('description')_description">
 	<meta name="keywords" content="@yield('keywords')_keywords">
     <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/common.css">
 
     @yield('style')

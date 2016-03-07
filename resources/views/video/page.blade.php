@@ -35,7 +35,7 @@
         <div id="video_wrap" class="ui raised segment">
 
             <h2 class="ui header">
-                 <i class="video icon"></i>
+                 <i class="fa fa-video-camera"></i>
                 <div class="content">{{ $video->title }}
                     <div class="sub header">发布时间 : {{ substr($video->published_at,0,10) }}</div>
                 </div>
@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="four wide computer sixteen wide tablet sixteen wide mobile column">
-        <div class="ui segment"><a href="{{ url('/') }}">紧身裤</a></div>
+        <div class="ui segment"><a href="{{ url('/') }}">SOMETITLE</a></div>
     </div>
 </div>
 
