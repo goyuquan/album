@@ -6,7 +6,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'PageController@homepage');
 
-
+    Route::get('/loginm','UserController@loginm');
+    Route::post('/loginm_post','UserController@loginm_post');
     Route::get('/albums/{id?}', 'AlbumController@albums');
     Route::get('/videoss/page/{id?}', 'VideoController@page');
     Route::get('/videoss/{id?}', 'VideoController@videos');
@@ -63,6 +64,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/user/store', 'UserController@store');
         Route::get('/admin/user/{id}/destroy', 'UserController@destroy');
 
+        Route::get('/admin/users/mobile', 'UserController@index_mobile');
+        Route::get('/admin/users/mobile/search', 'UserController@mobile_search');
     });
 
 

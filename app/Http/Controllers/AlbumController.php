@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Album;
@@ -18,15 +17,15 @@ class AlbumController extends Controller
     public function index($id = 1)
     {
         $albums = Album::orderBy('id', 'desc')
-        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
+        ->paginate($perPage = 10, $columns = ['*'], $pageName = 'page', $page = $id);
         return view('admin.album.index',['albums' => $albums]);
     }
 
     public function albums($id = 1)
     {
         $albums = Album::where('published_at','<',date("Y-m-d h:i:s"))
-        ->orderBy('id', 'desc')
-        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
+        ->where('display_id',0)->orderBy('id', 'desc')
+        ->paginate($perPage = 10, $columns = ['*'], $pageName = 'page', $page = $id);
         return view('album.index',['albums' => $albums]);
     }
 

@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-
     public function index()
     {
-
         $users = User::all();
-
         return view('admin.users.index',['users' => $users]);
     }
 
@@ -124,6 +122,27 @@ class UserController extends Controller
         Session()->flash('status', 'User update was successful!');
 
         return redirect('/admin/users');
+    }
+
+
+    public function loginm()
+    {
+        return view('auth.loginm');
+    }
+
+    public function loginm_post(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $users = User::all();
+            return view('admin.mobile.users',['users' => $users]);
+        } else {
+            return "wrong";
+        }
+    }
+
+    public function mobile_search()
+    {
+        return view('admin.mobile.search');
     }
 
 

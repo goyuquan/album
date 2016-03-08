@@ -16,8 +16,11 @@
 .price_body {
     margin: 4em auto!important;
 }
+.compact {
+    padding-top:2em!important;
+}
 .content_body {
-    /*padding-top: 1em!important;*/
+    padding-top: 1em!important;
 }
 table th,table td {
     text-align: center!important;
@@ -42,7 +45,6 @@ table tr td a.button {
 </div>
 
 <div class="ui container compact segment">
-
     <h1 class="ui dividing blue header center aligned"> <i class="users icon"></i> 加入VIP会员</h1>
     <br>
     <p class="text_center"> 有您的加入我们的高质量资源才能继续下去. </p>

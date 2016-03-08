@@ -41,6 +41,7 @@
     width: auto;
     visibility: hidden;
 }
+
 .swiper-pagination-bullet {
     background: #fff;
 }
@@ -64,7 +65,9 @@ img {
 <div class="swiper-container">
     <div class="swiper-wrapper">
         @foreach ( $banners as $banner)
-        <div class="swiper-slide"> <img src="/uploads/{{$banner->thumbnail}}" alt=""/> </div>
+        <div class="swiper-slide">
+            <img src="/uploads/{{$banner->thumbnail}}" alt=""/>
+        </div>
         @endforeach
     </div>
     <!-- Add Pagination -->
@@ -78,22 +81,6 @@ img {
 @include('includes.join')
 
 <div class="ui container">
-
-    <!-- <div class="ui three statistics raised segment">
-        <div class="statistic">
-            <div class="value" style="color:#339933!important"><i class="file image outline icon"></i> {{ $album }} </div>
-            <div class="label">相册数量 </div>
-        </div>
-        <div class="statistic">
-            <div class="value" style="color:#339933!important"><i class="fa fa-camera"></i> {{ $img }} </div>
-            <div class="label">图片 </div>
-        </div>
-        <div class="statistic">
-            <div class="value" style="color:#336699!important"><i class="film icon"></i> {{ $video }} </div>
-            <div class="label">视频 </div>
-        </div>
-    </div> -->
-
 
     @if ( count($album_latsed) > 0 )
     <div class="ui grid raised segment">
@@ -341,9 +328,10 @@ window.onload = function(){
         prevButton: '.swiper-button-prev',
         slidesPerView: 'auto',
         centeredSlides: true,
-        autoplay: 250000000,
+        autoplay: 250000,
         autoplayDisableOnInteraction: false,
         paginationClickable: true,
+        preloadImages: false,
         spaceBetween: 20
     });
 }
