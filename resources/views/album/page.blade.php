@@ -42,13 +42,15 @@
 
 @section('content')
 
-<div class="ui large breadcrumb">
-    <a href="{{url('/')}}" class="section">首页</a>
-    <i class="right chevron icon divider"></i>
-    <a href="/albums/" class="section">图片</a>
-    <i class="right chevron icon divider"></i>
-    <div class="active section">{{$album_title}}</div>
-    <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
+<div class="ui container">
+    <div class="ui large breadcrumb">
+        <a href="{{url('/')}}" class="section">首页</a>
+        <i class="right chevron icon divider"></i>
+        <a href="/albums/" class="section">图片</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">{{$album_title}}</div>
+        <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
+    </div>
 </div>
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -79,7 +81,7 @@
 
 </div>
 
-<div class="ui hidden divider"></div>
+<br>
 @endsection
 
 @section('script')

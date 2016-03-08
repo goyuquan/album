@@ -1,45 +1,51 @@
-    @extends('layouts.app')
+@extends('layouts.app')
 
-    @section('title',"加入VIP会员")
-    @section('description',"加入VIP会员")
-    @section('keywords',"加入VIP会员")
+@section('title',"加入VIP会员")
+@section('description',"加入VIP会员")
+@section('keywords',"加入VIP会员")
 
-    @section('style')
-    <style media="screen">
-    .content_body {
-        margin:2em 0!important;
-    }
-    .content_body .steps {
-        display: block!important;
-    }
-    .image {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .price_body {
-        margin: 4em auto!important;
-    }
-    table th,table td {
-        text-align: center!important;
-    }
-    </style>
-    @endsection
+@section('style')
+<style>
+.content_body .steps {
+    display: block!important;
+}
+.image {
+    margin-left: auto;
+    margin-right: auto;
+}
+.price_body {
+    margin: 4em auto!important;
+}
+.content_body {
+    /*padding-top: 1em!important;*/
+}
+table th,table td {
+    text-align: center!important;
+}
+table tr td a.button {
+    font-size: 0.9em!important;
+    padding:0.6em 1.3em!important;
+    margin: 0!important;
+}
+</style>
+@endsection
 
-    @section('content')
+@section('content')
+
+<div class="ui container">
     <div class="ui large breadcrumb">
         <a href="{{ url('/') }}" class="section">首页</a>
         <i class="right chevron icon divider"></i>
         <div class="active section">加入VIP会员</div>
         <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
     </div>
+</div>
 
-    <h1 class="ui dividing blue header center aligned">
-        <i class="users icon"></i>
-        加入VIP会员</h1>
-    <p class="text_center">
-        有您的加入我们的高质量资源才能继续下去.
-    </p>
+<div class="ui container compact segment">
 
+    <h1 class="ui dividing blue header center aligned"> <i class="users icon"></i> 加入VIP会员</h1>
+    <br>
+    <p class="text_center"> 有您的加入我们的高质量资源才能继续下去. </p>
 
     <div class="price_body ui two column centered grid">
         <div class="column">
@@ -72,22 +78,23 @@
                         <td class="positive"> <i class="checkmark icon"></i>视频</td>
                     </tr>
                     <tr>
-                        <td> <a href="/pay/89" class="positive ui button">加入</a> </td>
-                        <td> <a href="/pay/249" class="positive ui button">加入</a> </td>
-                        <td> <a href="/pay/449" class="positive ui button">加入</a> </td>
-                        <td> <a href="/pay/799" class="positive ui button">加入</a> </td>
+                        <td> <a href="/pay/99" class="positive ui button">加&nbsp;入</a> </td>
+                        <td> <a href="/pay/279" class="positive ui button">加&nbsp;入</a> </td>
+                        <td> <a href="/pay/509" class="positive ui button">加&nbsp;入</a> </td>
+                        <td> <a href="/pay/899" class="positive ui button">加&nbsp;入</a> </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
+</div>
+</div>
 
 
-    @endsection
+@endsection
 
-    @section('script')
+@section('script')
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    </script>
-    @endsection
+</script>
+@endsection

@@ -20,16 +20,18 @@
 
 @section('content')
 
-<div class="ui large breadcrumb">
-    <a href="{{url('/')}}" class="section">首页</a>
-    <i class="right chevron icon divider"></i>
-    <a href="/albums/" class="section">视频</a>
-    <i class="right chevron icon divider"></i>
-    <div class="active section">{{ $video->title }}</div>
-    <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
+<div class="ui container">
+    <div class="ui large breadcrumb">
+        <a href="{{url('/')}}" class="section">首页</a>
+        <i class="right chevron icon divider"></i>
+        <a href="/albums/" class="section">视频</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">{{ $video->title }}</div>
+        <a class="ui blue tag label" onclick="window.history.go(-1)" style="margin-left:3em;"> 返回 </a>
+    </div>
 </div>
 
-<div class="ui grid">
+<div class="ui grid container">
 
     <div class="twelve wide computer sixteen wide tablet sixteen wide mobile column">
         <div id="video_wrap" class="ui raised segment">
@@ -50,7 +52,7 @@
         </div>
     </div>
     <div class="four wide computer sixteen wide tablet sixteen wide mobile column">
-        <div class="ui segment"><a href="{{ url('/') }}">SOMETITLE</a></div>
+        <div class="ui segment">@include('includes.sidebar')</div>
     </div>
 </div>
 
