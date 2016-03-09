@@ -8,16 +8,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/loginm','UserController@loginm');
     Route::post('/loginm_post','UserController@loginm_post');
+
     Route::get('/albums/{id?}', 'AlbumController@albums');
     Route::get('/videoss/page/{id?}', 'VideoController@page');
     Route::get('/videoss/{id?}', 'VideoController@videos');
     Route::get('/album/{id?}', 'AlbumController@album');
     Route::post('/album/img', 'AlbumController@img');
     Route::get('/price', 'PageController@price');
-
-
-    Route::get('/articles/{id?}', 'ArticleController@index');
-    Route::get('/article/{article}', 'ArticleController@show' );
 
     Route::group(['middleware' => ['auth','authuser']], function () {
 
@@ -64,8 +61,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/user/store', 'UserController@store');
         Route::get('/admin/user/{id}/destroy', 'UserController@destroy');
 
-        Route::get('/admin/users/mobile', 'UserController@index_mobile');
+        Route::post('/admin/mobile/search', 'UserController@mobile_search_post');
+        Route::get('/admin/users/mobile/{id?}', 'UserController@index_mobile');
         Route::get('/admin/users/mobile/search', 'UserController@mobile_search');
+        Route::get('/admin/user/mobile/{id?}/edit', 'UserController@mobile_edit');
+        Route::post('/admin/user/mobile/{id?}/update', 'UserController@mobile_update');
     });
 
 

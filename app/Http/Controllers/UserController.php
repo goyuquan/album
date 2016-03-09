@@ -133,11 +133,17 @@ class UserController extends Controller
     public function loginm_post(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $users = User::all();
-            return view('admin.mobile.users',['users' => $users]);
+            return redirect('/admin/users/mobile/1');
         } else {
             return "wrong";
         }
+    }
+
+    public function index_mobile($id = 1)
+    {
+        $users = User::orderBy('id', 'desc')
+        ->paginate($perPage = 20, $columns = ['*'], $pageName = 'page', $page = $id);
+        return view('admin.mobile.users',['users' => $users]);
     }
 
     public function mobile_search()
@@ -145,6 +151,63 @@ class UserController extends Controller
         return view('admin.mobile.search');
     }
 
+    public function mobile_search_post(Request $request)
+    {
+        $user = User::where('email',$request->email)->first();
+        if ($user) {
+            $email = $user;
+        } else {
+            $email = null;
+        }
+        return view('admin.mobile.search_result',['user' => $email]);
+    }
+
+    public function mobile_edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.mobile.edit',['user' => $user]);
+    }
+
+    public function mobile_update(Request $request, $id)
+    {
+        $messages = [
+            'password.max' => '密码不能大于:max位',
+            'password.min' => '密码不能小于:min位',
+            'password.confirmed' => '密码不一致'
+        ];
+        $this->validate($request, [
+            'password' => 'confirmed|min:6|max:20'
+        ],$messages);
+
+        $user = User::findOrFail($id);
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+
+
+        if ($request->member) {
+            $later_time = $user->member ? $user->member : time();
+            switch ($request->member)
+                {
+                    case 30: $member = ($later_time + 30*86400); break;
+                    case 90: $member = ($later_time + 90*86400); break;
+                    case 180: $member = ($later_time + 180*86400); break;
+                    case 360: $member = ($later_time + 360*86400); break;
+                    default: $member = null;
+                }
+            $user->member = $member;
+        } else {
+            if ($request->member2) {
+                $user->member = strtotime($request->member2);
+            }
+        }
+
+        $user->save();
+
+        Session()->flash('status', 'User update was successful!');
+
+        return redirect('/admin/users/mobile/');
+    }
 
     public function destroy($id)
     {

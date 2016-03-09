@@ -9,16 +9,12 @@
         padding:0 10px;
         margin-top: 10px;
     }
-    button {
-        margin-top: 20px;
-        float: right;
-        padding: 5px 19px;
-    }
+    
 </style>
 @endsection
 
 @section('content')
-<form method="POST" action="{{ url('/loginm_post') }}">
+<form method="POST" action="{{ url('/admin/mobile/search') }}">
     {!! csrf_field() !!}
     <input type="text" name="email">
     <button type="submit">搜索</button>

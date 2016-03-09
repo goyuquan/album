@@ -9,6 +9,11 @@
         ul li {
             display: inline-block;
         }
+        button {
+            margin-top: 20px;
+            float: right;
+            padding: 5px 19px;
+        }
     </style>
     @yield('style')
 </head>
