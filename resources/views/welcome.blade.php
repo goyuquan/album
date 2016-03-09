@@ -12,6 +12,10 @@
 #menu {
     margin-bottom: 0;
 }
+h1 {
+    color:#789;
+    text-align: center;
+}
 .swiper-container {
     width: 100%;
     height: 500px;
@@ -41,7 +45,9 @@
     width: auto;
     visibility: hidden;
 }
-
+.swiper-container {
+    background: url('/img/demo/demo-smartbig-alert.png');
+}
 .swiper-pagination-bullet {
     background: #fff;
 }
@@ -77,6 +83,9 @@ img {
     <div class="swiper-button-prev"></div>
 </div>
 @endif
+
+<h1>welcome to our best website </h1>
+<p style="color:#999;text-align:center;">welcome to our best website subtitle</p>
 
 @include('includes.join')
 

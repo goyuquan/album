@@ -13,7 +13,9 @@ h1,h2,h3,h4,h5,h6,span,div,p,a {
 }
 #footer {
     text-align:center;
-    padding-top: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: -2em;
     border-top: 1px solid #0a50ae;
     background: #1e70bf!important;
 }
@@ -24,9 +26,9 @@ h1,h2,h3,h4,h5,h6,span,div,p,a {
 #footer a:hover {
     text-decoration: underline;
 }
-#copyright {
-    text-align:center;
-    color:#f3f3f3;
+#footer p {
+    margin: 0.6em!important;
+    color: 	#aed2dd;
 }
 .fixed.menu {
     background:rgba(255,255,255,0.8);
